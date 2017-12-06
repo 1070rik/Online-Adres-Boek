@@ -12,5 +12,5 @@
 8. Run `php artisan serve`
 
 ### Errors?
-___500  error___
----Make sure you have given the `storage` and `bootstrap/cache` folder r/w permission
+___500  error___ <br>
+Make sure you have given the `storage` and `bootstrap/cache` folder r/w permission
