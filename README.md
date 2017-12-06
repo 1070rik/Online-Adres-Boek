@@ -13,4 +13,5 @@
 
 ### Errors?
 ___500  error___
+
   Make sure you have given the `storage` and `bootstrap/cache` folder r/w permission
