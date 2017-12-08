@@ -21,7 +21,7 @@ class userController extends Controller
 
     protected function getAll(Request $request){
         $users = User::get();
-        return $users;
+        return  view('getAllUsers', compact('users'));
     }
 
     public function createUser()
