@@ -2,13 +2,14 @@
 /* CSS Document */
 
 body {
-    background-color: blue;
+  background-color: blue;
 }
 
 a:hover {
-    color: black;
+  color: black;
 }
 
-#bob, #linkje a {
-    color: green;
+#bob,
+#linkje a {
+  color: green;
 }

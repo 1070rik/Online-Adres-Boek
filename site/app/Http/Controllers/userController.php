@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class userController extends Controller
 {
-    protected function create(Request $request)
+  protected function create(Request $request)
     {
         $password = str_random(15);
 
