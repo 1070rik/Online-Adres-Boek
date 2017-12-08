@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class userController extends Controller
 {
-  protected function create(Request $request)
-    {
+    protected function create(Request $request){
         $password = str_random(15);
 
         $user = new User();
@@ -18,6 +17,11 @@ class userController extends Controller
         $user->save();
 
         // TODO: send password to email ($request['email'])
+    }
+
+    protected function getAll(Request $request){
+        $users = User::get();
+        return $users;
     }
 
     public function createUser()
