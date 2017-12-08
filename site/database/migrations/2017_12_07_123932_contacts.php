@@ -15,22 +15,23 @@ class Contacts extends Migration
     {
         Schema::enableForeignKeyConstraints();
 
-        Schema::create('contactpersonen', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('voornaam');
-            $table->string('tussenvoegsel');
+            $table->string('tussenvoegsel')->nullable();
             $table->string('achternaam');
             $table->datetime('geboortedatum');
+            $table->string('telefoonnummer');
             $table->string('email');
             $table->string('fotoPad');
             $table->string('beschrijving');
-            $table->unsignedInteger('adresID');
-            $table->unsignedInteger('toegevoedDoor');
+            $table->unsignedInteger('adresID')->nullable();
+            $table->unsignedInteger('toegevoedDoor')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('contactpersonen', function ($table){
-            $table->foreign('adresID')->references('id')->on('adressen');
+        Schema::table('contacts', function ($table){
+            $table->foreign('adresID')->references('id')->on('addresses');
             $table->foreign('toegevoedDoor')->references('id')->on('users');
         });
     }
@@ -42,6 +43,6 @@ class Contacts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contactpersonen');
+        Schema::dropIfExists('contacts');
     }
 }
