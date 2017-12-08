@@ -24,6 +24,13 @@ class userController extends Controller
         return  view('getAllUsers', compact('users'));
     }
 
+    protected function edit(Request $request){
+        User::where('id', $request['id'])->update([ 'email' => $request['email'],
+                                                    'admin' => $request['admin']]);
+
+        return redirect('getAllUsers');
+    }
+
     public function createUser()
     {
         return view('createUser');
