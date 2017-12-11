@@ -35,7 +35,7 @@ class contactsController extends Controller
       'beschrijving'   => $request['beschrijving']
     ]);
 
-    return "User with name " + $contact['voornaam'] + $contact['achternaam'] + " toegevoegd door " + $contact['toegevoegdDoor'];
+    return redirect('editContact');
   }
 
   public function editContact(Request $request){
