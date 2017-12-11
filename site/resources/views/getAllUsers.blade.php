@@ -31,14 +31,22 @@
 	        		@endif
 	        	</select>
             </span>
-			<span class="td col-md-2">
+			<span class="td col-md-1">
                 <div class="form-group">
-			        <input type="submit" class="btn btn-primary">			            
-			        </input>
+			        <button type="submit" class="btn btn-primary" name="submit" value="change">Verander</button>
+				</div>
+			</span>
+			<span class="td col-md-1">
+                <div class="form-group">
+			        <button type="submit" class="btn btn-primary" name="submit" value="delete">Verwijder</button>
 				</div>
 			</span>
     	</form>
     	@endforeach  
+
+    	<form class="form-horizontal" method="GET" action="{{ route('createUser') }}">
+    		<input class="btn btn-primary" type="submit" value="Nieuw" />
+    	</form>
 
     </div>
 </div>

@@ -17,6 +17,8 @@ class userController extends Controller
         $user->save();
 
         // TODO: send password to email ($request['email'])
+
+        return redirect('getAllUsers');
     }
 
     protected function getAll(Request $request){
@@ -25,14 +27,26 @@ class userController extends Controller
     }
 
     protected function edit(Request $request){
-        User::where('id', $request['id'])->update([ 'email' => $request['email'],
-                                                    'admin' => $request['admin']]);
+
+        if($request['submit'] == "change"){
+            User::where('id', $request['id'])->update([ 'email' => $request['email'],
+                                                        'admin' => $request['admin']]);
+        }
+        else{
+            User::where('id', $request['id'])->delete();
+        }
+
+        return redirect('getAllUsers');
+    }
+
+    protected function delete(Request $request){
+        User::where('id', $request['id'])->delete();
 
         return redirect('getAllUsers');
     }
 
     public function createUser()
     {
-        return view('createUser');
+        return view('createUser', compact('users'));
     }
 }
