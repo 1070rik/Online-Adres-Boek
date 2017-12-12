@@ -58,4 +58,12 @@ class contactsController extends Controller
       }
     return redirect('editContact');
   }
+
+  public function getAllContactsAjax(Request $request){
+      $contacts = contacts::with('addresses')->get();
+
+      $json = json_encode($contacts);
+
+      echo $json;
+  }
 }

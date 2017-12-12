@@ -33,3 +33,5 @@ Route::post('/editContactPost', 'contactsController@editContactPost')->name('edi
 
 Route::get('/search', 'SearchController@index')->name('searchGet');
 Route::post('/bla', 'SearchController@postIndex')->name('searchPost');
+
+Route::get('/getAllContactsAjax', 'contactsController@getAllContactsAjax')->name('getAllContactsAjax');
