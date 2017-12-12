@@ -3,7 +3,9 @@
 namespace AdresBoek\Http\Controllers;
 
 use AdresBoek\User;
+use AdresBoek\Mail\passwordMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class userController extends Controller
 {
@@ -16,7 +18,12 @@ class userController extends Controller
         $user->admin = $request['admin'];
         $user->save();
 
-        // TODO: send password to email ($request['email'])
+        $mailData = [
+          'email' => $request['email'],
+          'password' => $password
+        ];
+
+        Mail::to($request['email'])->send(new passwordMail($mailData));
 
         return redirect('getAllUsers');
     }
