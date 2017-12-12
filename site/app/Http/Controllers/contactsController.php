@@ -60,10 +60,13 @@ class contactsController extends Controller
   }
 
   public function getAllContactsAjax(Request $request){
-      $contacts = contacts::with('addresses')->get();
+      $contacts = contacts::get();
+      $addresses = addresses::get();
 
-      $json = json_encode($contacts);
+      $jsonArray = array("contacts" => $contacts, "addresses" => $addresses);
 
-      echo $json;
+      $jsonCombined = json_encode($jsonArray);
+
+      echo $jsonCombined;
   }
 }
