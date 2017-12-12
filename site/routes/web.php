@@ -30,3 +30,6 @@ Route::get('/addContact', 'contactsController@index')->name('addContactGet');
 Route::post('/addContact', 'contactsController@addContact')->name('addContactPost');
 Route::get('/editContact', 'contactsController@editContact')->name('editContactGet');
 Route::post('/editContactPost', 'contactsController@editContactPost')->name('editContactPost');
+
+Route::get('/search', 'SearchController@index')->name('searchGet');
+Route::post('/bla', 'SearchController@postIndex')->name('searchPost');
