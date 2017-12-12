@@ -5,59 +5,44 @@ namespace AdresBoek\Http\Controllers;
 use Illuminate\Http\Request;
 use AdresBoek\contacts;
 use AdresBoek\addresses;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
     public function index(){
-      // $adresses = addresses::where([
-      //        'straatnaam' => 'h'
-      // ])->get();
-      //
-      // foreach($adresses as $adres){
-      //   echo '-------------- <br>';
-      //
-      //   echo "voornaam: " . $adres->contacts[0]->voornaam . "<br>";
-      //   echo "tussenvoegsel: " . $adres->contacts[0]->tussenvoegsel . "<br>";
-      //   echo "achternaam: " . $adres->contacts[0]->achternaam . "<br>";
-      //   echo "straatnaam: " . $adres->straatnaam . "<br>";
-      //   echo "postcode: " . $adres->postcode . "<br>";
-      //
-      //   echo '-------------- <br><br>';
-      // }
-
       echo '
         <form action="' . route("searchPost") . '" method="post">
           <input name="_token" value="' . csrf_token() . '" type="hidden">
-          <input type="text" name="straatnaam">
-          <input type="text" name="postcode">
-          <input type="text" name="plaats">
-          <input type="text" name="voornaam">
+          Voornaam: <input type="text" name="voornaam"><br>
+          tussenvoegsel: <input type="text" name="tussenvoegsel"><br>
+          Achternaam: <input type="text" name="achternaam"><br>
+          Straatnaam: <input type="text" name="straatnaam"><br>
+          Huisnummer: <input type="text" name="huisnummer"><br>
+          Plaats: <input type="text" name="plaats"><br>
+          Postcode: <input type="text" name="postcode"><br>
           <input type="submit">
         </form>
       ';
-
     }
 
     public function postIndex(Request $request)
     {
       $input = $request->all();
       unset($input['_token']);
-      $contacts = contacts::get();
-      $adresses = addresses::where('straatnaam', 'like', $request->straatnaam . '%')
-      ->where('postcode', 'like', $request->postcode . '%')
-      ->where('plaats', 'like', $request->plaats . '%')
-      ->where('voornaam', 'like', )
-      ->get();
+      $addresses = DB::table('addresses')
+            ->join('contacts', 'addresses.id', '=', 'contacts.adresID')
+            ->where('contacts.voornaam', 'like', '%' . $request->voornaam . '%')
+            ->where('contacts.tussenvoegsel', 'like', '%' . $request->tussenvoegsel . '%')
+            ->where('contacts.achternaam', 'like', '%' . $request->achternaam . '%')
+            ->where('addresses.straatnaam', 'like', '%' . $request->straatnaam . '%')
+            ->where('addresses.huisnummer', 'like', '%' . $request->huisnummer . '%')
+            ->where('addresses.plaats', 'like', '%' . $request->plaats . '%')
+            ->where('addresses.postcode', 'like', '%' . $request->postcode . '%')
+            ->get();
 
-      foreach($adresses as $adres){
-        echo '-------------- <br>';
-
-        echo "voornaam: " . $adres->contacts[0]->voornaam . "<br>";
-        echo "tussenvoegsel: " . $adres->contacts[0]->tussenvoegsel . "<br>";
-        echo "achternaam: " . $adres->contacts[0]->achternaam . "<br>";
-        echo "straatnaam: " . $adres->straatnaam . "<br>";
-        echo "postcode: " . $adres->postcode . "<br>";
-
-      }
+      // foreach ($addresses as $address) {
+      //   echo $address->voornaam . ", " . $address->tussenvoegsel . " " . $address->achternaam;
+      // }
+      return view('searchResults', compact('addresses'));
     }
 }

@@ -5,6 +5,7 @@ namespace AdresBoek\Http\Controllers;
 use Illuminate\Http\Request;
 use AdresBoek\contacts;
 use AdresBoek\addresses;
+use Illuminate\Support\Facades\DB;
 
 class contactsController extends Controller
 {
@@ -68,5 +69,14 @@ class contactsController extends Controller
       $jsonCombined = json_encode($jsonArray);
 
       echo $jsonCombined;
+  }
+
+  public function viewContact(Request $request, $id){
+    $contact = DB::table('contacts')
+          ->join('addresses', 'contacts.adresID', '=', 'addresses.id')
+          ->where('contacts.id', $id)
+          ->first();
+
+    return view('viewContact', compact('contact'));
   }
 }
