@@ -15,12 +15,12 @@
               <th colspan="1"></th>
             </thead>
             <tbody>
-              @foreach($addresses as $address)
+              @foreach($query as $row)
               <tr>
-                <td>{{ $address->voornaam }}, {{ $address->tussenvoegsel }} {{ $address->achternaam }}</td>
-                <td>{{ $address->straatnaam }} {{ $address->huisnummer }}</td>
-                <td>{{ $address->plaats }} {{ $address->postcode }}</td>
-                <td><a href="{{ route('viewContactGet', $address->id) }}" target="_blank"><button type="button" name="button" class="btn btn-success">View</button></a></td>
+                <td>{{ $row->voornaam }}, {{ $row->tussenvoegsel }} {{ $row->achternaam }}</td>
+                <td>{{ $row->straatnaam }} {{ $row->huisnummer }}</td>
+                <td>{{ $row->plaats }} {{ $row->postcode }}</td>
+                <td><a href="{{ route('viewContactGet', $row->id) }}" target="_blank"><button type="button" name="button" class="btn btn-success">View</button></a></td>
               </tr>
               @endforeach
             </tbody>
