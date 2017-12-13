@@ -11,6 +11,7 @@
       <div class="panel-body">
         <form action="{{route("searchPost")}}" method="post">
           <input name="_token" value="{{csrf_token()}}" type="hidden">
+          <input type="hidden" name="api" value="1">
           Voornaam: <input type="text" name="voornaam"><br>
           tussenvoegsel: <input type="text" name="tussenvoegsel"><br>
           Achternaam: <input type="text" name="achternaam"><br>

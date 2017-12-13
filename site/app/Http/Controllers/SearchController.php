@@ -31,6 +31,12 @@ class SearchController extends Controller
       // foreach ($addresses as $address) {
       //   echo $address->voornaam . ", " . $address->tussenvoegsel . " " . $address->achternaam;
       // }
-      return view('searchResults', compact('addresses'));
+      if($request->api == 1){
+        $addressArray = array("contacts" => $addresses);
+        $addresses = json_encode($addressArray);
+        return $addresses;
+      }else{
+        return view('search.searchResults', compact('addresses'));
+      }
     }
 }
