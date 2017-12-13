@@ -10,19 +10,7 @@ use Illuminate\Support\Facades\DB;
 class SearchController extends Controller
 {
     public function index(){
-      echo '
-        <form action="' . route("searchPost") . '" method="post">
-          <input name="_token" value="' . csrf_token() . '" type="hidden">
-          Voornaam: <input type="text" name="voornaam"><br>
-          tussenvoegsel: <input type="text" name="tussenvoegsel"><br>
-          Achternaam: <input type="text" name="achternaam"><br>
-          Straatnaam: <input type="text" name="straatnaam"><br>
-          Huisnummer: <input type="text" name="huisnummer"><br>
-          Plaats: <input type="text" name="plaats"><br>
-          Postcode: <input type="text" name="postcode"><br>
-          <input type="submit">
-        </form>
-      ';
+      return view('search.search');
     }
 
     public function postIndex(Request $request)

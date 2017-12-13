@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class contactsController extends Controller
 {
   public function index() {
-    return view('addContactForm');
+    return view('contacts.addContactForm');
   }
 
   public function addContact(Request $request) {
@@ -41,7 +41,7 @@ class contactsController extends Controller
 
   public function editContact(Request $request){
       $contacts = contacts::get();
-      return view('getAllContacts', compact('contacts'));
+      return view('contacts.getAllContacts', compact('contacts'));
   }
 
   public function editContactPost(Request $request){
@@ -77,6 +77,6 @@ class contactsController extends Controller
           ->where('contacts.id', $id)
           ->first();
 
-    return view('viewContact', compact('contact'));
+    return view('contacts.viewContact', compact('contact'));
   }
 }

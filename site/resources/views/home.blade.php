@@ -4,6 +4,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @if(session('message_negative'))
+            <div class="alert alert-danger">
+              <strong>Error!</strong> {{ session('message_negative') }}
+            </div>
+            @elseif(session('message_positive'))
+            <div class="alert alert-success">
+              <strong>Success!</strong> {{ session('message_positive') }}
+            </div>
+            @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
