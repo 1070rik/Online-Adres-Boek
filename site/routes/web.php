@@ -18,7 +18,7 @@ Auth::routes();
 
 
 
-Route::get('/getAllContactsAjax', 'contactsController@getAllContactsAjax')->name('getAllContactsAjax');
+Route::post('/getAllContactsAjax', 'contactsController@getAllContactsAjax')->name('getAllContactsAjax');
 
 
 

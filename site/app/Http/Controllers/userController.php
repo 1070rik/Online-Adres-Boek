@@ -11,23 +11,32 @@ use Illuminate\Support\Facades\Auth;
 class userController extends Controller
 {
     protected function create(Request $request){
-        $password = str_random(15);
 
-        $user = new User();
-        $user->uniqid = uniqid();
-        $user->email = $request['email'];
-        $user->password = bcrypt($password);
-        $user->admin = $request['admin'];
-        $user->save();
+        $users = User::where('email', $request['email']);
 
-        $mailData = [
-          'email' => $request['email'],
-          'password' => $password
-        ];
+        if (count($users) > 0){
+            return redirect('getAllUsers')->with([
+                'error' => 'Email is already registered!'
+            ]);
+        } else {
+            $password = str_random(15);
 
-        Mail::to($request['email'])->send(new passwordMail($mailData));
+            $user = new User();
+            $user->uniqid = uniqid();
+            $user->email = $request['email'];
+            $user->password = bcrypt($password);
+            $user->admin = $request['admin'];
+            $user->save();
 
-        return redirect('getAllUsers');
+            $mailData = [
+              'email' => $request['email'],
+              'password' => $password
+            ];
+
+            Mail::to($request['email'])->send(new passwordMail($mailData));
+
+            return redirect('getAllUsers');
+        }
     }
 
     protected function getAll(Request $request){

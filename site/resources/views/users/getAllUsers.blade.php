@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">  
+	@if(session('error'))
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{ session('error') }}
+    </div>
+    @endif
 	<div class="table">
 
 		<div class="tr">
