@@ -5,7 +5,7 @@ function returnOrUndefined(txt, extra, prefix) {
 	if (prefix === undefined) {
 		prefix = "";
 	}
-	if (txt !== undefined) {
+	if (txt !== undefined && txt !== null) {
 		return prefix + txt + extra;
 	} else {
 		return "";
@@ -178,7 +178,8 @@ function placeAllMarkers(filter) {
 }
 
 function initMap() {
-	var coord = { lat: 51.96737, lng: 6.2985617 };
+	//Nederland,Amersfoort 52.1589302,5.3077833
+	var coord = { lat: 52.1589302, lng: 5.3077833 };
 
 	//Initiliaze map
 	map = new google.maps.Map(document.getElementById('map'), {
