@@ -1,92 +1,95 @@
 function returnOrUndefined(txt, extra, prefix) {
-	if(extra === undefined) {extra="";}
-	if(prefix === undefined) {prefix="";}
-	if(txt !== undefined) {
+	if (extra === undefined) {
+		extra = "";
+	}
+	if (prefix === undefined) {
+		prefix = "";
+	}
+	if (txt !== undefined) {
 		return prefix + txt + extra;
 	} else {
 		return "";
 	}
 }
 
-
 function MarkerObj(Adres, Contacts) {
 	this.adres = Adres;
 	//Makes sure contacts is an Array
-	if(Contacts.constructor.name == "Contact") {
+	if (Contacts.constructor.name == "Contact") {
 		Contacts = [Contacts];
 	}
-	
+
 	//Creates dot if it must have a dot
 	this.contacts = Contacts;
-	if(Contacts.length > 1) {
+	if (Contacts.length > 1) {
 		this.hasDot = false;
 	} else {
 		this.hasDot = true;
 	}
-	
+
 	//Create the content for the infowindow
 	this.content = "";
-	for(let i = 0; i < this.contacts.length; i++	) {
-		this.content +=" <div id=\"infowindow\"><h3>";
-		this.content += returnOrUndefined(this.contacts[i].voornaam," ");
-		this.content += returnOrUndefined(this.contacts[i].tussenvoegsel," ");
+	for (var i = 0; i < this.contacts.length; i++) {
+		this.content += " <div id=\"infowindow\"><h3>";
+		this.content += returnOrUndefined(this.contacts[i].voornaam, " ");
+		this.content += returnOrUndefined(this.contacts[i].tussenvoegsel, " ");
 		this.content += returnOrUndefined(this.contacts[i].achternaam);
 		this.content += "</h3><hr>";
-		this.content += returnOrUndefined(this.adres.straatnaam," ");
+		this.content += returnOrUndefined(this.adres.straatnaam, " ");
 		this.content += returnOrUndefined(this.adres.huisnummer);
 		this.content += "<br>";
-		this.content += returnOrUndefined(this.adres.postcode," ");
+		this.content += returnOrUndefined(this.adres.postcode, " ");
 		this.content += returnOrUndefined(this.adres.plaats);
 		this.content += "</div>";
-		if(i < this.contacts.length-1) {this.content+="<br>"}
+		if (i < this.contacts.length - 1) {
+			this.content += "<br>";
+		}
 	}
-	
+
 	//Function to add the marker to google maps
-	this.addMarker = function() {
-		let length = this.contacts.length;
-		if(length <= 1) { length = "" }
+	this.addMarker = function () {
+		var length = this.contacts.length;
+		if (length <= 1) {
+			length = "";
+		}
 		this.marker = new google.maps.Marker({
-			position: {lat: parseFloat(this.adres.latitude), lng: parseFloat(this.adres.longitude)},
-			title: "lat: " + this.adres.latitude + " lng: "+this.adres.longitude,
+			position: { lat: parseFloat(this.adres.latitude), lng: parseFloat(this.adres.longitude) },
+			title: "lat: " + this.adres.latitude + " lng: " + this.adres.longitude,
 			map: map,
 			optimized: false,
-			label: ""+length,
+			label: "" + length,
 			icon: getMarkerImg("#F00", this.hasDot)
 		});
-	}
-	
+	};
 }
 
-
 function getMarkerImg(color, dot) {
-	if(color === undefined) {
-		color = "#F00"
+	if (color === undefined) {
+		color = "#F00";
 	}
-	if(dot === undefined) {
+	if (dot === undefined) {
 		dot = true;
 	}
 	color = color.replace("#", "%23");
 	var markerImg = {
-		url: "imgs/mapsMarker.php?color="+color+"&dot="+dot,
+		url: "imgs/mapsMarker.php?color=" + color + "&dot=" + dot,
 		scaledSize: new google.maps.Size(22, 34),
 		labelOrigin: new google.maps.Point(11, 11)
-	}
+	};
 	return markerImg;
 }
 
-
 function createMarkerObjs(adrAndCon) {
 	var markerObjs = [];
-	for(i = 0; i < adrAndCon.addresses.length; i++) {
+	for (var i = 0; i < adrAndCon.addresses.length; i++) {
 		var address = adrAndCon.addresses[i];
 		var addressContacts = adrAndCon.contacts.filter(function (obj) {
-			return obj.adresID == address.id
+			return obj.adresID == address.id;
 		});
-		markerObjs.push( new MarkerObj(address, addressContacts));
+		markerObjs.push(new MarkerObj(address, addressContacts));
 	}
 	return markerObjs;
 }
-
 
 function placeMarkers() {
 	notPlacedMarkers = false;
@@ -94,19 +97,19 @@ function placeMarkers() {
 	var infowindow = new google.maps.InfoWindow({
 		pixelOffset: new google.maps.Size(-1.5, 10)
 	});
-	
-	for(let i = 0; i < markerObjs.length; i++) {
-		let markerObj = markerObjs[i];
-		let adres = markerObj.adres;
-		let contacts = markerObj.contacts;
+
+	var _loop = function _loop(i) {
+		var markerObj = markerObjs[i];
+		var adres = markerObj.adres;
+		var contacts = markerObj.contacts;
 		markerObj.addMarker();
-		let marker = markerObjs[i].marker;
-		
-		marker.addListener('')
-		
-		marker.addListener('click', function() {
+		var marker = markerObjs[i].marker;
+
+		marker.addListener('');
+
+		marker.addListener('click', function () {
 			map.panTo(marker.getPosition());
-			if(infowindow.markerObj !== undefined && infowindow.markerObj.marker != marker) {
+			if (infowindow.markerObj !== undefined && infowindow.markerObj.marker != marker) {
 				infowindow.markerObj.marker.setIcon(getMarkerImg("#F00", infowindow.markerObj.hasDot));
 			}
 			marker.setIcon(getMarkerImg("#0F0", markerObj.hasDot));
@@ -114,28 +117,31 @@ function placeMarkers() {
 			infowindow.open(map, marker);
 			infowindow.markerObj = markerObj;
 		});
-		
-		marker.addListener('mouseover', function() {
-			if(infowindow.markerObj == undefined || infowindow.markerObj.marker != marker) {
+
+		marker.addListener('mouseover', function () {
+			if (infowindow.markerObj == undefined || infowindow.markerObj.marker != marker) {
 				marker.setIcon(getMarkerImg("#F66", markerObj.hasDot));
 			} else {
 				marker.setIcon(getMarkerImg("#6F6", markerObj.hasDot));
 			}
 		});
-		
-		marker.addListener('mouseout', function() {
-			if(infowindow.markerObj == undefined || infowindow.markerObj.marker != marker) {
+
+		marker.addListener('mouseout', function () {
+			if (infowindow.markerObj == undefined || infowindow.markerObj.marker != marker) {
 				marker.setIcon(getMarkerImg("#F00", markerObj.hasDot));
 			} else {
 				marker.setIcon(getMarkerImg("#0F0", markerObj.hasDot));
 			}
 		});
+	};
+
+	for (var i = 0; i < markerObjs.length; i++) {
+		_loop(i);
 	}
 }
 
-
 function removeMarkers() {
-	for(let i = 0; i < markerObjs.length; i++) {
+	for (var i = 0; i < markerObjs.length; i++) {
 		markerObjs[i].marker.setMap(null);
 	}
 	markerObjs = [];
@@ -144,39 +150,41 @@ function removeMarkers() {
 
 //Make the AJAX request and place all the markers if map loaded
 function placeAllMarkers(filter) {
-	if(markerObjs.length > 0) {removeMarkers();}
-	if(filter === undefined) {filter = {}}
+	if (markerObjs.length > 0) {
+		removeMarkers();
+	}
+	if (filter === undefined) {
+		filter = {};
+	}
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			allData = JSON.parse(this.response);
-			if(notPlacedMarkers && !googleMapNotLoaded) {
+			if (notPlacedMarkers && !googleMapNotLoaded) {
 				placeMarkers();
-			}						
+			}
 		}
 	};
-	requestUrl = "bla?api=1";
-	requestUrl += returnOrUndefined(filter.voornaam,"","&voornaam=");
-	requestUrl += returnOrUndefined(filter.achternaam,"","&achternaam=");
-	requestUrl += returnOrUndefined(filter.straatnaam,"","&straatnaam=");
-	requestUrl += returnOrUndefined(filter.huisnummer,"","&huisnummer=");
-	requestUrl += returnOrUndefined(filter.plaats,"","&plaats=");
-	requestUrl += returnOrUndefined(filter.postcode,"","&postcode=");
-	
+	var requestUrl = "bla?api=1";
+	requestUrl += returnOrUndefined(filter.voornaam, "", "&voornaam=");
+	requestUrl += returnOrUndefined(filter.achternaam, "", "&achternaam=");
+	requestUrl += returnOrUndefined(filter.straatnaam, "", "&straatnaam=");
+	requestUrl += returnOrUndefined(filter.huisnummer, "", "&huisnummer=");
+	requestUrl += returnOrUndefined(filter.plaats, "", "&plaats=");
+	requestUrl += returnOrUndefined(filter.postcode, "", "&postcode=");
+
 	xhttp.open("POST", requestUrl, true);
-	//xhttp.open("POST", "getAllContactsAjax", true);
 	xhttp.send();
 }
 
-
 function initMap() {
-	var coord = {lat: 51.96737, lng: 6.2985617};
-	
+	var coord = { lat: 51.96737, lng: 6.2985617 };
+
 	//Initiliaze map
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 8,
 		center: coord,
-		mapTypeId: 'roadmap',			
+		mapTypeId: 'roadmap',
 		zoomControl: true,
 		mapTypeControl: false,
 		scaleControl: false,
@@ -185,42 +193,31 @@ function initMap() {
 		fullscreenControl: false,
 		disableDefaultUI: false,
 		animation: google.maps.Animation.DROP,
-		styles: [
-					{
-					"featureType": "poi.business",
-					"stylers": [
-					  {
-						"visibility": "off"
-					  }
-					]
-					},
-					{
-					"featureType": "road",
-					"elementType": "labels.icon",
-					"stylers": [
-					  {
-						"visibility": "off"
-					  }
-					]
-					},
-					{
-					"featureType": "transit",
-					"stylers": [
-					  {
-						"visibility": "off"
-					  }
-					]
-					}
-				]
+		styles: [{
+			"featureType": "poi.business",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		}, {
+			"featureType": "road",
+			"elementType": "labels.icon",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		}, {
+			"featureType": "transit",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		}]
 	});
-	
+
 	//Set variable so it is loaded and add markers if not already added
 	googleMapNotLoaded = false;
-	if(allData.hasOwnProperty("contacts") && allData.hasOwnProperty("addresses") && notPlacedMarkers) {
+	if (allData.hasOwnProperty("contacts") && allData.hasOwnProperty("addresses") && notPlacedMarkers) {
 		placeMarkers();
 	}
 }
-
 
 var notPlacedMarkers = true;
 var googleMapNotLoaded = true;

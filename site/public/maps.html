@@ -1,6 +1,6 @@
 <html>
-	<header>
-	<style>
+	<head>
+		<style>
 			body {
 				margin: 0;
 			}
@@ -42,6 +42,8 @@
 		</style>
 		<!--IMPORTANT-->
 		<script src="js/maps.js"></script>
+		<!-- TESTING DINGIES -->
+		<script src="js/longlat.js"></script>
 		<script>
 			// you do not need all filter values or any
 			var filterExample = {
@@ -54,9 +56,13 @@
 			}
 			// placeAllMarkers() will place all markers with no filterExample
 			placeAllMarkers(filterExample);
+			
+			function longLangCallback(e) {
+				console.log(e);
+			}
 		</script>
 		<!---->
-	</header>
+	</head>
 	<body>
 		<!--IMPORTANT-->
 		<div id="map"></div>
