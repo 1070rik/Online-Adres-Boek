@@ -1,3 +1,17 @@
+function returnOrUndefined(txt, extra, prefix) {
+	if (extra === undefined) {
+		extra = "";
+	}
+	if (prefix === undefined) {
+		prefix = "";
+	}
+	if (txt !== undefined) {
+		return prefix + txt + extra;
+	} else {
+		return "";
+	}
+}
+
 //Make the AJAX request and place all the markers if map loaded
 function getLongLang(filter) {
 	if (filter === undefined) {

@@ -1,4 +1,32 @@
-<form action="{{ route('addContactPost') }}" method="post">
+<script src="js/longlat.js"></script>
+<script>
+		var form;
+	function getLongLat() {
+		form = document.getElementById("addContact");
+		console.log(form);
+		//var form = document.forms['addContact'];
+		var livingInfo = {
+			straatnaam: form['straatnaam'].value,
+			huisnummer: form['huisnummer'].value,
+			plaats: form['plaats'].value,
+			postcode: form['postcode'].value
+		};
+		if (!getLongLang(livingInfo)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function longLangCallback(latlng) {
+		console.log(latlng);
+		form['longtitude'].value = latlng.lng;
+		form['latitude'].value = latlng.lat;
+		form.submit();
+	}
+</script>
+
+<form id="addContact" name="addContact" action="{{ route('addContactPost') }}" method="post" onsubmit="return getLongLat()">
   {{ csrf_field() }}
   <input type="text" name="voornaam" placeholder="voornaam"><br>
   <input type="text" name="tussenvoegsel" placeholder="tussenvoegsel"><br>
@@ -14,8 +42,8 @@
   <input type="text" name="toevoeging" placeholder="toevoeging"><br>
   <input type="text" name="postcode" placeholder="postcode"><br>
   <input type="text" name="plaats" placeholder="plaats"><br>
-  <input type="text" name="longtitude" placeholder="longtitude"><br>
-  <input type="text" name="latitude" placeholder="latitude"><br>
+  <input type="hidden" name="longtitude"><br>
+  <input type="hidden" name="latitude"><br>
   <hr>
-  <input type="submit" name="submit">
+  <input type="submit" name="btnSubmit">
 </form>
