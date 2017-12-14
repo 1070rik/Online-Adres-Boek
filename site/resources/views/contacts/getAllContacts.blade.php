@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{ session('error') }}
+    </div>
+@endif
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 

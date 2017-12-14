@@ -14,29 +14,58 @@ class contactsController extends Controller
   }
 
   public function addContact(Request $request) {
-    $adres = addresses::create([
-      'straatnaam' => $request['straatnaam'],
-      'huisnummer' => $request['huisnummer'],
-      'toevoeging' => $request['toevoeging'],
-      'postcode'   => $request['postcode'],
-      'plaats'     => $request['plaats'],
-      'longitude'  => $request['longtitude'],
-      'latitude'   => $request['latitude']
-    ]);
 
-    $contact = contacts::create([
-      'voornaam'       => $request['voornaam'],
-      'tussenvoegsel'  => $request['tussenvoegsel'],
-      'achternaam'     => $request['achternaam'],
-      'geboortedatum'  => $request['geboortedatum'],
-      'telefoonnummer' => $request['telefoonnummer'],
-      'email'          => $request['email'],
-      'fotoPad'        => $request['fotoPad'],
-      'adresID'        => $adres['id'],
-      'beschrijving'   => $request['beschrijving']
-    ]);
+    $contact = contacts::where('email', $request['email'])->get();
 
-    return redirect('editContact');
+    if (count($contact) > 0){
+      print_r($contact);
+      return redirect('editContact')->with([
+        'error' => 'Contact with given email exists already!'
+      ]);
+    } else {
+
+      $addresses = addresses::
+          where('straatnaam', $request['straatnaam'])
+        ->where('huisnummer', $request['huisnummer'])
+        ->where('toevoeging', $request['toevoeging'])
+        ->where('postcode', $request['postcode'])
+        ->where('plaats', $request['plaats'])
+        ->where('longitude', $request['longtitude'])
+        ->where('latitude', $request['latitude'])
+        ->get();
+
+      $addressID = 0;
+
+      if (count($addresses) > 0){
+        $addressID = $addresses[0]['id'];
+      } else {
+        $address = addresses::create([
+          'straatnaam' => $request['straatnaam'],
+          'huisnummer' => $request['huisnummer'],
+          'toevoeging' => $request['toevoeging'],
+          'postcode'   => $request['postcode'],
+          'plaats'     => $request['plaats'],
+          'longitude'  => $request['longtitude'],
+          'latitude'   => $request['latitude']
+        ]);
+
+        $addressID = $address['id'];
+      }
+
+      $contact = contacts::create([
+        'voornaam'       => $request['voornaam'],
+        'tussenvoegsel'  => $request['tussenvoegsel'],
+        'achternaam'     => $request['achternaam'],
+        'geboortedatum'  => $request['geboortedatum'],
+        'telefoonnummer' => $request['telefoonnummer'],
+        'email'          => $request['email'],
+        'fotoPad'        => $request['fotoPad'],
+        'adresID'        => $addressID,
+        'beschrijving'   => $request['beschrijving']
+      ]);
+
+      return redirect('editContact');
+    }    
   }
 
   public function editContact(Request $request){

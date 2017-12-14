@@ -12,7 +12,7 @@ class userController extends Controller
 {
     protected function create(Request $request){
 
-        $users = User::where('email', $request['email']);
+        $users = User::where('email', $request['email'])->get();
 
         if (count($users) > 0){
             return redirect('getAllUsers')->with([
