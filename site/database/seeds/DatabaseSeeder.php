@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $faker = Faker\Factory::create('nl_NL');
+
+        for ($i = 0; $i < 200; $i++){
+        	$address = $faker->address;
+
+        	print_r($address);
+        }
     }
 }
