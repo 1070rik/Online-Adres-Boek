@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
+include_once(app_path() . '/coordsHandler.php');
+use AdresBoek\CoordsHandler;
+
 class importTestData extends Command
 {
     /**
@@ -96,6 +99,6 @@ class importTestData extends Command
             DB::insert($query);  
         }
 
-        
+        CoordsHandler::fillAllAddressesCoords();
     }
 }
