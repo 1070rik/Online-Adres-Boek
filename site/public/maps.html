@@ -43,7 +43,6 @@
 		<!--IMPORTANT-->
 		<script src="js/maps.js"></script>
 		<!-- TESTING DINGIES -->
-		<script src="js/longlat.js"></script>
 		<script>
 			// you do not need all filter values or any
 			var filterExample = {
@@ -55,7 +54,7 @@
 				postcode: "7001 EA"
 			}
 			// placeAllMarkers() will place all markers with no filterExample
-			placeAllMarkers(filterExample);
+			placeAllMarkers();
 			
 			function longLangCallback(e) {
 				console.log(e);
@@ -66,6 +65,8 @@
 	<body>
 		<!--IMPORTANT-->
 		<div id="map"></div>
+		<script src="js/markerclusterer.js">
+		</script>
 		<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap">
 		</script>

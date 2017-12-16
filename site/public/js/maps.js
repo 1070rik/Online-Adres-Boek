@@ -58,6 +58,7 @@ function MarkerObj(Adres, Contacts) {
 			map: map,
 			optimized: false,
 			label: "" + length,
+			markerObj: this,
 			icon: getMarkerImg("#F00", this.hasDot)
 		});
 	};
@@ -94,17 +95,18 @@ function createMarkerObjs(adrAndCon) {
 function placeMarkers() {
 	notPlacedMarkers = false;
 	markerObjs = createMarkerObjs(allData);
-	var infowindow = new google.maps.InfoWindow({
+	infowindow = new google.maps.InfoWindow({
 		pixelOffset: new google.maps.Size(-1.5, 10)
 	});
-
+	
+	var markersArr = [];
+	
 	var _loop = function _loop(i) {
 		var markerObj = markerObjs[i];
 		var adres = markerObj.adres;
 		var contacts = markerObj.contacts;
 		markerObj.addMarker();
 		var marker = markerObjs[i].marker;
-
 		marker.addListener('');
 
 		marker.addListener('click', function () {
@@ -114,6 +116,7 @@ function placeMarkers() {
 			}
 			marker.setIcon(getMarkerImg("#0F0", markerObj.hasDot));
 			infowindow.setContent(markerObj.content);
+			infowindow.pixelOffset.height = 10;
 			infowindow.open(map, marker);
 			infowindow.markerObj = markerObj;
 		});
@@ -133,11 +136,16 @@ function placeMarkers() {
 				marker.setIcon(getMarkerImg("#0F0", markerObj.hasDot));
 			}
 		});
+		
+		markersArr.push(marker);
 	};
 
+	
 	for (var i = 0; i < markerObjs.length; i++) {
 		_loop(i);
 	}
+	var markerCluster = new MarkerClusterer(map, markersArr,
+            {imagePath: 'imgs/mapsMarker.php'});
 }
 
 function removeMarkers() {
@@ -225,3 +233,4 @@ var googleMapNotLoaded = true;
 var allData = {};
 var markerObjs = [];
 var map;
+var infowindow;
