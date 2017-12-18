@@ -7,6 +7,9 @@ use AdresBoek\contacts;
 use AdresBoek\addresses;
 use Illuminate\Support\Facades\DB;
 
+include_once(app_path() . '/coordsHandler.php');
+use AdresBoek\CoordsHandler;
+
 class contactsController extends Controller
 {
   public function index() {
@@ -39,14 +42,25 @@ class contactsController extends Controller
       if (count($addresses) > 0){
         $addressID = $addresses[0]['id'];
       } else {
+
+        $coords = CoordsHandler::getGeoCoords(
+          $request['straatnaam'] . ' ' . 
+          $request['huisnummer'] . ' ' . 
+          $request['toevoeging'] . '+' . 
+          $request['postcode'] . '+' . 
+          $request['plaats']);
+
+        $longitude = $coords['lng'];
+        $latitude = $coords['lat'];
+
         $address = addresses::create([
           'straatnaam' => $request['straatnaam'],
           'huisnummer' => $request['huisnummer'],
           'toevoeging' => $request['toevoeging'],
           'postcode'   => $request['postcode'],
           'plaats'     => $request['plaats'],
-          'longitude'  => $request['longtitude'],
-          'latitude'   => $request['latitude']
+          'longitude'  => $longitude,
+          'latitude'   => $latitude
         ]);
 
         $addressID = $address['id'];
