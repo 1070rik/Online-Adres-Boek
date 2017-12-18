@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylesheet.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Bootstrap materials-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function()
+    {
+
+      var mijngegevensactive = false;
+      var meerdereactive = false;
+      var meerderegegevensactive = false;
+
+      $("#over_map_right").hide();
+      $(".laatmaarhiden").show();
+
+      /* Alle personen */
+      var checkermensen = true;
+      $('.laatmaarhiden').click(function()
+      {
+        meerdereactive = true;
+        if(meerdereactive)
+        {
+          targetRight = checkermensen ? "2%" : "22%";
+          $("#over_map_right").toggle("slide", {direction: 'right'});
+          if(mijngegevensactive || meerderegegevensactive)
+          {
+            $("#account").animate({right: '22%'}, 400);
+          }
+          $("#account").animate({right: targetRight}, 400);
+          checkermensen ? checkermensen = false : checkermensen = true;
+        }
+        if(mijngegevensactive)
+        {
+          $("#account").animate({right: '22%'}, 400);
+          $("#moreinfo").toggle("slide", {direction: 'right'});
+          mijngegevensactive = false;
+        }
+        else if(meerderegegevensactive)
+        {
+          $("#account").animate({right: '42%'}, 400);
+          $("#over_map_right").animate({right: targetRight}, 400);
+          $("#moreinfo").toggle("slide", {direction: 'right'});
+          meerderegegevensactive = false;
+        }
+      });
+
+      /* Meeste info over persoon */
+      $("#moreinfo").hide();
+      $('.klikken').click(function()
+      {
+        meerderegegevensactive = true;
+        if(meerderegegevensactive)
+        {
+          targetRight = checkermensen ? "0%" : "20%";
+          driedepush = checkermensen ? "22%" : "42%";
+          if(meerdereactive || mijngegevensactive)
+          {
+            $("#account").animate({right: '0%'}, 400);
+            $("#over_map_right").animate({right: '20%'}, 400);
+          }
+          else {
+            $("#over_map_right").animate({right: '0%'}, 400);
+            $("#account").animate({right: '22%'}, 400);
+          }
+          $("#moreinfo").toggle("slide", {direction: 'right'});
+          $("#account").animate({right: driedepush}, 400);
+          checkermensen ? checkermensen = false : checkermensen = true;
+        }
+        if(meerdereactive)
+        {
+          $("#account").animate({right: '42%'}, 'fast');
+          $("#over_map_right").animate({right: '20%'}, 400);
+          meerdereactive = false;
+        }
+        else if(mijngegevensactive)
+        {
+          $("#account").animate({right: '42%'}, 'fast');
+          $("#over_map_right").animate({right: '20%'}, 400);
+          mijngegevensactive = false;
+        }
+      });
+
+      /* Mijn gegevens */
+      var loginpicturebool = true;
+      var uitloggenbutton = true;
+      $('.loginpicture').click(function()
+      {
+        mijngegevensactive = true;
+        if(mijngegevensactive)
+        {
+          kleur = loginpicturebool ? "white" : "";
+          driedepush = checkermensen ? "22%" : "2%";
+          targetRight = checkermensen ? "0%" : "20%";
+
+          $("#uitloggen").slideToggle('fast');
+          $('#mijngegevens').css('background-color', kleur);
+
+          /* SHOW MY INFO */
+          $("#moreinfo").toggle("slide", {direction: 'right'});
+          $("#account").animate({right: driedepush}, 400);
+          loginpicturebool ? loginpicturebool = false : loginpicturebool = true;
+          checkermensen ? checkermensen = false : checkermensen = true;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-12">
+      <div id="wrapper">
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var uluru = {
+              lat: -25.363,
+              lng: 131.044
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 4,
+              center: uluru
+            });
+            var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+          }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAlYShGvgROQ1TzDY0jfumV1ab9nMoJI8&callback=initMap"></script>
+        <div class="row">
+          <div class="col-3">
+            <div id="over_map">
+              <div id="search_bar">
+                <div class="form-group">
+                  <input type="email" class="form-control zoekfunctiebar" id="InputVoornaam" placeholder="Zoeken op voornaam...">
+                  <a class="laatmaarhiden zoekfunctiebutton"><img src="images/search_icon.png" alt="Search icon"></a>
+                </div>
+                <script>
+                  $(document).ready(function() {
+
+                    $("#flip").click(function() {
+                      $("#panel").slideToggle("slow");
+                    });
+                  });
+                </script>
+                <div id="panel">
+                  <div class="form-group">
+                    <h3>Filteren</h3>
+                    <input type="text" class="form-control zoekfunctiebar" id="InputTussenvoegsel" aria-describedby="emailHelp" placeholder="Tussenvoegsel">
+                    <input type="text" class="form-control zoekfunctiebar" id="InputAchternaam" aria-describedby="emailHelp" placeholder="Achternaam">
+                    <input type="text" class="form-control zoekfunctiebar" id="InputAdres" aria-describedby="emailHelp" placeholder="Adres">
+                    <input type="text" class="form-control zoekfunctiebar" id="InputPlaats" aria-describedby="emailHelp" placeholder="Plaats">
+                    <input type="text" class="form-control zoekfunctiebar" id="InputPostcode" aria-describedby="emailHelp" placeholder="Postcode">
+                    <h3>Sorteren</h3>
+                  </div>
+                  <div class="form-check radio-inline1">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      Voornaam
+                    </label>
+                  </div>
+                  <div class="form-check radio-inline2">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        Achternaam
+                    </label>
+                  </div>
+                  <br>
+                  <div class="form-check radio-inline1">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                      Adres
+                    </label>
+                  </div>
+                  <div class="form-check radio-inline3">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        Plaats
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div id="flip"><b>V</b></div>
+            </div>
+          </div>
+          <div class="col-8"></div>
+          <div class="col-1">
+            <div id="account">
+              <div id="mijngegevens">
+                <p>Mijn gegevens <a href="#"><img src="images/user.png" class="loginpicture" alt=""></a></p>
+              </div>
+              <div id="uitloggen">
+                <p>Uitloggen</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-3">
+            <div id="over_map_right">
+              <a href="#" class="klikken">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card-img-left">
+                        <img class="profilepicture" src="images/user.png" alt="">
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-block">
+                        <h4 class="card-title"><b>Piet, Jansen<b/></h4>
+                        <p class="card-text">Pietjeslaan 12</p>
+                        <p class="card-text">Doetinchem, 2020 AD</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="klikken">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card-img-left">
+                        <img class="profilepicture" src="images/user.png" alt="">
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-block">
+                        <h4 class="card-title"><b>Piet, Jansen<b/></h4>
+                        <p class="card-text">Pietjeslaan 12</p>
+                        <p class="card-text">Doetinchem, 2020 AD</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div id="moreinfo">
+              <div class="meerinfoheader">
+                <img src="images/user.png" class="bigpicture" alt="">
+                <div id="inhoudmeerinfo">
+                  <h3><b>Piet, Jansen</b></h3>
+
+                  <h4><b>Voornaam</b></h4>
+                  <h5>Theo</h5>
+
+                  <h4><b>Tussenvoegsel</b></h4>
+                  <h5>-</h5>
+
+                  <h4><b>Achternaam</b></h4>
+                  <h5>Jansen</h5>
+
+                  <h4><b>Telefoonnummer</b></h4>
+                  <h5>+31 6 14039302</h5>
+
+                  <h4><b>Adres</b></h4>
+                  <h5>Piejeslaan 12</h5>
+
+                  <h4><b>Plaats</b></h4>
+                  <h5>Doetinchem</h5>
+
+                  <h4><b>Postcode</b></h4>
+                  <h5>7071 SK</h5>
+
+                  <h4><b>Opmerking</b></h4>
+                  <h5>Dit is een opmerking over piet.</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
