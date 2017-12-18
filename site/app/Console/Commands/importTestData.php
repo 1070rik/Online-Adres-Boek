@@ -89,16 +89,22 @@ class importTestData extends Command
 
     public function handle()
     {
-        Artisan::call('migrate:fresh');
-
-        $sql = file_get_contents('public/sql/fakeData.sql');
-
-        $queries = $this->splitSQL('public/sql/fakeData.sql');
-
-        foreach ($queries as $query){
-            DB::insert($query);  
+        try {
+          DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+          DB::table('addresses')->delete();
+          DB::table('contacts')->delete();
+          $this->info('Cleaned old tables');
+          $sql = file_get_contents('public/sql/fakeData.sql');
+          $queries = $this->splitSQL('public/sql/fakeData.sql');
+          foreach ($queries as $query){
+              DB::insert($query);
+          }
+          $this->info('Inserted new rows');
+          CoordsHandler::fillAllAddressesCoords();
+          $this->info('added lat/long to record(s)');
         }
-
-        CoordsHandler::fillAllAddressesCoords();
+        catch (\Exception $e) {
+            $this->error('error when deleting and inserting: ' . $e->getMessage());
+        }
     }
 }
