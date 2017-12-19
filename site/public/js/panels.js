@@ -7,6 +7,7 @@ function hideBoth() {
 	var myInterval = setInterval(function () {
 		var width = roundHalf(parseFloat(mapDiv.style.width.replace("vw", "")));
 		var right = roundHalf(parseFloat(selectedContact.style.right.replace("vw", "")));
+		google.maps.event.trigger(map, 'resize');
 		if((width == 100 && right == -20) || windowType != 0) {
 			if(windowType == 0) {
 				clearInterval(myInterval);
@@ -32,6 +33,7 @@ function both() {
 	var myInterval = setInterval(function () {
 		var width = roundHalf(parseFloat(mapDiv.style.width.replace("vw", "")));
 		var right = roundHalf(parseFloat(selectedContact.style.right.replace("vw", "")));
+		google.maps.event.trigger(map, 'resize');
 		if((width == 60 && right == 0) || windowType != 1){
 			if(windowType == 1) {
 			}
@@ -57,6 +59,7 @@ function showAllContacts() {
 	var myInterval = setInterval(function() {
 		var width = roundHalf(parseFloat(mapDiv.style.width.replace("vw", "")));
 		var right = roundHalf(parseFloat(selectedContact.style.right.replace("vw", "")));
+		google.maps.event.trigger(map, 'resize');
 		if((width == 80 && right==-20) || windowType != 2) {
 			clearInterval(myInterval);
 		}
@@ -80,6 +83,7 @@ function showContact() {
 	var myInterval = setInterval(function() {
 		var width = roundHalf(parseFloat(mapDiv.style.width.replace("vw", "")));
 		var right = roundHalf(parseFloat(selectedContact.style.right.replace("vw", "")));
+		google.maps.event.trigger(map, 'resize');
 		if((width == 80 && right == 0) || windowType != 3) {
 			clearInterval(myInterval);
 		}
