@@ -1,0 +1,190 @@
+<html>
+	<head>
+		<style>
+			body {
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			#infowindow h3 {
+				margin: 0;
+			}
+			
+			#infowindow hr {
+				display: block;
+				height: 1px;
+				border: 0;
+				border-top: 1px solid #ccc;
+				margin: 0.1em 0;
+				padding: 0;
+			}
+			
+			
+			#container {
+				height: 100vh;
+				white-space:nowrap;
+			}
+			
+			#mapDiv {
+				position: relative;
+			}
+			
+			#map {
+				height: 100%;
+				width: 100%;
+			}
+			
+			#search {
+				top: 5vh;
+				left: 3vw;
+				height: 10vh;
+				width: 20vw;
+				position: absolute;
+				background-color: white;
+			}
+			
+			#settings {
+				top: 5vh;
+				right: 3vw;
+				width: 120px;
+				position: absolute;			
+				background-color: white;
+				padding-top: 10px;
+			}
+			
+			.settingsItem {
+				position: relative;
+				display: block;
+				height: 20px;
+				padding: 0px 10px 10px 10px;
+				color: #717171;
+				cursor: pointer;
+			}
+			
+			.settingsItem:hover {
+				color: #A1A1A1;
+			}
+			
+			#settingsUpDown {
+				text-align: center;
+				padding: 0;
+				border-top: black solid 1px;
+				height: 17px;
+				background-color: white;
+			}
+			
+			#mapDiv, #allContacts, #selectedContact {
+				display: inline-block;
+			}
+			
+			#allContacts, #selectedContact {
+				height: 100%;
+				width: 20vw;
+				top: 0px;
+				position: static;
+			}
+			
+			#allContacts {
+				background-color: white;
+				overflow-y: scroll;
+				overflow-x: hidden;
+			}
+			
+			#selectedContact {
+				background-color: #e8e6e7;
+			}
+			
+			.card {
+				height: 100px;
+				border-bottom: #bcbabb 1px solid;
+				
+			}
+			
+			.card:hover {
+				background-color: #4c6ef3;
+			}
+			
+			.cardImage, .cardText {
+				display: inline-block;
+				
+			}
+			
+			.cardImage {
+				height: 100%;
+				width: 30%;
+			}
+			
+			.cardImage img {
+				height: 70px;
+				width: 70px;
+				padding: 15px;
+			}
+			
+			.cardText {
+				height: 100%;
+				width: 70%;
+			}
+		</style>
+		<!--IMPORTANT-->
+		<script src="js/maps.js"></script>
+		<!-- TESTING DINGIES -->
+		<script>
+			// you do not need all filter values or any
+			var filterExample = {
+				voornaam: "Foo",
+				achternaam: "Bar",
+				straatnaam: "kenn",
+				huisnummer: "49",
+				plaats: "Doe",
+				postcode: "7001 EA"
+			}
+			// placeAllMarkers() will place all markers with no filterExample
+			placeAllMarkers();
+			
+			function longLangCallback(e) {
+				console.log(e);
+			}
+		</script>
+		<!---->
+	</head>
+	<body onload="both()">
+		<!--IMPORTANT-->
+		<div id="container">
+			<div id="mapDiv" style="width: 100vw; height: 100vh;">
+				<div id="map"></div>
+				<div id="search"></div>
+				<div id="settings">
+					<div class="settingsItem">Mijn gegevens</div>
+					<div class="settingsItem" num="0" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
+					<div class="settingsItem" num="5" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
+					<div class="settingsItem" num="2" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
+					<div class="settingsItem" num="3" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
+					<div id="settingsUpDown" class="settingsItem" onclick="settingsToggle()" value="false">&#9660;</div>
+				</div>
+			</div><!--
+			--><div id="allContacts">
+				<div class="card">
+					<div class="cardImage"><img src="imgs/user.png"></div><!--
+					--><div class="cardText"><h4>Foo van der bar</h4></div>
+				</div>
+				<a href="#">
+					<div class="card">
+					</div>
+				</a>
+				<a href="#">
+					<div class="card">
+					</div>
+				</a>
+			</div><!--
+			--><div id="selectedContact" style="right: -20vw;"></div>
+		</div>
+		<script src="js/panels.js">
+		</script>
+		<script src="js/markerclusterer.js">
+		</script>
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap">
+		</script>
+		<!---->
+	</body>
+</html>
