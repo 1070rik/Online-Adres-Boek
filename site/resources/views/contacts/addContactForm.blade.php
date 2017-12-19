@@ -11,7 +11,8 @@
 			plaats: form['plaats'].value,
 			postcode: form['postcode'].value
 		};
-		if (!getLongLang(livingInfo)) {
+		var errorPlace404 = document.getElementById("errorPlace404");
+		if (!getLongLang(livingInfo, errorPlace404)) {
 			return true;
 		} else {
 			return false;
@@ -19,12 +20,15 @@
 	}
 
 	function longLangCallback(latlng) {
-		console.log(latlng);
 		form['longtitude'].value = latlng.lng;
 		form['latitude'].value = latlng.lat;
 		form.submit();
 	}
 </script>
+
+<div id="errorPlace404" class="alert alert-danger" style="display: none;">
+    <strong>Error!</strong> { { session('error') }}
+</div>
 
 <form id="addContact" name="addContact" action="{{ route('addContactPost') }}" method="post" onsubmit="return getLongLat()">
   {{ csrf_field() }}

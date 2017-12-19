@@ -36,6 +36,7 @@ Route::middleware(['admin'])->group(function () {
   Route::post('/addContact', 'contactsController@addContact')->name('addContactPost');
   Route::get('/editContact', 'contactsController@editContact')->name('editContactGet');
   Route::post('/editContactPost', 'contactsController@editContactPost')->name('editContactPost');
+  Route::post('/removeContacts', 'contactsController@removeContacts')->name('removeContacts');
   Route::get('/viewContact/{id}', 'contactsController@viewContact')->name('viewContactGet');
   Route::get('/createUser', 'userController@createUser')->name('createUser');
 });

@@ -13,7 +13,7 @@ function returnOrUndefined(txt, extra, prefix) {
 }
 
 //Make the AJAX request and place all the markers if map loaded
-function getLongLang(filter) {
+function getLongLang(filter, errorDiv) {
 	if (filter === undefined) {
 		filter = {};
 	}
@@ -21,7 +21,13 @@ function getLongLang(filter) {
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			var placeData = JSON.parse(this.response);
-			longLangCallback(placeData.results[0].geometry.location);
+			if(placeData.status == "OK") {
+				longLangCallback(placeData.results[0].geometry.location);
+			} else {
+				if(errorDiv !== undefined && errorDiv !== null) {
+					errorDiv.style.display = "";
+				}
+			}
 		}
 	};
 	var requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
