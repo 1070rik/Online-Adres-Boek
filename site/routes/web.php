@@ -25,6 +25,10 @@ Route::post('/bla', 'SearchController@postIndex')->name('searchPost');
 
 
 Route::middleware(['admin'])->group(function () {
+  Route::get('/admin', 'adminController@index')->name('adminIndex');
+  Route::get('/admin/contacts', 'adminController@getAllContacts')->name('adminGetAllContacts');
+  Route::get('/admin/users', 'adminController@getAllUsers')->name('adminGetAllUsers');
+
   Route::post('/editUser', 'userController@edit')->name('editUserPost');
   Route::get('/getAllUsers', 'userController@getAll')->name('getAllUsers');
   Route::post('/addUser', 'userController@create')->name('addUserPost');
