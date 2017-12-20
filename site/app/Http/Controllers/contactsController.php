@@ -21,7 +21,7 @@ class contactsController extends Controller
     $contact = contacts::where('email', $request['email'])->get();
 
     if (count($contact) > 0){
-      return redirect('editContact')->with([
+      return redirect('adminGetAllContacts')->with([
         'error' => 'Contact with given email exists already!'
       ]);
     } else {
@@ -34,7 +34,7 @@ class contactsController extends Controller
         'telefoonnummer' => $request['telefoonnummer'],
         'email'          => $request['email'],
         'fotoPad'        => $request['fotoPad'],
-        'adresID'        => addOrUpdateAddress($request),
+        'adresID'        => $this->getOrCreateAddress($request),
         'beschrijving'   => $request['beschrijving']
       ]);
 
@@ -42,34 +42,38 @@ class contactsController extends Controller
     }    
   }
 
-  public function addOrUpdateAddress(Request $request){
+  public function getAddressID(Request $request, $excludeID){
       $addresses = addresses::
           where('straatnaam', $request['straatnaam'])
         ->where('huisnummer', $request['huisnummer'])
         ->where('toevoeging', $request['toevoeging'])
         ->where('postcode', $request['postcode'])
         ->where('plaats', $request['plaats'])
-        ->where('longitude', $request['longtitude'])
-        ->where('latitude', $request['latitude'])
         ->get();
 
-      $addressID = 0;
-
       if (count($addresses) > 0){
-        $addressID = $addresses[0]['id'];
-      } else {
+          foreach ($addresses as $address){
+              if ($address['id'] != $excludeID){
+                  return $address['id'];
+              }
+          }
+      }
 
-        $coords = CoordsHandler::getGeoCoords(
-          $request['straatnaam'] . ' ' . 
-          $request['huisnummer'] . ' ' . 
-          $request['toevoeging'] . '+' . 
-          $request['postcode'] . '+' . 
-          $request['plaats']);
+      return 0;
+  }
 
-        $longitude = $coords['lng'];
-        $latitude = $coords['lat'];
+  public function addAddress(Request $request){
+      $coords = CoordsHandler::getGeoCoords(
+                  $request['straatnaam'] . ' ' . 
+                  $request['huisnummer'] . ' ' . 
+                  $request['toevoeging'] . '+' . 
+                  $request['postcode'] . '+' . 
+                  $request['plaats']);
 
-        $address = addresses::create([
+      $longitude = $coords['lng'];
+      $latitude = $coords['lat'];
+
+      $address = addresses::create([
           'straatnaam' => $request['straatnaam'],
           'huisnummer' => $request['huisnummer'],
           'toevoeging' => $request['toevoeging'],
@@ -77,9 +81,18 @@ class contactsController extends Controller
           'plaats'     => $request['plaats'],
           'longitude'  => $longitude,
           'latitude'   => $latitude
-        ]);
+      ]);    
 
-        return $address['id'];
+      return $address;
+  }
+
+  public function getOrCreateAddress(Request $request){
+      $addressID = $this->getAddressID($request, 0);
+
+      if ($addressID > 0){
+          return $addressID;
+      } else {
+          return contactsController::addAddress($request)['id'];
       }    
   }
 
@@ -95,7 +108,12 @@ class contactsController extends Controller
 
   public function editAddress(Request $request){
 
-      $coords = CoordsHandler::getGeoCoords($request['straatnaam'] . ' ' . $request['huisnummer'] . ' ' . $request['toevoeging'] . '+' . $request['postcode'] . '+' . $request['plaats']);
+      $coords = CoordsHandler::getGeoCoords(
+                  $request['straatnaam'] . ' ' . 
+                  $request['huisnummer'] . ' ' . 
+                  $request['toevoeging'] . '+' . 
+                  $request['postcode'] . '+' . 
+                  $request['plaats']);
 
       echo "addresID: " . $request['id'];
 
@@ -109,6 +127,10 @@ class contactsController extends Controller
       ]);
   }
 
+  public function removeAddressById($id){
+      addresses::where('id', $id)->delete();
+  }
+
   public function editContact(Request $request){
       $contacts = contacts::get();
       return view('contacts.getAllContacts', compact('contacts'));
@@ -117,6 +139,7 @@ class contactsController extends Controller
   public function editContactPost(Request $request){
       $contacts = contacts::where('email', $request['email'])->get();
 
+      // Check if contact already exists. If found, return. If not, continue.
       if (count($contacts) > 0){
           $found = FALSE;
 
@@ -143,20 +166,27 @@ class contactsController extends Controller
                                                       'fotoPad'         => $request['fotoPad'],
                                                       'beschrijving'    => $request['beschrijving']]);
 
-      $contact = contacts::where('id', $request['id'])->get();
-      $contacts = contacts::where('adresID', $contact[0]['adresID']);
+      $contact = contacts::where('id', $request['id'])->get()[0];
+      $contacts = contacts::where('adresID', $contact['adresID'])->get();
 
-      if (count($contacts) > 1){
+      if (count($contacts) > 1){ // More contacts have the same addressID            
+          $addressID = contactsController::getOrCreateAddress($request);
+          contacts::where('id', $request['id'])->update([ 'adresID' => $addressID ]); 
 
-      } else {
-          $request['id'] = $contact[0]['adresID'];
+      } else { // Current contact is the only contact with this addressID
+          $addressID = $this->getAddressID($request, $contact['adresID']);
 
-          contactsController::editAddress($request);
-          
-          //print_r($contact);
+          if ($addressID > 0){ // changed address already exists
+              contacts::where('id', $request['id'])->update([ 'adresID' => $addressID ]);
+              contactsController::removeAddressById($contact['adresID']);
+          } else { // changed address doesn't exist yet
+
+              $newAddress = contactsController::addAddress($request);
+              contacts::where('id', $request['id'])->update([ 'adresID' => $newAddress['id'] ]);
+          }
       }
 
-      return redirect('admin/contacts');
+    return redirect('admin/contacts');
   }
 
   public function getAllContactsAjax(Request $request){
