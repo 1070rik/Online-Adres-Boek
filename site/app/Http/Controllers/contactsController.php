@@ -100,7 +100,14 @@ class contactsController extends Controller
       $contactIDs = json_decode($request['toDeleteElements']);
 
       foreach ($contactIDs as $contactID){
+          $contact = contacts::where('id', $contactID)->get()[0];
+          $contacts = contacts::where('adresID', $contact['adresID'])->get();
+
           contacts::where('id', $contactID)->delete();
+
+          if (count($contacts) == 1){
+              contactsController::removeAddressById($contact['adresID']);
+          }
       }
 
       return redirect('admin/contacts');
