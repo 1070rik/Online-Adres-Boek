@@ -33,7 +33,7 @@ function selectAll(allContacts){
         updateSelectionOutput();
     } else {
         for (var i = 0; i < allContacts.length; i++){
-            selectedElements.push(allContacts[i]['id']);
+            selectedElements.push(allContacts[i]['id'].toString());
             $('.allDataBody > tr').css('background-color', hoverColor);
             $('.allDataBody > tr > td').find('input').prop('checked', true);
         }
