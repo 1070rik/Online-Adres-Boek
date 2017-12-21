@@ -78,14 +78,14 @@
         <a onclick="showAll()">
             <div class="card">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="cardImage"><img src="imgs/user.png"></div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="cardText">
                             <h4 class="card-naam">Foo van der bar</h4>
                             <p class="card-address">Pietjeslaan 69</p>
-                            <p>Doetinchem lmao</p>
+                            <p class="card-address">Doetinchem lmao</p>
                         </div>
                     </div>
                 </div>
@@ -94,14 +94,14 @@
         <a onclick="showAll()">
             <div class="card">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="cardImage"><img src="imgs/user.png"></div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="cardText">
                             <h4 class="card-naam">Foo van der bar</h4>
                             <p class="card-address">Pietjeslaan 69</p>
-                            <p>Doetinchem lmao</p>
+                            <p class="card-address">Doetinchem lmao</p>
                         </div>
                     </div>
                 </div>
@@ -110,14 +110,14 @@
         <a onclick="showAll()">
             <div class="card">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="cardImage"><img src="imgs/user.png"></div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="cardText">
                             <h4 class="card-naam">Foo van der bar</h4>
                             <p class="card-address">Pietjeslaan 69</p>
-                            <p>Doetinchem lmao</p>
+                            <p class="card-address">Doetinchem lmao</p>
                         </div>
                     </div>
                 </div>

@@ -1,39 +1,39 @@
 function showAll() {
-	var classAttr = map.getAttribute("class");
+	var classAttr = mapDiv.getAttribute("class");
 	if(classAttr == "onePanel") {
-		map.setAttribute("class", "twoFastPanels");
+		mapDiv.setAttribute("class", "twoFastPanels");
 	} else {
-		map.setAttribute("class", "twoPanels");
+		mapDiv.setAttribute("class", "twoPanels");
 	}
 	selectedContact.setAttribute("class", "showContact");
 }
 
 function hideAll() {
-	var classAttr = map.getAttribute("class");
+	var classAttr = mapDiv.getAttribute("class");
 	if(classAttr == "onePanel") {
-		map.setAttribute("class", "noFastPanel");
+		mapDiv.setAttribute("class", "noFastPanel");
 	} else {
-		map.setAttribute("class", "noPanel");
+		mapDiv.setAttribute("class", "noPanel");
 	}
 	selectedContact.setAttribute("class", "hideContact");
 }
 
 function showAllContacts() {
-	var classAttr = map.getAttribute("class");
-	map.setAttribute("class", "onePanel");	
+	var classAttr = mapDiv.getAttribute("class");
+	mapDiv.setAttribute("class", "onePanel");	
 	selectedContact.setAttribute("class", "hideContact");
 }
 
 function showSelectedContact() {
-	var classAttr = map.getAttribute("class");
-	map.setAttribute("class", "onePanel");	
+	var classAttr = mapDiv.getAttribute("class");
+	mapDiv.setAttribute("class", "onePanel");	
 	selectedContact.setAttribute("class", "showContact");
 }
 
 document.body.onload = function() {
-	map = document.getElementById("mapDiv");
+	mapDiv = document.getElementById("mapDiv");
 	selectedContact = document.getElementById("selectedContact");
 	
 }
 
-var map, selectedContact;
+var mapDiv, selectedContact;

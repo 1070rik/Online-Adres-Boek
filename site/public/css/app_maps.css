@@ -347,11 +347,11 @@ body {
     width: 20vw;
     top: 0px;
     position: static;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 #allContacts {
     background-color: white;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 #selectedContact {
     background-color: #e8e6e7;
@@ -359,10 +359,33 @@ body {
 .card {
     height: 100px;
     border-bottom: #bcbabb 1px solid;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	-ms-overflow-y: -ms-autohiding-scrollbar;
+	white-space: nowrap;
 }
 .card:hover {
     background-color: #4c6ef3;
 }
+.card .row {
+	display: inline-block;
+	text-align: left;
+}
+.card .col-md-3 {
+	width: 100px;
+	padding-left: 0px;
+	display: inline-block;
+	max-width: none;
+	vertical-align: top;
+}
+.card .col-md-9 {
+	width: auto;
+	display: inline-block;
+	max-width: none;
+	padding: 0;
+	vertical-align: top;
+}
+
 .cardImage,
 .cardText {
 }
@@ -373,12 +396,13 @@ body {
     height: 100%;
     border-radius: 100%;
     padding: 10px;
-    padding-left: 0px;
+	border: 0.01px solid transparent;
 }
 .cardText {
     text-align: left;
     height: 100%;
     width: 70%;
+	margin-left: 10px;
 }
 .topbar {
     width: 100%;
@@ -414,6 +438,7 @@ body {
 }
 .card-naam {
         padding-top: 7px;
+		margin-bottom: 0px;
 }
 .white {
     color: #fff !important;
@@ -427,6 +452,7 @@ body {
 
 ::-webkit-scrollbar {
     width: 5px;
+	height: 5px;
 }
 
 /* Track */
