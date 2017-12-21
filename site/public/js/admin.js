@@ -26,9 +26,18 @@ $(document).keyup(function (e) {
     }
 });
 
-$('.allDataBody > tr').hover(function(){
-    currentHoveringRowElement = $(this);
-});
+$('.allDataBody > tr').hover(
+    function(){
+        $(this).css('background-color', hoverColor);
+        currentHoveringRowElement = $(this);
+    }, function(){
+        if ($.inArray($(this).attr('id').replace(/\D/g,''), selectedElements) !== -1){
+            $(this).css('background-color', selectedColor);
+        } else {
+            $(this).css('background-color', normalColor);
+        }
+    }
+);
 
 function getContactIndex(allContacts, contactID){
     for (var i = 0; i < allContacts.length; i++){
@@ -107,6 +116,8 @@ function remove(){
 }
 
 function updatePanelData(contact, address){
+    $('.profileTitle').html(contact['voornaam'] + ' ' + contact['tussenvoegsel'] + ' ' + contact['achternaam']);
+
     $('.id').val(contact['id']);
     $('.naam').val(contact['voornaam'] + ' ' + contact['tussenvoegsel'] + ' ' + contact['achternaam']);
     $('.voornaam').val(contact['voornaam']);
@@ -138,8 +149,6 @@ function normalClickOnRow(allContacts, row, checkBox, contact, address){
         updatePanelData(contact, address);
 
         lastClickedIndex = getContactIndex(allContacts, contact['id']);
-
-        console.log(lastClickedIndex);
     }    
 }
 
@@ -156,7 +165,6 @@ function shiftClickOnRow(allContacts, endContact){
         maxIndex = [minIndex, minIndex = maxIndex][0];
     }
 
-    console.log(minIndex + "-" + maxIndex);
     deselectAll();
 
     for (var i = minIndex; i < maxIndex + 1; i++){
@@ -175,7 +183,6 @@ function shiftClickOnRow(allContacts, endContact){
 }
 
 function controlClickOnRow(row, checkBox, contact, address){
-    console.log("control");
 
     if ($(checkBox).is(':checked')){
         $(checkBox).prop('checked', false);  
@@ -209,15 +216,3 @@ function clickOnRow(contacts, contact, address) {
 
     updateSelectionOutput();
 }
-
-$('.allDataBody > tr').hover(
-    function(){
-        $(this).css('background-color', hoverColor);
-    }, function(){
-        if ($.inArray($(this).attr('id').replace(/\D/g,''), selectedElements) !== -1){
-            $(this).css('background-color', selectedColor);
-        } else {
-            $(this).css('background-color', normalColor);
-        }
-    }
-);
