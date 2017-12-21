@@ -34,12 +34,17 @@ function setSelectedContactsContent(markerObjs) {
 }
 
 function getSelectedById(id) {
-	var contact = markerObjs.find(function (obj) {
+	var markerObj = markerObjs.find(function (obj) {
 		for(var i = 0; i < obj.contacts.length; i++) {
-			return obj.contacts[i].id == id;
+			if(obj.contacts[i].id == id) {
+				return true;
+			}
 		}
 	});
-	var markerObjsNew = [contact];
+	var contact = markerObj.contacts.filter(function (obj) {
+		return obj.id == id;
+	});
+	var markerObjsNew = [new MarkerObj(markerObj.adres, contact)];
 	setSelectedContactsContent(markerObjsNew);
 }
 
