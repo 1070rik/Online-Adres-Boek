@@ -75,54 +75,7 @@
         <div class="topbar">
             <a class="close-icon-parent" onclick="hideAll()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
-        <a onclick="showAll()">
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="cardImage"><img src="imgs/user.png"></div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="cardText">
-                            <h4 class="card-naam">Foo van der bar</h4>
-                            <p class="card-address">Pietjeslaan 69</p>
-                            <p class="card-address">Doetinchem lmao</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a onclick="showAll()">
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="cardImage"><img src="imgs/user.png"></div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="cardText">
-                            <h4 class="card-naam">Foo van der bar</h4>
-                            <p class="card-address">Pietjeslaan 69</p>
-                            <p class="card-address">Doetinchem lmao</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a onclick="showAll()">
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="cardImage"><img src="imgs/user.png"></div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="cardText">
-                            <h4 class="card-naam">Foo van der bar</h4>
-                            <p class="card-address">Pietjeslaan 69</p>
-                            <p class="card-address">Doetinchem lmao</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
+		<div id="contactsList"></div>
     </div><!--
 	
     --><div id="selectedContact">
@@ -130,11 +83,8 @@
             <a class="close-icon-parent" onclick="hideAll()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
         <!-- User info -->
-        <img src="{{ asset('imgs/user.png') }}" class="profile-pic"/>
-        <p class="name"></p>
-        <div class="user-extra">
-             
-        </div>
+		<div id="userInfo">
+		</div>
     </div>
 </div>
 @endsection

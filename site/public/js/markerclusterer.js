@@ -1090,14 +1090,17 @@ ClusterIcon.prototype.onAdd = function() {
 			infowindow.markerObj.marker.setIcon(getMarkerImg("#F00", infowindow.markerObj.hasDot));
 		}
 		infowindow.markerObj = undefined;
+		infowindow.markerObjs = [];
 		var infowindowContent = "";
 		for(var i = 0; i < that.cluster_.markers_.length; i++) {
+			infowindow.markerObjs.push(that.cluster_.markers_[i].markerObj);
 			infowindowContent += that.cluster_.markers_[i].markerObj.content;
 			if(i != that.cluster_.markers_.length-1) {infowindowContent += "<br>";}
 		}
 		infowindow.setContent(infowindowContent);
 		infowindow.setPosition({lat: that.center_.lat(), lng: that.center_.lng()});
 		infowindow.pixelOffset.height = -10;
+		setSelectedContactsContent(infowindow.markerObjs);
 		infowindow.open(map);
 	});
 	

@@ -117,8 +117,11 @@ function placeMarkers() {
 			marker.setIcon(getMarkerImg("#0F0", markerObj.hasDot));
 			infowindow.setContent(markerObj.content);
 			infowindow.pixelOffset.height = 10;
-			infowindow.open(map, marker);
 			infowindow.markerObj = markerObj;
+			infowindow.markerObjs = [];
+			infowindow.markerObjs.push(markerObj);
+			setSelectedContactsContent(infowindow.markerObjs)
+			infowindow.open(map, marker);
 		});
 
 		marker.addListener('mouseover', function () {

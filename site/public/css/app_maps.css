@@ -347,19 +347,26 @@ body {
     width: 20vw;
     top: 0px;
     position: static;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 #allContacts {
     background-color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 #selectedContact {
     background-color: #e8e6e7;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+#userInfo {
+	display: table;
+	margin: 0 auto;
+	width: 75%;
 }
 .card {
     height: 100px;
     border-bottom: #bcbabb 1px solid;
-	overflow-x: scroll;
+	overflow-x: auto;
 	overflow-y: hidden;
 	-ms-overflow-y: -ms-autohiding-scrollbar;
 	white-space: nowrap;
@@ -402,7 +409,6 @@ body {
     text-align: left;
     height: 100%;
     width: 70%;
-	margin-left: 10px;
 }
 .topbar {
     width: 100%;
@@ -421,17 +427,22 @@ body {
 .profile-pic {
     width: 200px;
     height: 200px;
-    text-align: center;
+	display: table;
     border-radius: 100%;
     margin-top: 2vh;
 }
 .name {
+	text-align: left;
     font-weight: bold;
     font-size: 30px;
+	margin-bottom: 0.5rem;
 }
 .user-extra {
     text-align: left;
-    margin: 3vw;
+	padding-left: 1%;
+	width: 100%;
+	white-space: normal;
+	word-wrap: normal;
 }
 .card-address {
     margin-bottom: 0px;
