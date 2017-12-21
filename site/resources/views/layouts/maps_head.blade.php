@@ -33,7 +33,7 @@
     </head>
     <body>
         @yield('content')
-        <script src="{{ asset('js/panels.js') }}"></script>
+        <script src="{{ asset('js/panelsCSS.js') }}"></script>
         <script src="{{ asset('js/markerclusterer.js') }}"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap"></script>

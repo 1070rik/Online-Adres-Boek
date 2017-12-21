@@ -3,7 +3,7 @@
 @section('content')
 <!--IMPORTANT-->
 <div id="container">
-    <div id="mapDiv" style="width: 100vw; height: 100vh;">
+    <div id="mapDiv">
         <div id="map"></div>
         <div id="search">
             <div class="searchPanel">
@@ -73,9 +73,9 @@
 
     --><div id="allContacts" class="scrollbar">
         <div class="topbar">
-            <a class="close-icon-parent" onclick="hideBoth()"><i class="material-icons close-icon">&#xE5CD;</i></a>
+            <a class="close-icon-parent" onclick="hideAll()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
-        <a onclick="both()">
+        <a onclick="showAll()">
             <div class="card">
                 <div class="row">
                     <div class="col-md-2">
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </a>
-        <a onclick="both()">
+        <a onclick="showAll()">
             <div class="card">
                 <div class="row">
                     <div class="col-md-2">
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </a>
-        <a onclick="both()">
+        <a onclick="showAll()">
             <div class="card">
                 <div class="row">
                     <div class="col-md-2">
@@ -123,12 +123,11 @@
                 </div>
             </div>
         </a>
-    </div>
-    <!--
-        -->
-    <div id="selectedContact" style="right: -20vw;">
+    </div><!--
+	
+    --><div id="selectedContact">
         <div class="topbar">
-            <a class="close-icon-parent" onclick="hideBoth()"><i class="material-icons close-icon">&#xE5CD;</i></a>
+            <a class="close-icon-parent" onclick="hideAll()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
         <!-- User info -->
         <img src="{{ asset('imgs/user.png') }}" class="profile-pic"/>

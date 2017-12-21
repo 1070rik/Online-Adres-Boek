@@ -443,3 +443,55 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
+
+#mapDiv {
+	width: 100vw; 
+	height: 100vh;
+    transition-property: width;
+    transition-delay: 0s;
+	transition-timing-function: linear;
+}
+
+
+.noPanel {
+    transition-duration: 0.4s;
+	width: 100vw !important;
+}
+
+
+.onePanel {
+    transition-duration: 0.2s;
+	width: 80vw !important;
+}
+
+.twoPanels {
+    transition-duration: 0.4s;
+	width: 60vw !important;
+}
+
+.noFastPanel {
+    transition-duration: 0.2s;
+	width: 100vw !important;
+}
+
+.twoFastPanels {
+    transition-duration: 0.2s;
+	width: 60vw !important;
+}
+
+#selectedContact {
+	right: -20vw;
+	position: fixed;
+    transition-property: right;
+    transition-duration: 0.2s;
+    transition-delay: 0s;
+	transition-timing-function: linear;
+}
+
+.showContact {
+	right: 0vw !important;
+}
+
+.hideContact {
+	right: -20vw !important;
+}
