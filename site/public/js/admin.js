@@ -1,7 +1,7 @@
 var selectedElements = [];
 var currentHoveringRowElement;
 
-var normalColor = '#FFF';
+var normalColor = '#F5F8FA';
 var hoverColor = '#EEE';
 var selectedColor = '#DDD';
 
@@ -39,7 +39,7 @@ $('.allDataBody > tr').hover(
     }
 );
 
-function getContactIndex(allContacts, contactID){
+function getContactIndex(contactID){
     for (var i = 0; i < allContacts.length; i++){
         if (allContacts[i]['id'] == contactID){
             return i;
@@ -76,7 +76,7 @@ function deselectAll(){
     updateSelectionOutput();    
 }
 
-function selectAll(allContacts){
+function selectAll(){
     for (var i = 0; i < allContacts.length; i++){
         selectedElements.push(allContacts[i]['id'].toString()   );
         $('.allDataBody > tr').css('background-color', hoverColor);
@@ -86,11 +86,11 @@ function selectAll(allContacts){
     updateSelectionOutput();
 }
 
-function selectAllOrNone(allContacts){
+function selectAllOrNone(){
     if (selectedElements.length > 0){
         deselectAll();
     } else {
-        selectAll(allContacts);
+        selectAll();
     }
 }
 
@@ -134,7 +134,7 @@ function updatePanelData(contact, address){
     $('.geboortedatum').val(contact['geboortedatum']);    
 }
 
-function normalClickOnRow(allContacts, row, checkBox, contact, address){
+function normalClickOnRow(row, checkBox, contact, address){
     deselectAll();
 
     if ($(checkBox).is(':checked')){
@@ -148,15 +148,17 @@ function normalClickOnRow(allContacts, row, checkBox, contact, address){
         $(row).css('background-color', hoverColor);
         updatePanelData(contact, address);
 
-        lastClickedIndex = getContactIndex(allContacts, contact['id']);
+        lastClickedIndex = getContactIndex(contact['id']);
+
+        console.log(lastClickedIndex);
     }    
 }
 
-function shiftClickOnRow(allContacts, endContact){
+function shiftClickOnRow(endContact){
     document.getSelection().removeAllRanges();
 
     var minIndex = lastClickedIndex;
-    var maxIndex = getContactIndex(allContacts, endContact['id']);
+    var maxIndex = getContactIndex(endContact['id']);
     var contact = null;
     var checkBox = "";
     var row = "";
@@ -168,6 +170,7 @@ function shiftClickOnRow(allContacts, endContact){
     deselectAll();
 
     for (var i = minIndex; i < maxIndex + 1; i++){
+        console.log(lastClickedIndex);
         contact = allContacts[i];
         checkBox = '#id' + contact['id'];
         row = '#row' + contact['id'];
@@ -200,18 +203,17 @@ function controlClickOnRow(row, checkBox, contact, address){
     }
 }
 
-function clickOnRow(contacts, contact, address) {
-
+function clickOnRow(contact, address) {
     var checkBox = '#id' + contact['id'];
     var row = '#row' + contact['id'];
 
     if (shiftDown){
-        shiftClickOnRow(contacts, contact);
+        shiftClickOnRow(contact);
     } else if (controlDown){
         controlClickOnRow(row, checkBox, contact, address);
 
     } else {
-        normalClickOnRow(contacts, row, checkBox, contact, address);
+        normalClickOnRow(row, checkBox, contact, address);
     }
 
     updateSelectionOutput();

@@ -2,7 +2,11 @@
 
 @section('content')
 
-    <div class="row">
+    <script>
+        var allContacts = {!! $contacts !!};
+    </script>
+
+ )   <div class="row">
         <div class="col-md-9 content">
 
         @if(session('error'))
@@ -17,7 +21,7 @@
             </div>
             <div class="headerRight">
               <span><a href="{{ route('addContactGet') }}">New</a></span>
-              <span id="selectAll"><a href="#" onclick="selectAllOrNone({{ $contacts }})" >Un(select) all</a></span>
+              <span id="selectAll"><a href="#" onclick="selectAllOrNone()" >Un(select) all</a></span>
               <span>
                 <form name="removeForm" action="{{ route('removeContacts') }}" method="post">
                   {{ csrf_field() }}
@@ -43,7 +47,7 @@
                 </thead>
                 <tbody class="allDataBody">
                   @foreach($contacts as $contact)
-                    <tr id="{{ 'row' . $contact->id }}" onclick="clickOnRow({{ $contacts }}, {{ $contact }}, {{ $contact->addresses }})">
+                    <tr id="{{ 'row' . $contact->id }}" onclick="clickOnRow({{ $contact }}, {{ $contact->addresses }})">
                       <td>
                         <input id="{{ 'id' . $contact->id }}" type="checkbox" name="userId" value="{{ $contact->id }}">
                         {{ $contact->id }}
