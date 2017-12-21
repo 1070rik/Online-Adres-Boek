@@ -36,16 +36,16 @@ class SearchController extends Controller
       if($request->api == 1){
 		$contacts = array();
 		$addresses = array();
-		
+
 		foreach ($query as $row){
-			$contactRow = array("id" => $row->contID, 
+			$contactRow = array("id" => $row->contID,
 				"voornaam" => $row->voornaam,
 				"tussenvoegsel" => $row->tussenvoegsel,
 				"achternaam" => $row->achternaam,
 				"adresID" => $row->adresID);
 			array_push($contacts, $contactRow);
-			
-			
+
+
 			if(!in_array($row->adresID, array_column($addresses, "id"), true)){
 				$addressRow = array("id" => $row->adresID,
 					"straatnaam" => $row->straatnaam,
@@ -56,9 +56,9 @@ class SearchController extends Controller
 					"longitude" => $row->longitude,
 					"latitude" =>$row->latitude);
 				array_push($addresses, $addressRow);
-			}	
+			}
 		}
-		
+
         $jsonArray = array("contacts" => $contacts, "addresses" => $addresses, "input" => $input);
         $jsonCombined = json_encode($jsonArray);
         return $jsonCombined;

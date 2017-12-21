@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use AdresBoek\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,12 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('nl_NL');
-
-        for ($i = 0; $i < 200; $i++){
-        	$address = $faker->address;
-
-        	print_r($address);
-        }
+        $password = str_random(10);
+        User::create([
+            'uniqid' => uniqid(),
+            'email' => 'admin@admin.com',
+            'password' => bcrypt($password),
+            'admin' => 1,
+            'firstVisit' => 0
+        ]);
+        echo "Admin user with email admin@admin.com and password " . $password . " has been succesfully created \n";
     }
 }

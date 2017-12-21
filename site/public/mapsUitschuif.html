@@ -1,190 +1,130 @@
+
+
 <html>
-	<head>
-		<style>
-			body {
-				margin: 0;
-				overflow: hidden;
-			}
-			
-			#infowindow h3 {
-				margin: 0;
-			}
-			
-			#infowindow hr {
-				display: block;
-				height: 1px;
-				border: 0;
-				border-top: 1px solid #ccc;
-				margin: 0.1em 0;
-				padding: 0;
-			}
-			
-			
-			#container {
-				height: 100vh;
-				white-space:nowrap;
-			}
-			
-			#mapDiv {
-				position: relative;
-			}
-			
-			#map {
-				height: 100%;
-				width: 100%;
-			}
-			
-			#search {
-				top: 5vh;
-				left: 3vw;
-				height: 10vh;
-				width: 20vw;
-				position: absolute;
-				background-color: white;
-			}
-			
-			#settings {
-				top: 5vh;
-				right: 3vw;
-				width: 120px;
-				position: absolute;			
-				background-color: white;
-				padding-top: 10px;
-			}
-			
-			.settingsItem {
-				position: relative;
-				display: block;
-				height: 20px;
-				padding: 0px 10px 10px 10px;
-				color: #717171;
-				cursor: pointer;
-			}
-			
-			.settingsItem:hover {
-				color: #A1A1A1;
-			}
-			
-			#settingsUpDown {
-				text-align: center;
-				padding: 0;
-				border-top: black solid 1px;
-				height: 17px;
-				background-color: white;
-			}
-			
-			#mapDiv, #allContacts, #selectedContact {
-				display: inline-block;
-			}
-			
-			#allContacts, #selectedContact {
-				height: 100%;
-				width: 20vw;
-				top: 0px;
-				position: static;
-			}
-			
-			#allContacts {
-				background-color: white;
-				overflow-y: scroll;
-				overflow-x: hidden;
-			}
-			
-			#selectedContact {
-				background-color: #e8e6e7;
-			}
-			
-			.card {
-				height: 100px;
-				border-bottom: #bcbabb 1px solid;
-				
-			}
-			
-			.card:hover {
-				background-color: #4c6ef3;
-			}
-			
-			.cardImage, .cardText {
-				display: inline-block;
-				
-			}
-			
-			.cardImage {
-				height: 100%;
-				width: 30%;
-			}
-			
-			.cardImage img {
-				height: 70px;
-				width: 70px;
-				padding: 15px;
-			}
-			
-			.cardText {
-				height: 100%;
-				width: 70%;
-			}
-		</style>
-		<!--IMPORTANT-->
-		<script src="js/maps.js"></script>
-		<!-- TESTING DINGIES -->
-		<script>
-			// you do not need all filter values or any
-			var filterExample = {
-				voornaam: "Foo",
-				achternaam: "Bar",
-				straatnaam: "kenn",
-				huisnummer: "49",
-				plaats: "Doe",
-				postcode: "7001 EA"
-			}
-			// placeAllMarkers() will place all markers with no filterExample
-			placeAllMarkers();
-			
-			function longLangCallback(e) {
-				console.log(e);
-			}
-		</script>
-		<!---->
-	</head>
-	<body onload="both()">
-		<!--IMPORTANT-->
-		<div id="container">
-			<div id="mapDiv" style="width: 100vw; height: 100vh;">
-				<div id="map"></div>
-				<div id="search"></div>
-				<div id="settings">
-					<div class="settingsItem">Mijn gegevens</div>
-					<div class="settingsItem" num="0" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
-					<div class="settingsItem" num="5" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
-					<div class="settingsItem" num="2" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
-					<div class="settingsItem" num="3" style="padding-bottom: 0px; height: 0px;">Uitloggen</div>
-					<div id="settingsUpDown" class="settingsItem" onclick="settingsToggle()" value="false">&#9660;</div>
-				</div>
-			</div><!--
-			--><div id="allContacts">
-				<div class="card">
-					<div class="cardImage"><img src="imgs/user.png"></div><!--
-					--><div class="cardText"><h4>Foo van der bar</h4></div>
-				</div>
-				<a href="#">
-					<div class="card">
-					</div>
-				</a>
-				<a href="#">
-					<div class="card">
-					</div>
-				</a>
-			</div><!--
-			--><div id="selectedContact" style="right: -20vw;"></div>
-		</div>
-		<script src="js/panels.js">
-		</script>
-		<script src="js/markerclusterer.js">
-		</script>
-		<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap">
-		</script>
-		<!---->
-	</body>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/app_maps.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js" integrity="sha384-3ziFidFTgxJXHMDttyPJKDuTlmxJlwbSkojudK/CkRqKDOmeSbN6KLrGdrBQnT2n" crossorigin="anonymous"></script>
+        <style>
+
+        </style>
+        <!--IMPORTANT-->
+        <script src="js/maps.js"></script>
+        <!-- TESTING DINGIES -->
+        <script>
+            // placeAllMarkers() will place all markers without a
+            placeAllMarkers();
+
+			function searchContact() {
+				var filter = {
+					voornaam: $("#InputVoornaam").val(),
+					tussenvoegsel: $("#InputTussenvoegsel").val(),
+					achternaam: $("#InputAchternaam").val(),
+					adres: $("#InputAdres").val(),
+					plaats: $("#InputPlaats").val(),
+					postcode: $("#InputPostcode").val()
+				}
+				placeAllMarkers(filter);
+			};
+            function longLangCallback(e) {
+                console.log(e);
+            }
+        </script>
+        <!---->
+    </head>
+    <body>
+        <!--IMPORTANT-->
+        <div id="container">
+            <div id="mapDiv" style="width: 100vw; height: 100vh;">
+                <div id="map"></div>
+                <div id="search">
+                    <div class="searchPanel">
+                        <div class="form-group search-form">
+                            <input type="email" class="form-control zoekfunctiebar mainBar" id="InputVoornaam" placeholder="Zoeken op voornaam...">
+                            <a class="laatmaarhiden zoekfunctiebutton" onclick="searchContact()"><img src="imgs/search_icon.png" alt="Search icon"></a>
+                        </div>
+                        <div id="panel">
+                            <div class="form-group">
+                                <h3>Filteren</h3>
+                                <input type="text" class="form-control zoekfunctiebar" id="InputTussenvoegsel" aria-describedby="emailHelp" placeholder="Tussenvoegsel">
+                                <input type="text" class="form-control zoekfunctiebar" id="InputAchternaam" aria-describedby="emailHelp" placeholder="Achternaam">
+                                <input type="text" class="form-control zoekfunctiebar" id="InputAdres" aria-describedby="emailHelp" placeholder="Adres">
+                                <input type="text" class="form-control zoekfunctiebar" id="InputPlaats" aria-describedby="emailHelp" placeholder="Plaats">
+                                <input type="text" class="form-control zoekfunctiebar" id="InputPostcode" aria-describedby="emailHelp" placeholder="Postcode">
+                                <h3>Sorteren</h3>
+                            </div>
+                            <div class="form-check radio-inline1">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                Voornaam
+                                </label>
+                            </div>
+                            <div class="form-check radio-inline2">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                Achternaam
+                                </label>
+                            </div>
+                            <br>
+                            <div class="form-check radio-inline1">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                Adres
+                                </label>
+                            </div>
+                            <div class="form-check radio-inline3">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                Plaats
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="flip"><b class="arrow">&#8964;</b></div>
+                </div>
+                <div id="settings">
+                    <div id="mijngegevens">
+                        <p>admin@admin.com<a href="#"><img src="imgs/user.png" class="loginpicture" alt="profile pic" onclick="showContact(1)"></a></p>
+                    </div>
+                    <div id="settingsMore">
+                        <a href=""><p>Admin panel</p></a>
+                        <a href=""><p>Uitloggen</p></a>
+                    </div>
+                </div>
+            </div>
+            <!--
+                -->
+            <div id="allContacts">
+                <a onclick="both()">
+                    <div class="card">
+                        <div class="cardImage"><img src="imgs/user.png"></div>
+                        <div class="cardText">
+                            <h4>Foo van der bar</h4>
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                    </div>
+                </a>
+            </div>
+            <!--
+                -->
+            <div id="selectedContact" style="right: -20vw;">
+                <!-- User info -->
+            </div>
+        </div>
+        <script src="js/panels.js"></script>
+        <script src="js/markerclusterer.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap"></script>
+        <!---->
+    </body>
 </html>

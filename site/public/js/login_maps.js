@@ -144,17 +144,13 @@ function placeMarkers() {
 	for (var i = 0; i < markerObjs.length; i++) {
 		_loop(i);
 	}
-	markerCluster = new MarkerClusterer(map, markersArr,
+	var markerCluster = new MarkerClusterer(map, markersArr,
             {imagePath: 'imgs/mapsMarker.php'});
 }
 
 function removeMarkers() {
 	for (var i = 0; i < markerObjs.length; i++) {
 		markerObjs[i].marker.setMap(null);
-	}
-	markerCluster.clearMarkers();
-	if(infowindow !== undefined) {
-		infowindow.close();
 	}
 	markerObjs = [];
 	notPlacedMarkers = true;
@@ -225,11 +221,20 @@ function initMap() {
 		}]
 	});
 
+    map.setOptions({draggable: false, zoomControl: false, scrollWheel: false, disableDoubleClick: true})
+
 	//Set variable so it is loaded and add markers if not already added
 	googleMapNotLoaded = false;
 	if (allData.hasOwnProperty("contacts") && allData.hasOwnProperty("addresses") && notPlacedMarkers) {
 		placeMarkers();
 	}
+}
+
+function disablePanningAndScrolling() {
+	map.setOptions({
+		zoomControl: false,
+		gestureHandling: 'none'
+	});
 }
 
 var notPlacedMarkers = true;
@@ -238,6 +243,3 @@ var allData = {};
 var markerObjs = [];
 var map;
 var infowindow;
-var markerCluster;
-
-$(document).ready(function(){var n=0;$("#flip").click(function(){0==n?$("#panel").slideToggle("slow",function(){$(".arrow").text("⌃"),n=1}):1==n&&$("#panel").slideToggle("slow",function(){$(".arrow").text("⌄"),n=0})}),$("#mijngegevens").click(function(){$("#settingsMore").slideToggle(200)})});
