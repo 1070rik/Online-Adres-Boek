@@ -42,6 +42,9 @@ class SearchController extends Controller
 				"voornaam" => $row->voornaam,
 				"tussenvoegsel" => $row->tussenvoegsel,
 				"achternaam" => $row->achternaam,
+				"telefoonnummer" => $row->telefoonnummer,
+				"email" => $row->email,
+				"beschrijving" => $row->beschrijving,
 				"adresID" => $row->adresID);
 			array_push($contacts, $contactRow);
 

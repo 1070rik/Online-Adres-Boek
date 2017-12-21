@@ -41,7 +41,6 @@ function getSelectedById(id) {
 	});
 	var markerObjsNew = [contact];
 	setSelectedContactsContent(markerObjsNew);
-	console.log(contact);
 }
 
 function getSelectedContactContent(contact, adres) {
