@@ -8,7 +8,7 @@
 
 /* */
 
-.navbar-admin {
+.navbar-default {
   height: 90px;
   background-color: #4e67e8;
   margin-bottom: 0px;
@@ -19,7 +19,7 @@
 }
 
 .navbar-brand {
-  color: #fff;
+  color: #fff !important;
   font-size: 30px;
   line-height: 58px;
 }
@@ -45,6 +45,30 @@
 
 .nav-item:hover {
   background-color: #445aca;
+}
+
+.navbar-toggle {
+  margin-top: 3.3vh;
+  color: #fff !important;
+  border: 0px;
+  border-color: transparent !important;
+}
+
+.navbar-toggle:hover {
+  background-color: transparent !important;
+}
+
+.navbar-toggle > .icon-bar {
+  background-color: #fff !important;
+}
+
+.navbar-collapse {
+  border: 0px;
+}
+
+.navbar-nav {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .userData {

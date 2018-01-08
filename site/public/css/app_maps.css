@@ -227,18 +227,18 @@ h5 {
     background-color: white;
 }
 .zoekfunctiebar {
-    width: 85% !important;
+    width: 12vw !important;
     margin: 10px;
     border: 0px;
     border-bottom: 1px solid #d3d3d3 !important;
     border-radius: 0px !important;
 }
 .zoekfunctiebutton {
-    width: 19%;
+    width: 18%;
     display: inline;
 }
 .zoekfunctiebutton > img {
-    filter: grayscale(100%);
+    width: 100%;
 }
 .radio-inline1 {
     width: 50% !important;
@@ -259,7 +259,7 @@ h5 {
     margin-left: 10%;
 }
 .search-form {
-    width: 15vw;
+    width: calc(12vw + 18%);
 }
 #settingsMore {
     display: none;
@@ -306,14 +306,7 @@ body {
     box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     padding: 10px;
 }
-#settings {
-    top: 1vh;
-    right: 1vw;
-    width: auto;
-    position: absolute;
-    background-color: white;
-    padding: 10px;
-}
+
 .settingsItem {
     position: relative;
     display: block;
@@ -531,4 +524,56 @@ body {
 
 .hideContact {
 	right: -20vw !important;
+}
+span.clear { clear: left; display: block; }
+
+/*Responsive stuff*/
+@media only screen and (min-width: 769px) {
+    #settings {
+        top: 1vh;
+        right: 1vw;
+        width: auto;
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    #settings {
+        bottom: 1vh !important;
+        left: 1vw !important;
+        width: auto;
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+    }
+
+    #mijngegevens p {
+        padding-left: 35px;
+    }
+
+    #mijngegevens > p > a {
+        left: 0px;
+        position: absolute;
+    }
+
+    #search {
+        top: 1vh;
+        left: 1vw;
+        height: auto;
+        width: 100vw;
+        padding: 10px;
+        position: absolute;
+        width: 98vw;
+    }
+
+    .search-form {
+        width: 100%;
+    }
+
+    .zoekfunctiebar {
+        width: 88% !important;
+    }
 }

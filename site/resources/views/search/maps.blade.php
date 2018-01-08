@@ -8,8 +8,9 @@
         <div id="search">
             <div class="searchPanel">
                 <div class="form-group search-form">
-                    <input type="email" class="form-control zoekfunctiebar mainBar" id="InputVoornaam" placeholder="Zoeken op voornaam...">
+                    <input type="text" class="form-control zoekfunctiebar mainBar" id="InputVoornaam" placeholder="Zoeken op voornaam...">
                     <a class="laatmaarhiden zoekfunctiebutton" onclick="searchContact()"><img src="imgs/search_icon.png" alt="Search icon"></a>
+                    <span class="clear"></span>
                 </div>
                 <div id="panel">
                     <div class="form-group">
