@@ -15,15 +15,15 @@
             placeAllMarkers();
             
             function searchContact() {
-            var filter = {
-            voornaam: $("#InputVoornaam").val(),
-            tussenvoegsel: $("#InputTussenvoegsel").val(),
-            achternaam: $("#InputAchternaam").val(),
-            adres: $("#InputAdres").val(),
-            plaats: $("#InputPlaats").val(),
-            postcode: $("#InputPostcode").val()
-            }
-            placeAllMarkers(filter);
+				var filter = {
+					voornaam: $("#InputVoornaam").val(),
+					tussenvoegsel: $("#InputTussenvoegsel").val(),
+					achternaam: $("#InputAchternaam").val(),
+					adres: $("#InputAdres").val(),
+					plaats: $("#InputPlaats").val(),
+					postcode: $("#InputPostcode").val()
+				}
+				placeAllMarkers(filter);
             };
             function longLangCallback(e) {
                 console.log(e);

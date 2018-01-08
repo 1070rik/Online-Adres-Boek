@@ -12,12 +12,17 @@ function returnOrUndefined(txt, extra, prefix) {
 	}
 }
 
-function setSelectedContactsContent(markerObjs) {
+function setSelectedContactsContent(markerObjs, showAllBool) {
 	if(markerObjs.length == 1 && markerObjs[0].contacts.length == 1) {
 		userInfo.innerHTML = "";
 		var content = getSelectedContactContent(markerObjs[0].contacts[0], markerObjs[0].adres);
 		userInfo.innerHTML = content;
-		showSelectedContact();
+		if(showAllBool===true && viewType==1)
+		{
+			showAll();
+		} else {
+			showSelectedContact();
+		}
 	} else {
 		contactsList.innerHTML = "";
 		for(var i = 0; i < markerObjs.length; i++) {
@@ -45,7 +50,7 @@ function getSelectedById(id) {
 		return obj.id == id;
 	});
 	var markerObjsNew = [new MarkerObj(markerObj.adres, contact)];
-	setSelectedContactsContent(markerObjsNew);
+	setSelectedContactsContent(markerObjsNew, true);
 }
 
 function getSelectedContactContent(contact, adres) {
