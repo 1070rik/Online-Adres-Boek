@@ -74,14 +74,14 @@
 
     --><div id="allContacts" class="scrollbar">
         <div class="topbar">
-            <a class="close-icon-parent" onclick="hideAll()"><i class="material-icons close-icon">&#xE5CD;</i></a>
+            <a class="close-icon-parent" onclick="hideAllContacts()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
 		<div id="contactsList"></div>
     </div><!--
 	
     --><div id="selectedContact">
         <div class="topbar">
-            <a class="close-icon-parent" onclick="hideAll()"><i class="material-icons close-icon">&#xE5CD;</i></a>
+            <a class="close-icon-parent" onclick="hideSelectedContact()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
         <!-- User info -->
 		<div id="userInfo">

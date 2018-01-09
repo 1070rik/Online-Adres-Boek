@@ -121,6 +121,36 @@ function hideAll() {
 	}, 500);
 }
 
+function hideAllContacts() {
+	var classAttr = mapDiv.getAttribute("class");
+	if(viewType == 3) {
+		viewType = 2;
+		mapDiv.setAttribute("class", "onePanel");
+	} else if (viewType ==  1) {
+		viewType = 0;
+		mapDiv.setAttribute("class", "noFastPanel");
+	}
+	setTimeout(function() {
+		google.maps.event.trigger(map, 'resize');
+	}, 500);
+}
+
+function hideSelectedContact() {
+	var classAttr = mapDiv.getAttribute("class");
+	if(viewType == 3) {
+		viewType = 1;
+		mapDiv.setAttribute("class", "onePanel");
+	} else if (viewType ==  2) {
+		viewType = 0;
+		mapDiv.setAttribute("class", "noFastPanel");
+	}
+	
+	selectedContact.setAttribute("class", "hideContact");
+	setTimeout(function() {
+		google.maps.event.trigger(map, 'resize');
+	}, 500);
+}
+
 function showAllContacts() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 1;
