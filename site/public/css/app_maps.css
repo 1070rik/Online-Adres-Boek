@@ -62,6 +62,7 @@ div.col-12:nth-child(1),
 #flip {
     text-align: left;
     background-color: white;
+    cursor: pointer;
     /*width: auto;*/
 }
 #flip,
@@ -100,6 +101,7 @@ div.col-12:nth-child(1),
     width: 40px;
     height: 40px;
     margin-right: 20px;
+    cursor: pointer;
 }
 #panel {
     display: none;
@@ -155,7 +157,9 @@ div.col-12:nth-child(1),
 .card {
     border-radius: 0px !important;
     box-shadow: 0 !important;
+    border: 0 !important;
     border-bottom: 1px solid #bcbabb !important;
+    cursor: pointer;
 }
 
 
@@ -199,7 +203,7 @@ h5 {
     height: auto;
     color: #717171;
     /* SHADOWS */
-    
+
     -webkit-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
@@ -267,6 +271,7 @@ h5 {
 
 #infowindow h3 {
     margin: 0;
+    font-family: Raleway !important;
 }
 #infowindow hr {
     display: block;
@@ -275,6 +280,7 @@ h5 {
     border-top: 1px solid #ccc;
     margin: 0.1em 0;
     padding: 0;
+    font-family: Raleway !important;
 }
 #container {
     height: 100vh;
@@ -323,10 +329,6 @@ h5 {
     background-color: white;
 }
 
-#selectedContact {
-    box-shadow: -3px 0px 40px 1px grey;
-}
-
 #allContacts {
     background-color: white;
     overflow-x: hidden;
@@ -342,9 +344,9 @@ h5 {
 	margin: 0 auto;
 	width: 75%;
 }
+
 .card {
     height: 100px;
-    border-bottom: #bcbabb 1px solid;
 	overflow-x: auto;
 	overflow-y: hidden;
 	-ms-overflow-y: -ms-autohiding-scrollbar;
@@ -391,9 +393,17 @@ h5 {
 }
 .topbar {
     width: 100%;
-    background-color: #d3d3d3;
-    height: 4vh;
+    background-color: white;
+    height: auto;
     text-align: left;
+    border-bottom: 1px solid #bcbabb !important;
+}
+
+.darktopbar {
+  width: 100%;
+  background-color: #e8e6e7;;
+  height: auto;
+  text-align: left;
 }
 .close-icon-parent {
     cursor: pointer;
@@ -402,6 +412,7 @@ h5 {
     margin-left: 10px;
     line-height: 4vh !important;
     font-size: 50px !important;
+    color: #a09c9c;
 }
 .profile-pic {
     width: 200px;
@@ -409,19 +420,25 @@ h5 {
 	display: table;
     border-radius: 100%;
     margin-top: 2vh;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 .name {
-	text-align: left;
+  font-family: Raleway !important;
+	text-align: center;
     font-weight: bold;
     font-size: 30px;
 	margin-bottom: 0.5rem;
 }
 .user-extra {
-    text-align: left;
+  text-align: left;
 	padding-left: 1%;
 	width: 100%;
 	white-space: normal;
 	word-wrap: normal;
+}
+.user-extra h6 {
+  color: #a09c9c;
 }
 .card-address {
     margin-bottom: 0px;
@@ -447,21 +464,21 @@ h5 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
 }
 
 #mapDiv {
-	width: 100vw; 
+	width: 100vw;
 	height: 100vh;
     transition-property: width;
     transition-delay: 0s;
@@ -515,6 +532,9 @@ span.clear { clear: left; display: block; }
         position: absolute;
         background-color: white;
         padding: 10px;
+        -webkit-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
+        -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
+        box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     }
 
     body {
@@ -546,6 +566,10 @@ span.clear { clear: left; display: block; }
         transition-duration: 0.2s;
         transition-delay: 0s;
         transition-timing-function: linear;
+
+        -webkit-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
+        -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
+        box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     }
 }
 

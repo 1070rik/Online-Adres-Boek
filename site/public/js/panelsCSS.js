@@ -61,16 +61,16 @@ function getSelectedContactContent(contact, adres) {
 	content += returnOrUndefined(contact.tussenvoegsel, ""," ");
 	content += returnOrUndefined(contact.achternaam, ""," ");
 	content += '</p><div class="user-extra">';
-	content += returnOrUndefined(contact.voornaam, '','Voornaam: ');
-	content += returnOrUndefined(contact.tussenvoegsel, '','<br>TussenVoegsels: ');
-	content += returnOrUndefined(contact.achternaam, '','<br>Achternaam: ');
-	content += returnOrUndefined(adres.straatnaam, '', '<br>Adres: ');
-	content += returnOrUndefined(adres.huisnummer,'', ' ');
-	content += returnOrUndefined(adres.plaats, '', '<br>Plaats: ');
-	content += returnOrUndefined(adres.postcode, '', '<br>Postcode: ');
-	content += returnOrUndefined(contact.telefoonnummer, '','<br>Telefoonnummer: ');
-	content += returnOrUndefined(contact.email, '','<br>E-mail: ');
-	content += returnOrUndefined(contact.beschrijving, '</p>','<br><br><p id="beschrijving">Beschrijving: ');
+	content += returnOrUndefined(contact.voornaam, '</h6>','<h4>Voornaam<h4> <h6> ');
+	content += returnOrUndefined(contact.tussenvoegsel, '</h6>','<h4>TussenVoegsels</h4> <h6>');
+	content += returnOrUndefined(contact.achternaam, '</h6>','<h4>Achternaam</h4> <h6>');
+	content += returnOrUndefined(adres.straatnaam, '</h6>', '<h4>Adres</h4> <h6>');
+	content += returnOrUndefined(adres.huisnummer,'</h6>', ' ');
+	content += returnOrUndefined(adres.plaats, '</h6>', '<h4>Plaats</h4> <h6>');
+	content += returnOrUndefined(adres.postcode, '</h6>', '<h4>Postcode</h4> <h6>');
+	content += returnOrUndefined(contact.telefoonnummer, '','<h4>Telefoonnummer</h4> <h6>');
+	content += returnOrUndefined(contact.email, '</h6>','<h4>E-mail</h4> <h6>');
+	content += returnOrUndefined(contact.beschrijving, '</p></h6>','<h4><p id="beschrijving">Beschrijving</h4> <h6>');
 	content += '</div>'
 	return content;
 }
@@ -94,7 +94,7 @@ function createCard(contact, adres) {
 }
 
 function showAll() {
-	var classAttr = mapDiv.getAttribute("class");	
+	var classAttr = mapDiv.getAttribute("class");
 	viewType = 3;
 	if(classAttr == "onePanel") {
 		mapDiv.setAttribute("class", "twoFastPanels");
@@ -144,7 +144,7 @@ function hideSelectedContact() {
 		viewType = 0;
 		mapDiv.setAttribute("class", "noFastPanel");
 	}
-	
+
 	selectedContact.setAttribute("class", "hideContact");
 	setTimeout(function() {
 		google.maps.event.trigger(map, 'resize');
@@ -154,7 +154,7 @@ function hideSelectedContact() {
 function showAllContacts() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 1;
-	mapDiv.setAttribute("class", "onePanel");	
+	mapDiv.setAttribute("class", "onePanel");
 	selectedContact.setAttribute("class", "hideContact");
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
@@ -164,7 +164,7 @@ function showAllContacts() {
 function showSelectedContact() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 2;
-	mapDiv.setAttribute("class", "onePanel");	
+	mapDiv.setAttribute("class", "onePanel");
 	selectedContact.setAttribute("class", "showContact");
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
@@ -176,7 +176,7 @@ document.body.onload = function() {
 	selectedContact = document.getElementById("selectedContact");
 	contactsList = document.getElementById("contactsList");
 	userInfo = document.getElementById("userInfo");
-	
+
 }
 
 var mapDiv, selectedContact, contactsList, userInfo;

@@ -6,6 +6,12 @@
   height: 300px;
 }
 
+/* Fixes puts to 100% */
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 /* */
 
 .navbar-default {
@@ -72,8 +78,11 @@
 }
 
 .userData {
-  box-shadow: -10px 0px 10px 1px #aaaaaa;
-  height: auto;
+  height: 100%;
+  margin-top: -2% !important;
+  -webkit-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
+  -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
+  box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
 }
 
 .pageTitle {
@@ -142,5 +151,3 @@
   overflow: scroll;
   height: auto;
 }
-
-

@@ -37,14 +37,27 @@
                     <br>
                     <div class="form-check radio-inline1">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3">
                         Adres
                         </label>
                     </div>
                     <div class="form-check radio-inline3">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option4">
                         Plaats
+                        </label>
+                    </div>
+                    <h3>Filtreren</h3>
+                    <div class="form-check radio-inline1">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios1" value="option1" checked>
+                        Oplopend
+                        </label>
+                    </div>
+                    <div class="form-check radio-inline2">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios2" value="option2">
+                        Aflopend
                         </label>
                     </div>
                 </div>
@@ -62,7 +75,7 @@
                 </a>
                 @endif
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"> 
+                                                     document.getElementById('logout-form').submit();">
                     <p>Uitloggen</p>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -78,9 +91,9 @@
         </div>
 		<div id="contactsList"></div>
     </div><!--
-	
+
     --><div id="selectedContact">
-        <div class="topbar">
+        <div class="darktopbar">
             <a class="close-icon-parent" onclick="hideSelectedContact()"><i class="material-icons close-icon">&#xE5CD;</i></a>
         </div>
         <!-- User info -->
