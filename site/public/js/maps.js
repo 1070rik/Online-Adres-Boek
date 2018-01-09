@@ -149,6 +149,10 @@ function placeMarkers() {
 	}
 	markerCluster = new MarkerClusterer(map, markersArr,
             {imagePath: 'imgs/mapsMarker.php'});
+			
+			if(contactsList !== undefined) {
+			setSelectedContactsContent(markerObjs)
+			}
 }
 
 function removeMarkers() {
@@ -167,7 +171,10 @@ function removeMarkers() {
 function placeAllMarkers(filter) {
 	if (markerObjs.length > 0) {
 		removeMarkers();
+	} else {
+		notPlacedMarkers = true;
 	}
+	
 	if (filter === undefined) {
 		filter = {};
 	}

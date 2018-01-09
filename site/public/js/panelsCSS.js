@@ -17,7 +17,7 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 		userInfo.innerHTML = "";
 		var content = getSelectedContactContent(markerObjs[0].contacts[0], markerObjs[0].adres);
 		userInfo.innerHTML = content;
-		if(showAllBool===true && viewType==1)
+		if(showAllBool===true && (viewType==1 || viewType == 3))
 		{
 			showAll();
 		} else {
