@@ -227,18 +227,18 @@ h5 {
     background-color: white;
 }
 .zoekfunctiebar {
-    width: 85% !important;
+    width: 12vw !important;
     margin: 10px;
     border: 0px;
     border-bottom: 1px solid #d3d3d3 !important;
     border-radius: 0px !important;
 }
 .zoekfunctiebutton {
-    width: 19%;
+    width: 18%;
     display: inline;
 }
 .zoekfunctiebutton > img {
-    filter: grayscale(100%);
+    width: 100%;
 }
 .radio-inline1 {
     width: 50% !important;
@@ -259,14 +259,14 @@ h5 {
     margin-left: 10%;
 }
 .search-form {
-    width: 15vw;
+    width: calc(12vw + 18%);
 }
 #settingsMore {
     display: none;
 }
 body {
     margin: 0;
-    //overflow: hidden;
+    /*overflow: hidden;*/
 }
 #infowindow h3 {
     margin: 0;
@@ -306,14 +306,7 @@ body {
     box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     padding: 10px;
 }
-#settings {
-    top: 1vh;
-    right: 1vw;
-    width: auto;
-    position: absolute;
-    background-color: white;
-    padding: 10px;
-}
+
 .settingsItem {
     position: relative;
     display: block;
@@ -335,7 +328,7 @@ body {
 #mapDiv,
 #allContacts,
 #selectedContact {
-    //display: inline-block;
+    /*display: inline-block;*/
     text-align: center;
 }
 #selectedContact {
@@ -346,7 +339,7 @@ body {
     height: 100%;
     width: 20vw;
     top: 0px;
-    //position: static;
+    /*position: static;*/
 }
 #allContacts {
     background-color: white;
@@ -359,38 +352,38 @@ body {
     overflow-y: auto;
 }
 #userInfo {
-	display: table;
-	margin: 0 auto;
-	width: 75%;
+    display: table;
+    margin: 0 auto;
+    width: 75%;
 }
 .card {
     height: 100px;
     border-bottom: #bcbabb 1px solid;
-	overflow-x: auto;
-	overflow-y: hidden;
-	-ms-overflow-y: -ms-autohiding-scrollbar;
-	white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-y: -ms-autohiding-scrollbar;
+    white-space: nowrap;
 }
 .card:hover {
     background-color: #4c6ef3;
 }
 .card .row {
-	display: inline-block;
-	text-align: left;
+    display: inline-block;
+    text-align: left;
 }
 .card .col-md-3 {
-	width: 100px;
-	padding-left: 0px;
-	display: inline-block;
-	max-width: none;
-	vertical-align: top;
+    width: 100px;
+    padding-left: 0px;
+    display: inline-block;
+    max-width: none;
+    vertical-align: top;
 }
 .card .col-md-9 {
-	width: auto;
-	display: inline-block;
-	max-width: none;
-	padding: 0;
-	vertical-align: top;
+    width: auto;
+    display: inline-block;
+    max-width: none;
+    padding: 0;
+    vertical-align: top;
 }
 
 .cardImage,
@@ -403,7 +396,7 @@ body {
     height: 100%;
     border-radius: 100%;
     padding: 10px;
-	border: 0.01px solid transparent;
+    border: 0.01px solid transparent;
 }
 .cardText {
     text-align: left;
@@ -427,29 +420,29 @@ body {
 .profile-pic {
     width: 200px;
     height: 200px;
-	display: table;
+    display: table;
     border-radius: 100%;
     margin-top: 2vh;
 }
 .name {
-	text-align: left;
+    text-align: left;
     font-weight: bold;
     font-size: 30px;
-	margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .user-extra {
     text-align: left;
-	padding-left: 1%;
-	width: 100%;
-	white-space: normal;
-	word-wrap: normal;
+    padding-left: 1%;
+    width: 100%;
+    white-space: normal;
+    word-wrap: normal;
 }
 .card-address {
     margin-bottom: 0px;
 }
 .card-naam {
         padding-top: 7px;
-		margin-bottom: 0px;
+        margin-bottom: 0px;
 }
 .white {
     color: #fff !important;
@@ -463,7 +456,7 @@ body {
 
 ::-webkit-scrollbar {
     width: 5px;
-	height: 5px;
+    height: 5px;
 }
 
 /* Track */
@@ -482,53 +475,105 @@ body {
 }
 
 #mapDiv {
-	width: 100vw; 
-	height: 100vh;
+    width: 100vw; 
+    height: 100vh;
     transition-property: width;
     transition-delay: 0s;
-	transition-timing-function: linear;
+    transition-timing-function: linear;
 }
 
 
 .noPanel {
     transition-duration: 0.4s;
-	width: 100vw !important;
+    width: 100vw !important;
 }
 
 
 .onePanel {
     transition-duration: 0.2s;
-	width: 80vw !important;
+    width: 80vw !important;
 }
 
 .twoPanels {
     transition-duration: 0.4s;
-	width: 60vw !important;
+    width: 60vw !important;
 }
 
 .noFastPanel {
     transition-duration: 0.2s;
-	width: 100vw !important;
+    width: 100vw !important;
 }
 
 .twoFastPanels {
     transition-duration: 0.2s;
-	width: 60vw !important;
+    width: 60vw !important;
 }
 
 #selectedContact {
-	right: -20vw;
-	//position: fixed;
+    right: -20vw;
+    /*position: fixed;*/
     transition-property: right;
     transition-duration: 0.2s;
     transition-delay: 0s;
-	transition-timing-function: linear;
+    transition-timing-function: linear;
 }
 
 .showContact {
-	right: 0vw !important;
+    right: 0vw !important;
 }
 
 .hideContact {
-	right: -20vw !important;
+    right: -20vw !important;
+}
+span.clear { clear: left; display: block; }
+
+/*Responsive stuff*/
+@media only screen and (min-width: 769px) {
+    #settings {
+        top: 1vh;
+        right: 1vw;
+        width: auto;
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    #settings {
+        bottom: 1vh !important;
+        left: 1vw !important;
+        width: auto;
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+    }
+
+    #mijngegevens p {
+        padding-left: 35px;
+    }
+
+    #mijngegevens > p > a {
+        left: 0px;
+        position: absolute;
+    }
+
+    #search {
+        top: 1vh;
+        left: 1vw;
+        height: auto;
+        width: 100vw;
+        padding: 10px;
+        position: absolute;
+        width: 98vw;
+    }
+
+    .search-form {
+        width: 100%;
+    }
+
+    .zoekfunctiebar {
+        width: 88% !important;
+    }
 }

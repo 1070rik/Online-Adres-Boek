@@ -8,7 +8,7 @@
         <div id="search">
             <div class="searchPanel">
                 <div class="form-group search-form">
-                    <input type="text" class="form-control zoekfunctiebar mainBar" id="InputVoornaam" placeholder="Zoeken op voornaam...">
+                    <input type="text" class="form-control zoekfunctiebar mainBar" id="InputVoornaam" placeholder="Zoeken op voornaam..." onkeypress="return runSearch(event)">
                     <a class="laatmaarhiden zoekfunctiebutton" onclick="searchContact()"><img src="imgs/search_icon.png" alt="Search icon"></a>
                     <span class="clear"></span>
                 </div>
@@ -53,7 +53,7 @@
         </div>
         <div id="settings">
             <div id="mijngegevens">
-                <p>{{Auth::user()->email}}<a href="#"><img src="imgs/user.png" class="loginpicture" alt="profile pic" onclick="showContact('own', {{Auth::user()}})"></a></p>
+                <p>{{Auth::user()->email}}<a href="#"><img src="imgs/user.png" class="loginpicture" alt="profile pic" onclick="getSelectedById({{Auth::user()->id}})"></a></p>
             </div>
             <div id="settingsMore">
                 @if(Auth::user()->admin == 1)
