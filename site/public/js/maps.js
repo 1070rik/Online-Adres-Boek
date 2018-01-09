@@ -240,6 +240,10 @@ function initMap() {
 	if (allData.hasOwnProperty("contacts") && allData.hasOwnProperty("addresses") && notPlacedMarkers) {
 		placeMarkers();
 	}
+	
+	window.addEventListener("resize", function() {
+		google.maps.event.trigger(map, 'resize');
+		});
 }
 
 var notPlacedMarkers = true;
