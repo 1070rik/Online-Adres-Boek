@@ -4,11 +4,11 @@
 <div class="container">
     <div id="map"></div>
     <div class="login-container">
-        <div class="login col-md-3 col-xs-11">
+        <div class="login col-md-3 col-xs-8">
           <div class="row">
             <div class="login-title col-xs-12">
               <!-- <h3>{{ config('app.name', 'Adres Boek') }}</h3> -->
-              <img src="http://via.placeholder.com/200x200" class="login-image">
+              <img src="https://memestatic3.fjcdn.com/comments/Join+list+_2b1fb48682de4241b304bdd0cb3ce4d8.jpg" class="login-image">
             </div>
             <div class="login-content col-xs-12">
               <form method="POST" action="{{ route('login') }}">

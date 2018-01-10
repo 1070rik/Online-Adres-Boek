@@ -1,3 +1,7 @@
+html{
+	overflow-y: scroll;
+}
+
 body{
   background-color: #ECEFF1;
   color: #fff;
@@ -33,7 +37,7 @@ body{
 .login{
   margin: auto;
   position: absolute;
-  top: 5%;
+  bottom: 50%;
   right: 0;
   left: 0;
   transform: translateY(50%);
@@ -51,7 +55,8 @@ body{
 }
 
 .login-title > .login-image {
-    border-radius: 100%;
+	width: calc(100% - 26px);
+	height: 253.97px;
 }
 
 .login-title > h3 {
@@ -67,6 +72,22 @@ body{
 }
 
 #map {
+	position: fixed !important;
     height: 100vh;
     width: 100vw;
+}
+
+@media only screen and (max-height: 465.14px) {
+	.login {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		bottom: unset;
+		transform: translateY(0);	
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.login {
+		min-width: 661px;
+	}
 }
