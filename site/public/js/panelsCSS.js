@@ -183,13 +183,14 @@ function showAllContacts() {
 function showSelectedContact() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 2;
+	selectedContact.setAttribute("class", "showContact");
+	allContactsList.setAttribute("class", "hidden");
 	if(document.documentElement.clientWidth < 768) {
+		mapDiv.setAttribute("class", "twoPanels");
 		selectedContact.className += " vh60";
 	}else{
 		mapDiv.setAttribute("class", "onePanel");
 	}
-	selectedContact.setAttribute("class", "showContact");
-	allContactsList.setAttribute("class", "hidden");
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
 	}, 500);
