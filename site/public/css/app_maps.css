@@ -240,6 +240,7 @@ h5 {
 .zoekfunctiebutton {
     width: 18%;
     display: inline;
+    cursor: pointer;
 }
 .zoekfunctiebutton > img {
     width: 100%;
@@ -485,42 +486,6 @@ h5 {
 	transition-timing-function: linear;
 }
 
-
-.noPanel {
-    transition-duration: 0.4s;
-	width: 100vw !important;
-}
-
-
-.onePanel {
-    transition-duration: 0.2s;
-	width: 80vw !important;
-}
-
-.twoPanels {
-    transition-duration: 0.4s;
-	width: 60vw !important;
-}
-
-.noFastPanel {
-    transition-duration: 0.2s;
-	width: 100vw !important;
-}
-
-.twoFastPanels {
-    transition-duration: 0.2s;
-	width: 60vw !important;
-}
-
-
-
-.showContact {
-	right: 0vw !important;
-}
-
-.hideContact {
-	right: -20vw !important;
-}
 span.clear { clear: left; display: block; }
 
 /*Responsive stuff*/
@@ -571,6 +536,42 @@ span.clear { clear: left; display: block; }
         -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
         box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     }
+
+    .noPanel {
+        transition-duration: 0.4s;
+        width: 100vw !important;
+    }
+
+
+    .onePanel {
+        transition-duration: 0.2s;
+        width: 80vw !important;
+    }
+
+    .twoPanels {
+        transition-duration: 0.4s;
+        width: 60vw !important;
+    }
+
+    .noFastPanel {
+        transition-duration: 0.2s;
+        width: 100vw !important;
+    }
+
+    .twoFastPanels {
+        transition-duration: 0.2s;
+        width: 60vw !important;
+    }
+
+
+
+    .showContact {
+        right: 0vw !important;
+    }
+
+    .hideContact {
+        bottom: -20vh !important;
+    }
 }
 
 
@@ -613,6 +614,7 @@ span.clear { clear: left; display: block; }
 
     body {
         margin: 0;
+        overflow: hidden;
     }
 
     #mapDiv,
@@ -623,10 +625,10 @@ span.clear { clear: left; display: block; }
 
     #allContacts,
     #selectedContact {
-        height: 100%;
+        height: auto;
         width: 100vw;
         top: 0px;
-        display: none;
+        /*display: none;*/
     }
 
     #selectedContact {
@@ -636,4 +638,73 @@ span.clear { clear: left; display: block; }
         transition-delay: 0s;
         transition-timing-function: linear;
     }
+<<<<<<< HEAD
 }
+=======
+
+    /**/
+
+    .noPanel {
+        transition-duration: 0.4s;
+        height: 100vh !important;
+    }
+
+
+    .onePanel {
+        transition-duration: 0.2s;
+        height: 60vh !important;
+    }
+
+    .twoPanels {
+        transition-duration: 0.4s;
+        height: 40vh !important;
+    }
+
+    .noFastPanel {
+        transition-duration: 0.2s;
+        height: 100vh !important;
+    }
+
+    .twoFastPanels {
+        transition-duration: 0.2s;
+        height: 40vh !important;
+    }
+
+
+
+    .showContact {
+        right: 0vw !important;
+    }
+
+    .hideContact {
+        right: -20vw !important;
+    }
+
+    #contactsList {
+        overflow-y: scroll;
+        height: 36vh;
+        padding: 10px;
+    }
+
+    .card {
+        border-radius: 3% !important;
+        margin-bottom: 5px;
+    }
+
+    .card:hover {
+        color: #fff;
+    }
+
+    .card:hover > .row > .col-md-9 > .cardText > p {
+        color: #fff;
+    }
+
+    #contactsList > a:last-child > div {
+        margin-bottom: 0px !important;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+>>>>>>> more roesponsive fixes

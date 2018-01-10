@@ -24,6 +24,7 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 			showSelectedContact();
 		}
 	} else {
+		allContactsList.classList.remove("hidden");
 		contactsList.innerHTML = "";
 		for(var i = 0; i < markerObjs.length; i++) {
 			var markerObj = markerObjs[i];
@@ -96,15 +97,31 @@ function createCard(contact, adres) {
 function showAll() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 3;
-	if(classAttr == "onePanel") {
-		mapDiv.setAttribute("class", "twoFastPanels");
-	} else {
-		mapDiv.setAttribute("class", "twoPanels");
+
+	if(document.documentElement.clientWidth < 768) {
+		//Mobile screen
+		if(classAttr == "onePanel") {
+			mapDiv.setAttribute("class", "twoFastPanels");
+			allContactsList.setAttribute("class", "hidden");
+		} else {
+			mapDiv.setAttribute("class", "twoPanels");
+		}
+		selectedContact.setAttribute("class", "showContact");
+		setTimeout(function() {
+				google.maps.event.trigger(map, 'resize');
+		}, 500);
+	}else{
+		//Not a mobile screen
+		if(classAttr == "onePanel") {
+			mapDiv.setAttribute("class", "twoFastPanels");
+		} else {
+			mapDiv.setAttribute("class", "twoPanels");
+		}
+		selectedContact.setAttribute("class", "showContact");
+		setTimeout(function() {
+				google.maps.event.trigger(map, 'resize');
+		}, 500);
 	}
-	selectedContact.setAttribute("class", "showContact");
-	setTimeout(function() {
-			google.maps.event.trigger(map, 'resize');
-	}, 500);
 }
 
 function hideAll() {
@@ -175,6 +192,7 @@ document.body.onload = function() {
 	mapDiv = document.getElementById("mapDiv");
 	selectedContact = document.getElementById("selectedContact");
 	contactsList = document.getElementById("contactsList");
+	allContactsList = document.getElementById("allContacts");
 	userInfo = document.getElementById("userInfo");
 
 }
