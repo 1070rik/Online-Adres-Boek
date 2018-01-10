@@ -156,6 +156,8 @@ function hideSelectedContact() {
 	var classAttr = mapDiv.getAttribute("class");
 	if(viewType == 3) {
 		viewType = 1;
+		selectedContact.setAttribute("class", "hidden");
+		allContacts.classList.remove("hidden");
 		mapDiv.setAttribute("class", "onePanel");
 	} else if (viewType ==  2) {
 		viewType = 0;
@@ -181,8 +183,13 @@ function showAllContacts() {
 function showSelectedContact() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 2;
-	mapDiv.setAttribute("class", "onePanel");
+	if(document.documentElement.clientWidth < 768) {
+		selectedContact.className += " vh60";
+	}else{
+		mapDiv.setAttribute("class", "onePanel");
+	}
 	selectedContact.setAttribute("class", "showContact");
+	allContactsList.setAttribute("class", "hidden");
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
 	}, 500);

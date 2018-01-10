@@ -638,11 +638,6 @@ span.clear { clear: left; display: block; }
         transition-delay: 0s;
         transition-timing-function: linear;
     }
-<<<<<<< HEAD
-}
-=======
-
-    /**/
 
     .noPanel {
         transition-duration: 0.4s;
@@ -707,4 +702,7 @@ span.clear { clear: left; display: block; }
 .hidden {
     display: none !important;
 }
->>>>>>> more roesponsive fixes
+
+.vh60 {
+    height: 60vh !important;
+}
