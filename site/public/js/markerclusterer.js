@@ -1101,7 +1101,10 @@ ClusterIcon.prototype.onAdd = function() {
 		infowindow.setPosition({lat: that.center_.lat(), lng: that.center_.lng()});
 		infowindow.pixelOffset.height = -10;
 		setSelectedContactsContent(infowindow.markerObjs);
-		infowindow.open(map);
+		
+		
+		//GEEN INFOWINDOW TESTEN
+		//infowindow.open(map);
 	});
 	
     google.maps.event.addDomListener(this.div_, 'dblclick', function() {

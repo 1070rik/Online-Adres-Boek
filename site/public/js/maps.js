@@ -121,7 +121,9 @@ function placeMarkers() {
 			infowindow.markerObjs = [];
 			infowindow.markerObjs.push(markerObj);
 			setSelectedContactsContent(infowindow.markerObjs)
-			infowindow.open(map, marker);
+			
+			//GEEN INFOWINDOW TESTEN
+			//infowindow.open(map, marker);
 		});
 
 		marker.addListener('mouseover', function () {
@@ -242,8 +244,10 @@ function initMap() {
 	}
 	
 	window.addEventListener("resize", function() {
+		setTimeout(function() {
 		google.maps.event.trigger(map, 'resize');
-		});
+		}, 220);
+	});
 }
 
 var notPlacedMarkers = true;

@@ -102,11 +102,11 @@ function showAll() {
 		//Mobile screen
 		if(classAttr == "onePanel") {
 			mapDiv.setAttribute("class", "twoFastPanels");
-			allContactsList.setAttribute("class", "hidden");
 		} else {
 			mapDiv.setAttribute("class", "twoPanels");
 		}
-		selectedContact.setAttribute("class", "showContact");
+			allContactsList.setAttribute("class", "hidden");
+		selectedContact.setAttribute("class", "showContact vh60");
 		setTimeout(function() {
 				google.maps.event.trigger(map, 'resize');
 		}, 500);
@@ -178,23 +178,40 @@ function showAllContacts() {
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
 	}, 500);
+	
+	console.log("test");
 }
 
 function showSelectedContact() {
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 2;
-	selectedContact.setAttribute("class", "showContact");
-	allContactsList.setAttribute("class", "hidden");
 	if(document.documentElement.clientWidth < 768) {
+		//mobile screen
+		selectedContact.setAttribute("class", "showContact vh60");
 		mapDiv.setAttribute("class", "twoPanels");
-		selectedContact.className += " vh60";
-	}else{
+	} else {
+		//Not a mobile screen
+		selectedContact.setAttribute("class", "showContact");
 		mapDiv.setAttribute("class", "onePanel");
 	}
+	allContactsList.setAttribute("class", "hidden");
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
 	}, 500);
 }
+
+window.addEventListener("resize", function() {
+		allContactsList.classList.remove("hidden");
+		if(viewType == 0) {
+			hideAll();
+		} else if(viewType == 1) {
+			showAllContacts()
+		} else if(viewType == 2) {
+			showSelectedContact() 
+		} else if(viewType == 3) {
+			showAll();
+		}
+});
 
 document.body.onload = function() {
 	mapDiv = document.getElementById("mapDiv");

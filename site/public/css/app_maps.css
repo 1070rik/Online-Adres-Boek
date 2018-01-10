@@ -585,10 +585,6 @@ span.clear { clear: left; display: block; }
         padding: 10px;
     }
 
-    #mijngegevens p {
-        padding-left: 35px;
-    }
-
     #mijngegevens > p > a {
         left: 0px;
         position: absolute;

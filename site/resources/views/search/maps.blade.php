@@ -66,7 +66,7 @@
         </div>
         <div id="settings">
             <div id="mijngegevens">
-                <p>{{Auth::user()->email}}<a href="#"><img src="imgs/user.png" class="loginpicture" alt="profile pic" onclick="getSelectedById({{Auth::user()->id}})"></a></p>
+                <p>{{Auth::user()->email}}</p>
             </div>
             <div id="settingsMore">
                 @if(Auth::user()->admin == 1)

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <form class="form-horizontal" method="POST" action="{{ route('addUserPost') }}">
