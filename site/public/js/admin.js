@@ -113,4 +113,5 @@ function constructContactTable(){
     contactTable.addEventListener("rowClick", function(rowIndex){
         updateSelectionOutput();
     });
+
 };

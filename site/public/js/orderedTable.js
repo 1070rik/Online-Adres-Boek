@@ -8,6 +8,8 @@ function OrderedTable(name, targetElement, tableHeaders, data){
 	this.tableHeaders = tableHeaders;
     this.data = data;
 
+    this.firstHeader;
+
     this.currentHoveringRowIndex = 0;
     this.lastClickedRowIndex = -1;
 
@@ -15,10 +17,19 @@ function OrderedTable(name, targetElement, tableHeaders, data){
     this.hoverColor = "rgb(238, 238, 238)";
     this.selectedColor = "rgb(221, 221, 221)";
 
-    this.items = [];
+    this.domRows = [];
+    this.domHeaders = [];
     this.selectedItems = [];
 
     this.events = [];
+
+    this.orderedColumn;
+    this.orderStatus = 0;
+
+    this.init = function(){
+        this.constructEventList();
+        this.firstHeader = this.getFirstColumn();
+    }
 
 	this.print = function(){
 		var targetElement = document.getElementById(this.targetElement);
@@ -29,11 +40,15 @@ function OrderedTable(name, targetElement, tableHeaders, data){
         targetElement.append(table);
 
         this.generateHeader(table);
-        this.generateItems(table);
-        this.createItemEvents();
+        this.generateRows(table);
+
+        this.createRowEvents();
+        this.createHeaderEvents();
 	}
 
     this.generateHeader = function(table){
+
+        this.domHeaders = [];
         var thead = document.createElement("thead");
         table.append(thead);
                     
@@ -41,11 +56,14 @@ function OrderedTable(name, targetElement, tableHeaders, data){
             let th = document.createElement("th");
             th.innerHTML = key;
             thead.append(th);
+
+            this.domHeaders.push(th);
         }     
     }
 
-    this.generateItems = function(table){
+    this.generateRows = function(table){
 
+        this.domRows = [];
         var tbody = document.createElement("tbody");
         tbody.className = "allDataBody";
         table.append(tbody); 
@@ -61,15 +79,16 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                 tr.append(td);
             }
 
-            this.items.push(tr);
+            this.domRows.push(tr);
         }
     }
 
-    this.createItemEvents = function(){
+    this.createRowEvents = function(){
+
         var self = this;
 
-        for (var i in this.items){
-            let tr = this.items[i];
+        for (var i in this.domRows){
+            let tr = this.domRows[i];
 
             tr.addEventListener('mouseover', function (e) {
                 this.style.backgroundColor = self.hoverColor;
@@ -125,8 +144,48 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                 self.triggerEvent("rowClick", index);
             });
         }
+    }
 
-        this.constructEventList();
+    this.createHeaderEvents = function(){
+        var self = this;
+
+        var i = 0;
+        for (let headerIndex in this.tableHeaders){
+
+            let th = this.domHeaders[i];
+
+            th.addEventListener('click', function(e){
+
+                console.log(self.orderedColumn + ", " + headerIndex);
+
+                if (self.orderedColumn != headerIndex){
+                    self.orderStatus = 1;
+                } else {
+                    self.orderStatus++;
+                }
+              
+                console.log(self.orderStatus);
+                if (self.orderStatus == 1){
+                    self.orderOn(self.getHeaderValue(headerIndex), 0);
+                }
+                else if (self.orderStatus == 2){                  
+                    self.orderOn(self.getHeaderValue(headerIndex), 1);
+                } else if (self.orderStatus == 3){
+                    self.orderOn(self.firstHeader, 0);
+                    self.orderStatus = 0;
+                }              
+
+                self.orderedColumn = headerIndex;
+            });
+
+            i++;
+        }
+    }
+
+    this.getFirstColumn = function(){
+        for(var i in this.tableHeaders){
+            return this.tableHeaders[i];
+        }
     }
 
     this.constructEventList = function(){
@@ -135,8 +194,8 @@ function OrderedTable(name, targetElement, tableHeaders, data){
     }
 
     this.getItemIndex = function(tr){
-        for (var i in this.items){
-            var item = this.items[i];
+        for (var i in this.domRows){
+            var item = this.domRows[i];
 
             if(item === tr){
                 return i;
@@ -160,7 +219,7 @@ function OrderedTable(name, targetElement, tableHeaders, data){
     }
 
     this.selectAllRows = function(){
-        for (var i in this.items){
+        for (var i in this.domRows){
             this.selectRow(i);
         }
     }
@@ -176,13 +235,13 @@ function OrderedTable(name, targetElement, tableHeaders, data){
     }
 
     this.updateRowSelectionStyle = function(){
-        for (var i in this.items){
+        for (var i in this.domRows){
             if (this.currentHoveringRowIndex == i){
-                this.items[i].style.backgroundColor = this.hoverColor;
+                this.domRows[i].style.backgroundColor = this.hoverColor;
             } else if (this.isRowSelected(i)){
-                this.items[i].style.backgroundColor = this.selectedColor;
+                this.domRows[i].style.backgroundColor = this.selectedColor;
             } else {
-                this.items[i].style.backgroundColor = this.normalColor;
+                this.domRows[i].style.backgroundColor = this.normalColor;
             }
         }
     }
@@ -218,6 +277,7 @@ function OrderedTable(name, targetElement, tableHeaders, data){
      * isDesc boolean should be 0 for ascending, 1 for descending.
      */
     this.orderOn = function(key, isDesc){
+
         this.data.sort(function(a, b){
 
             var aKeyValue=a[key], bKeyValue=b[key];
@@ -296,4 +356,6 @@ function OrderedTable(name, targetElement, tableHeaders, data){
             this.events[name][i](event);
         }
     }
+
+    this.init();
 }
