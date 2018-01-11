@@ -19,12 +19,12 @@ class Contacts extends Migration
             $table->increments('id');
             $table->string('voornaam');
             $table->string('tussenvoegsel')->nullable();
-            $table->string('achternaam');
-            $table->datetime('geboortedatum');
-            $table->string('telefoonnummer');
-            $table->string('email');
-            $table->string('fotoPad');
-            $table->string('beschrijving');
+            $table->string('achternaam')->nullable();
+            $table->datetime('geboortedatum')->nullable();
+            $table->string('telefoonnummer')->nullable();
+            $table->string('email')->nullable();
+            $table->string('fotoPad')->nullable();
+            $table->string('beschrijving')->nullable();
             $table->unsignedInteger('adresID')->nullable();
             $table->unsignedInteger('toegevoedDoor')->nullable();
             $table->timestamps();

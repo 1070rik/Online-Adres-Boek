@@ -15,13 +15,13 @@ class Addresses extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('straatnaam');
-            $table->integer('huisnummer');
+            $table->string('straatnaam')->nullable();
+            $table->integer('huisnummer')->nullable();
             $table->string('toevoeging')->nullable();
-            $table->string('postcode');
-            $table->string('plaats');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->string('postcode')->nullable();
+            $table->string('plaats')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->timestamps();
         });
     }
