@@ -33,7 +33,7 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 				contactsList.innerHTML += content;
 			}
 		}
-		if(viewType != 3) {
+		if(viewType != 3 || document.documentElement.clientWidth < 768) {
 			showAllContacts();
 		}
 	}
