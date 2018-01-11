@@ -35,66 +35,7 @@
           <div id="contactTableTarget">
 
           </div>
-          <!--
-            <table class="table">
-                <thead>
-                    <th id="idHeader">ID</th>
-                    <th id="nameHeader">Naam</th>
-                    <th id="emailHeader">Email</th>
-                    <th id="addressHeader">Adres</th>
-                    <th id="cityHeader">Plaats</th>
-                    <th id="postalHeader">Postcode</th>
-                    <th id="telephoneHeader">Telefoon</th>
-                    <th id="birthdateHeader">Geboortejaar</th>
-                </thead>
-                <tbody class="allDataBody">
-                  @foreach($contacts as $contact)
-                    <tr id="{{ 'row' . $contact->id }}" onclick="clickOnRow({{ $contact }}, {{ $contact->addresses }})">
-                      <td>
-                        <input id="{{ 'id' . $contact->id }}" type="checkbox" name="userId" value="{{ $contact->id }}">
-                        {{ $contact->id }}
-                      </td>
-                      <td>
-                        {{ $contact->voornaam }} 
-                        @if (strlen($contact->tussenvoegsel) > 0)
-                        {{ $contact->tussenvoegsel}}
-                        @endif
-                        {{ $contact->achternaam }}                         
-                      </td>
-                      <td>
-                        {{ $contact->email }}
-                      </td>
-                      <td>
-                        {{ $contact->addresses->straatnaam }} {{ $contact->addresses->huisnummer }} {{ $contact->addresses->toevoeging }}
-                      </td>
-                      <td>
-                        {{ $contact->addresses->plaats }}
-                      </td>
-                      <td>
-                        {{ $contact->addresses->postcode }}
-                      </td>
-                      <td>
-                        {{ $contact->telefoonnummer }}
-                      </td>
-                      <td>
-                        {{ $contact->geboortedatum }}
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-            </table>
 
-              <div class="tr">
-                 <span class="td col-md-1">ID</span>
-                 <span class="td col-md-1">Voornaam</span>
-                 <span class="td col-md-1">tussenvoegsel</span>
-                 <span class="td col-md-2">Achternaam</span>
-                 <span class="td col-md-1">Geboortedatum</span>
-                 <span class="td col-md-1">Telefoonnummer</span>
-                 <span class="td col-md-1">Email</span>
-                 <span class="td col-md-1">fotoPad</span>
-                 <span class="td col-md-1">Beschrijving</span>
-             </div> -->
 
 
         </div>
@@ -171,9 +112,4 @@
     </div>
 
     <script src="{{ asset('js/orderedTable.js') }}" charset="utf-8"></script>
-    <script>
-
-        var allContacts = {!! $contacts !!};
-
-    </script>
 @endsection

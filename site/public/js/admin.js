@@ -67,11 +67,41 @@ function getContactById(id){
     return null;
 }
 
-var contactTable;
+function getAllContactData(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            allContacts = JSON.parse(this.response);
+            constructContactTable(combineAdrAndCon(allContacts));
+        }
+    };
+    var requestUrl = "/getAllContactsAjax";
 
-document.addEventListener('DOMContentLoaded', constructContactTable, false);
-function constructContactTable(){
-    allContacts.forEach(function(contact){
+    xhttp.open("POST", requestUrl, true);
+    xhttp.send();
+}
+
+function combineAdrAndCon(adrAndCon) {
+    for (var i = 0; i < adrAndCon.contacts.length; i++) {
+        var contact = adrAndCon.contacts[i];
+        var contactAddress = adrAndCon.addresses.find(function (obj) {
+            return obj.id == contact.adresID;
+        });
+
+        adrAndCon['contacts'][i]['addresses'] = contactAddress;
+    }
+
+    return adrAndCon['contacts'];
+}
+
+var contactTable;
+var allContacts;
+
+document.addEventListener('DOMContentLoaded', getAllContactData, false);
+function constructContactTable(allContacts){
+
+    for (var i in allContacts){
+        let contact = allContacts[i];
 
         contact['naam'] = contact['voornaam'] + ' ';
         if (contact['tussenvoegsel'] !== ""){
@@ -87,7 +117,7 @@ function constructContactTable(){
         contact['plaats'] = contact['addresses']['plaats'];
 
         contact['postcode'] = contact['addresses']['postcode'];
-    });
+    }   
 
     contactTable = new OrderedTable('allContacts',
                                     'contactTableTarget',
