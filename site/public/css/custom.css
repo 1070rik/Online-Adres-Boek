@@ -39,7 +39,7 @@
 }
 
 .nav-item {
-  height: 90px;
+  height: 89px;
   background-color: #4e67e8;
   width: auto;
   padding: 0px 10px 0px 10px;
@@ -47,7 +47,7 @@
   text-transform: uppercase;
   line-height: 90px;
   color: #fff;
-}
+ }
 
 .nav-item:hover {
   background-color: #445aca;
