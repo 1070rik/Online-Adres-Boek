@@ -54,7 +54,35 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                     
         for (var key in this.tableHeaders){
             let th = document.createElement("th");
-            th.innerHTML = key;
+            let p = document.createElement("p");
+            let orderDiv = document.createElement("div");
+            let orderButtonDiv = document.createElement("div");
+
+            p.style.textAlign = "center";
+
+            orderDiv.style.height = "20px";
+            orderDiv.style.width = "100%";
+            orderDiv.style.cssFloat = "left";
+            orderDiv.style.marginTop = "-10px";
+
+            orderButtonDiv.style.height = "20px";
+            orderButtonDiv.style.width = "20px";
+            orderButtonDiv.style.marginLeft = "auto";
+            orderButtonDiv.style.marginRight = "auto";
+
+            if (key == this.orderedColumn){
+                if (this.orderStatus == 1){
+                    orderButtonDiv.className = "orderedTableHeaderArrowUp";
+                }
+                else{
+                    orderButtonDiv.className = "orderedTableHeaderArrowDown";
+                }
+            }
+
+            p.innerHTML = key;
+            th.append(p);
+            orderDiv.append(orderButtonDiv);
+            th.append(orderDiv);
             thead.append(th);
 
             this.domHeaders.push(th);
@@ -161,18 +189,19 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                 } else {
                     self.orderStatus++;
                 }
-              
+
                 if (self.orderStatus == 1){
+                    self.orderedColumn = headerIndex;
                     self.orderOn(self.getHeaderValue(headerIndex), 0);
                 }
-                else if (self.orderStatus == 2){                  
+                else if (self.orderStatus == 2){ 
+                    self.orderedColumn = headerIndex;                 
                     self.orderOn(self.getHeaderValue(headerIndex), 1);
                 } else if (self.orderStatus == 3){
-                    self.orderOn(self.firstHeader, 0);
+                    self.orderedColumn = self.firstHeader;
                     self.orderStatus = 0;
+                    self.orderOn(self.firstHeader, 0);                  
                 }              
-
-                self.orderedColumn = headerIndex;
             });
 
             i++;
