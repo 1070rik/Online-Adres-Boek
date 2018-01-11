@@ -105,6 +105,21 @@ function constructContactTable(allContacts){
     for (var i in allContacts){
         let contact = allContacts[i];
 
+        //Remove null values
+        for (var j in contact){
+            if (j == "addresses"){
+                for (var k in contact[j]){
+                    if (contact[j][k] == null){
+                        contact[j][k] = "";
+                    }
+                }
+            } else {
+                if (contact[j] == null){
+                    contact[j] = "";
+                }
+            }
+        }
+
         contact['naam'] = contact['voornaam'] + ' ';
         if (contact['tussenvoegsel'] !== ""){
             contact['naam'] += contact['tussenvoegsel'] + ' ';
