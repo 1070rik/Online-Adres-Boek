@@ -57,7 +57,7 @@ function selectAllOrNone(){
     updateSelectionOutput();
 }
 
-function getContactById(id){
+function getContactById(allContacts, id){
     for (var i in allContacts){
         if (allContacts[i]['id'] == id){
             return allContacts[i];
@@ -71,8 +71,8 @@ function getAllContactData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            allContacts = JSON.parse(this.response);
-            constructContactTable(combineAdrAndCon(allContacts));
+            var allContactsJson = JSON.parse(this.response);
+            constructContactTable(combineAdrAndCon(allContactsJson));
         }
     };
     var requestUrl = "/getAllContactsAjax";
@@ -95,10 +95,12 @@ function combineAdrAndCon(adrAndCon) {
 }
 
 var contactTable;
-var allContacts;
+var _allContacts;
 
 document.addEventListener('DOMContentLoaded', getAllContactData, false);
 function constructContactTable(allContacts){
+
+    _allContacts = allContacts;
 
     for (var i in allContacts){
         let contact = allContacts[i];
@@ -136,7 +138,7 @@ function constructContactTable(allContacts){
 
     contactTable.addEventListener("rowNormalClick", function(rowIndex){
         var id = contactTable.getColumnDataFromRow("ID", rowIndex);
-        var contact = getContactById(id);
+        var contact = getContactById(allContacts, id);
 
         updatePanelData(contact, contact['addresses']);
     });
