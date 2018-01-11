@@ -62,7 +62,6 @@ div.col-12:nth-child(1),
 #flip {
     text-align: left;
     background-color: white;
-    cursor: pointer;
     /*width: auto;*/
 }
 #flip,
@@ -78,6 +77,7 @@ div.col-12:nth-child(1),
     -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     color: #bcbabb;
+	cursor: pointer;
 }
 .form-group {
     margin-bottom: 0px !important;
@@ -106,6 +106,9 @@ div.col-12:nth-child(1),
 #panel {
     display: none;
     background-color: white;
+	max-height: calc(90vh - 122px);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 #panel h3 {
     padding-left: 15px;
@@ -257,6 +260,7 @@ h5 {
 }
 .form-check-label {
     width: 100px;
+	cursor: pointer;
 }
 .radio-inline3 {
     width: 50% !important;
@@ -301,6 +305,7 @@ h5 {
     width: auto;
     padding: 10px;
     position: absolute;
+	z-index: 10;
 }
 .searchPanel {
     background-color: white;
@@ -583,6 +588,7 @@ span.clear { clear: left; display: block; }
         position: absolute;
         background-color: white;
         padding: 10px;
+		z-index: 5;
     }
 
     #mijngegevens > p > a {

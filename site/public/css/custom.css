@@ -14,6 +14,10 @@
 
 /* */
 
+.navbar-header {
+	height: 89px;
+}
+
 .navbar-default {
 	height: 90px;
 	background-color: #4e67e8;
