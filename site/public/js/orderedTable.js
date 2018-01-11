@@ -156,15 +156,12 @@ function OrderedTable(name, targetElement, tableHeaders, data){
 
             th.addEventListener('click', function(e){
 
-                console.log(self.orderedColumn + ", " + headerIndex);
-
                 if (self.orderedColumn != headerIndex){
                     self.orderStatus = 1;
                 } else {
                     self.orderStatus++;
                 }
               
-                console.log(self.orderStatus);
                 if (self.orderStatus == 1){
                     self.orderOn(self.getHeaderValue(headerIndex), 0);
                 }

@@ -54,6 +54,7 @@ function selectAllOrNone(){
     }
 
     contactTable.updateRowSelectionStyle();
+    updateSelectionOutput();
 }
 
 function getContactById(id){
