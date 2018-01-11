@@ -2,11 +2,9 @@
 
 @section('content')
 
-    <script>
-        var allContacts = {!! $contacts !!};
-    </script>
 
- )   <div class="row">
+
+    <div class="row">
         <div class="col-md-9 content">
 
         @if(session('error'))
@@ -34,16 +32,20 @@
               <span id="selectedCount">0 Selected</span>
             </div>
           </div>
+          <div id="contactTableTarget">
+
+          </div>
+          <!--
             <table class="table">
                 <thead>
-                    <th>ID</th>
-                    <th>Naam</th>
-                    <th>Email</th>
-                    <th>Adres</th>
-                    <th>Plaats</th>
-                    <th>Postcode</th>
-                    <th>Telefoon</th>
-                    <th>Geboortejaar</th>
+                    <th id="idHeader">ID</th>
+                    <th id="nameHeader">Naam</th>
+                    <th id="emailHeader">Email</th>
+                    <th id="addressHeader">Adres</th>
+                    <th id="cityHeader">Plaats</th>
+                    <th id="postalHeader">Postcode</th>
+                    <th id="telephoneHeader">Telefoon</th>
+                    <th id="birthdateHeader">Geboortejaar</th>
                 </thead>
                 <tbody class="allDataBody">
                   @foreach($contacts as $contact)
@@ -82,7 +84,7 @@
                 </tbody>
             </table>
 
-             <!-- <div class="tr">
+              <div class="tr">
                  <span class="td col-md-1">ID</span>
                  <span class="td col-md-1">Voornaam</span>
                  <span class="td col-md-1">tussenvoegsel</span>
@@ -167,4 +169,11 @@
           </form>
         </div>
     </div>
+
+    <script src="{{ asset('js/orderedTable.js') }}" charset="utf-8"></script>
+    <script>
+
+        var allContacts = {!! $contacts !!};
+
+    </script>
 @endsection

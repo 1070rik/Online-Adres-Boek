@@ -1,115 +1,25 @@
-var selectedElements = [];
-var currentHoveringRowElement;
-
-var normalColor = '#F5F8FA';
-var hoverColor = '#EEE';
-var selectedColor = '#DDD';
-
-var shiftDown = false;
-var controlDown = false;
-
-var lastClickedIndex = 0;
-
-$(document).keydown(function (e) {
-    if (e.keyCode == 16) {
-        shiftDown = true;
-    } else if (e.keyCode == 17){
-        controlDown = true;
-    }
-});
-
-$(document).keyup(function (e) {
-    if (e.keyCode == 16) {
-        shiftDown = false;
-    } else if (e.keyCode == 17){
-        controlDown = false;
-    }
-});
-
-$('.allDataBody > tr').hover(
-    function(){
-        $(this).css('background-color', hoverColor);
-        currentHoveringRowElement = $(this);
-    }, function(){
-        if ($.inArray($(this).attr('id').replace(/\D/g,''), selectedElements) !== -1){
-            $(this).css('background-color', selectedColor);
-        } else {
-            $(this).css('background-color', normalColor);
-        }
-    }
-);
-
-function getContactIndex(contactID){
-    for (var i = 0; i < allContacts.length; i++){
-        if (allContacts[i]['id'] == contactID){
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-function removeElement(id){
-
-    var idToRemove = -1;
-
-    for (var i = 0; i < selectedElements.length; i++){
-        if (selectedElements[i] === id){
-            idToRemove = i;
-        }
-    }
-
-    if (idToRemove >= 0){
-        selectedElements.splice(idToRemove, 1);
-    }
-}
-
 function updateSelectionOutput(){
-    $('#selectedCount').html(selectedElements.length + " selected");
-}
-
-function deselectAll(){
-    $('.allDataBody > tr').css('background-color', normalColor);
-    $('.allDataBody > tr > td').find('input').prop('checked', false);
-
-    selectedElements = [];
-    updateSelectionOutput();    
-}
-
-function selectAll(){
-    for (var i = 0; i < allContacts.length; i++){
-        selectedElements.push(allContacts[i]['id'].toString()   );
-        $('.allDataBody > tr').css('background-color', hoverColor);
-        $('.allDataBody > tr > td').find('input').prop('checked', true);
-    }
-
-    updateSelectionOutput();
-}
-
-function selectAllOrNone(){
-    if (selectedElements.length > 0){
-        deselectAll();
-    } else {
-        selectAll();
-    }
+    $('#selectedCount').html(contactTable.selectedRowCount() + " selected");
 }
 
 function remove(){
 
+    var selectedRowCount = contactTable.selectedRowCount();
+
     var confirmedText = "";
-    if (selectedElements.length == 0){
+    if (selectedRowCount == 0){
         alert("U heeft geen contact(en) geselecteerd.");
         return;
-    } else if (selectedElements.length == 1){
+    } else if (selectedRowCount == 1){
         confirmedText = "Are you sure you want to delete this contact?";
     } else {
-        confirmedText = "Are you sure you want to delete these " + selectedElements.length + " contacts?";
+        confirmedText = "Are you sure you want to delete these " + selectedRowCount + " contacts?";
     }
 
     var confirmed = confirm(confirmedText);
 
     if (confirmed == true){
-        $('#removeInput').val(JSON.stringify(selectedElements));
+        $('#removeInput').val(JSON.stringify(contactTable.getColumnDataFromRows("ID", contactTable.selectedItems)));
 
         document.forms['removeForm'].submit();
     }
@@ -134,87 +44,57 @@ function updatePanelData(contact, address){
     $('.geboortedatum').val(contact['geboortedatum']);    
 }
 
-function normalClickOnRow(row, checkBox, contact, address){
-    deselectAll();
-
-    if ($(checkBox).is(':checked')){
-        $(checkBox).prop('checked', false);  
-    } else {
-
-        $(checkBox).prop('checked', true);
-
-        selectedElements.push(contact['id'].toString());    
-
-        $(row).css('background-color', hoverColor);
-        updatePanelData(contact, address);
-
-        lastClickedIndex = getContactIndex(contact['id']);
-
-        console.log(lastClickedIndex);
-    }    
-}
-
-function shiftClickOnRow(endContact){
-    document.getSelection().removeAllRanges();
-
-    var minIndex = lastClickedIndex;
-    var maxIndex = getContactIndex(endContact['id']);
-    var contact = null;
-    var checkBox = "";
-    var row = "";
-
-    if (minIndex > maxIndex){
-        maxIndex = [minIndex, minIndex = maxIndex][0];
+function getContactById(id){
+    for (var i in allContacts){
+        if (allContacts[i]['id'] == id){
+            return allContacts[i];
+        }
     }
 
-    deselectAll();
-
-    for (var i = minIndex; i < maxIndex + 1; i++){
-        console.log(lastClickedIndex);
-        contact = allContacts[i];
-        checkBox = '#id' + contact['id'];
-        row = '#row' + contact['id'];
-
-        $(checkBox).prop('checked', true);
-
-        selectedElements.push(contact['id'].toString());    
-
-        $(row).css('background-color', selectedColor);
-    }
-
-    $(currentHoveringRowElement).css('background-color', hoverColor);
+    return null;
 }
 
-function controlClickOnRow(row, checkBox, contact, address){
+var contactTable;
 
-    if ($(checkBox).is(':checked')){
-        $(checkBox).prop('checked', false);  
+document.addEventListener('DOMContentLoaded', constructContactTable, false);
+function constructContactTable(){
+    allContacts.forEach(function(contact){
 
-        removeElement($(row).attr('id').replace(/\D/g,''));
-        
-    } else {
+        contact['naam'] = contact['voornaam'] + ' ';
+        if (contact['tussenvoegsel'] !== ""){
+            contact['naam'] += contact['tussenvoegsel'] + ' ';
+        }
+        contact['naam'] += contact['achternaam'];
 
-        $(checkBox).prop('checked', true);
+        contact['adres'] = contact['addresses']['straatnaam'] + ' ' + contact['addresses']['huisnummer'];
+        if (contact['addresses']['toevoeging'] !== null){
+            contact['adres'] += contact['addresses']['toevoeging'];
+        }
 
-        selectedElements.push(contact['id'].toString());    
+        contact['plaats'] = contact['addresses']['plaats'];
 
-        $(row).css('background-color', hoverColor);
-        updatePanelData(contact, address);
-    }
-}
+        contact['postcode'] = contact['addresses']['postcode'];
+    });
 
-function clickOnRow(contact, address) {
-    var checkBox = '#id' + contact['id'];
-    var row = '#row' + contact['id'];
+    contactTable = new OrderedTable('allContacts',
+                                    'contactTableTarget', 
+                                    { ID: 'id', 
+                                      Naam: 'naam',
+                                      Email: 'email',
+                                      Adres: 'adres',
+                                      Plaats: 'plaats',
+                                      Postcode: 'postcode',
+                                      Telefoon: 'telefoonnummer',
+                                      Geboortejaar: 'geboortedatum'},
+                                      allContacts
+                                    );
 
-    if (shiftDown){
-        shiftClickOnRow(contact);
-    } else if (controlDown){
-        controlClickOnRow(row, checkBox, contact, address);
+    contactTable.print();
 
-    } else {
-        normalClickOnRow(row, checkBox, contact, address);
-    }
+    contactTable.addEventListener("rowClick", function(rowIndex){
+        var id = contactTable.getColumnDataFromRow("ID", rowIndex);
+        var contact = getContactById(id);
 
-    updateSelectionOutput();
-}
+        updatePanelData(contact, contact['addresses']);
+    });
+};

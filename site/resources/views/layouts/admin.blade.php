@@ -86,5 +86,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}" charset="utf-8"></script>
+
 </body>
 </html>
