@@ -291,6 +291,9 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                     }
 
                 } else {
+                    aKeyValue = aKeyValue.toLowerCase();
+                    bKeyValue = bKeyValue.toLowerCase();
+
                     if (aKeyValue < bKeyValue){
                         if (isDesc){
                             return 1;
