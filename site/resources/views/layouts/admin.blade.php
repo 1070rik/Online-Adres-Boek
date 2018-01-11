@@ -43,7 +43,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                       <li>
-                        <a href="#">
+                        <a href="{{ url('/') }}">
                           <div class="nav-item">
                             Home
                           </div>
