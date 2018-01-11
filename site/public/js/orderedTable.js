@@ -106,9 +106,6 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                     for (var i = minIndex; i < maxIndex + 1; i++){
                         self.selectRow(i);
                     }
-
-
-
                 } else if (controlDown) {
                     if (self.isRowSelected(index)){
                         self.deselectRow(index);
@@ -155,7 +152,7 @@ function OrderedTable(name, targetElement, tableHeaders, data){
 
     this.deselectRow = function(rowIndex){
         var index = this.selectedItems.indexOf(rowIndex);
-        this.selectedItems.splice(Number(rowIndex), 1);
+        this.selectedItems.splice(Number(index), 1);
     }
 
     this.clearSelection = function(){
