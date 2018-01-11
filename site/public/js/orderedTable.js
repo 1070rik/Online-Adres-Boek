@@ -162,6 +162,12 @@ function OrderedTable(name, targetElement, tableHeaders, data){
         this.selectedItems = [];
     }
 
+    this.selectAllRows = function(){
+        for (var i in this.items){
+            this.selectRow(i);
+        }
+    }
+
     this.isRowSelected = function(rowIndex){
         for (var i in this.selectedItems){
             if (this.selectedItems[i] == rowIndex){

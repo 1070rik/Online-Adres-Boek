@@ -44,6 +44,18 @@ function updatePanelData(contact, address){
     $('.geboortedatum').val(contact['geboortedatum']);    
 }
 
+function selectAllOrNone(){
+    contactTable.currentHoveringRowIndex = -1;
+
+    if (contactTable.selectedRowCount() > 0){
+        contactTable.clearSelection();
+    } else {
+        contactTable.selectAllRows();
+    }
+
+    contactTable.updateRowSelectionStyle();
+}
+
 function getContactById(id){
     for (var i in allContacts){
         if (allContacts[i]['id'] == id){
