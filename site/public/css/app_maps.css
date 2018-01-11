@@ -165,7 +165,78 @@ div.col-12:nth-child(1),
     cursor: pointer;
 }
 
+#noneFound {
+	white-space: normal;
+	color: red;
+	
+    -webkit-animation: makeBlue 1.5s linear;
+    -moz-animation: makeBlue 1.5s linear;
+    -o-animation: makeBlue 1.5s linear;
+    -ms-animation: makeBlue 1.5s linear;
+    animation: makeBlue 1.5s linear;
+}
 
+
+@-webkit-keyframes makeBlue {
+	0% {color: red;}
+	12.5% {color: red;}
+    25% {color: blue;}
+    37.5% {color: blue;}
+	50% {color: red;}
+	62.5% {color: red;}
+    75% {color: blue;}
+    87.5% {color: blue;}
+	100% {color: red;}
+}
+
+@-moz-keyframes makeBlue {
+	0% {color: red;}
+	12.5% {color: red;}
+    25% {color: blue;}
+    37.5% {color: blue;}
+	50% {color: red;}
+	62.5% {color: red;}
+    75% {color: blue;}
+    87.5% {color: blue;}
+	100% {color: red;}
+}
+
+@-o-keyframes makeBlue {
+	0% {color: red;}
+	12.5% {color: red;}
+    25% {color: blue;}
+    37.5% {color: blue;}
+	50% {color: red;}
+	62.5% {color: red;}
+    75% {color: blue;}
+    87.5% {color: blue;}
+	100% {color: red;}
+}
+
+@-ms-keyframes makeBlue {
+	0% {color: red;}
+	12.5% {color: red;}
+    25% {color: blue;}
+    37.5% {color: blue;}
+	50% {color: red;}
+	62.5% {color: red;}
+    75% {color: blue;}
+    87.5% {color: blue;}
+	100% {color: red;}
+}
+
+
+@keyframes makeBlue {
+	0% {color: red;}
+	12.5% {color: red;}
+    25% {color: blue;}
+    37.5% {color: blue;}
+	50% {color: red;}
+	62.5% {color: red;}
+    75% {color: blue;}
+    87.5% {color: blue;}
+	100% {color: red;}
+}
 
 #sleeper {
     position: absolute;

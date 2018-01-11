@@ -25,7 +25,11 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 		}
 	} else {
 		allContactsList.classList.remove("hidden");
-		contactsList.innerHTML = "";
+		if(markerObjs.length == 0) {
+			contactsList.innerHTML = '<p id="noneFound">We konden niemand vinden die aan deze zoek resultaten voldoet.</p>';
+		} else {
+			contactsList.innerHTML = "";
+		}
 		for(var i = 0; i < markerObjs.length; i++) {
 			var markerObj = markerObjs[i];
 			for(var j = 0; j < markerObj.contacts.length; j++) {
