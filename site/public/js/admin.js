@@ -77,7 +77,7 @@ function constructContactTable(){
     });
 
     contactTable = new OrderedTable('allContacts',
-                                    'contactTableTarget', 
+                                    'contactTableTarget',
                                     { ID: 'id', 
                                       Naam: 'naam',
                                       Email: 'email',
@@ -91,10 +91,14 @@ function constructContactTable(){
 
     contactTable.print();
 
-    contactTable.addEventListener("rowClick", function(rowIndex){
+    contactTable.addEventListener("rowNormalClick", function(rowIndex){
         var id = contactTable.getColumnDataFromRow("ID", rowIndex);
         var contact = getContactById(id);
 
         updatePanelData(contact, contact['addresses']);
+    });
+
+    contactTable.addEventListener("rowClick", function(rowIndex){
+        updateSelectionOutput();
     });
 };

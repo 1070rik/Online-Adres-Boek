@@ -120,10 +120,12 @@ function OrderedTable(name, targetElement, tableHeaders, data){
                     self.selectRow(index);
                     self.lastClickedRowIndex = index;
 
-                    self.triggerEvent("rowClick", index);
+                    self.triggerEvent("rowNormalClick", index);
                 }
 
                 self.updateRowSelectionStyle();
+
+                self.triggerEvent("rowClick", index);
             });
         }
 
@@ -132,6 +134,7 @@ function OrderedTable(name, targetElement, tableHeaders, data){
 
     this.constructEventList = function(){
         this.events["rowClick"] = [];
+        this.events["rowNormalClick"] = [];
     }
 
     this.getItemIndex = function(tr){
