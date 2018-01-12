@@ -9,7 +9,7 @@
 
         @if(session('error'))
             <div class="alert alert-danger">
-                <strong>Error!</strong> { { session('error') }}
+                <strong>Error!</strong> {{ session('error') }}
             </div>
         @endif
 
@@ -50,7 +50,7 @@
                 <tbody>
                 <tr class="form-group">
                   <td>Id</td>
-                  <td><input class="id" type="text" name="id" readonly value=""/></td>
+                  <td class="tdid"></td>
                 </tr>
                 <tr class="form-group">
                   <td>Voornaam</td>

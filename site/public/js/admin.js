@@ -28,7 +28,7 @@ function remove(){
 function updatePanelData(contact, address){
     $('.profileTitle').html(contact['voornaam'] + ' ' + contact['tussenvoegsel'] + ' ' + contact['achternaam']);
 
-    $('.id').val(contact['id']);
+    $('.tdid').html('<input type="hidden" class="id" type="text" name="id" readonly value="' + contact['id'] + '"/>' + contact['id']);
     $('.naam').val(contact['voornaam'] + ' ' + contact['tussenvoegsel'] + ' ' + contact['achternaam']);
     $('.voornaam').val(contact['voornaam']);
     $('.tussenvoegsel').val(contact['tussenvoegsel']);

@@ -144,7 +144,7 @@ class contactsController extends Controller
   }
 
   public function editContactPost(Request $request){
-      $contacts = contacts::where('email', $request['email'])->get();
+      $contacts = contacts::where('id', $request['id'])->get();
 
       // Check if contact already exists. If found, return. If not, continue.
       if (count($contacts) > 0){
