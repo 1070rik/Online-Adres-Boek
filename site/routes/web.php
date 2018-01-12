@@ -13,11 +13,13 @@
 Auth::routes();
 
 
+Route::get('/requestUser', 'userController@requestUser')->name('requestUser');
 
 Route::post('/getAllContactsAjax', 'contactsController@getAllContactsAjax')->name('getAllContactsAjax');
 
 Route::get('/search', 'SearchController@index')->name('searchGet');
 Route::post('/bla', 'SearchController@postIndex')->name('searchPost');
+
 
 
 Route::middleware(['admin'])->group(function () {
@@ -46,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/loggedIn', 'userController@loggedIn');
   Route::get('/user/resetPassword', 'userController@resetPass')->name('resetPassword');
   Route::post('/user/resetPasswordFirst', 'userController@resetFirstPassPost')->name('resetFirstPasswordPost');
+  
   Route::get('/', function () {
     return view('search.maps');
   })->name('index');

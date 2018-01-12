@@ -42,7 +42,7 @@
             </div>
             <div class="login-footer col-xs-12">
               <a href="{{ route('password.request') }}" class="text-muted pull-left">Forgot Password?</a>
-              <a href="" class="text-muted pull-right">Request account</a>
+              <a href="{{ route('requestUser') }}" class="text-muted pull-right">Request account</a>
             </div>
           </div>
         </div>

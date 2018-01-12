@@ -87,6 +87,11 @@ class userController extends Controller
 
     }
 
+	public function requestUser(Request $request)
+	{
+		return view('users.requestUser');
+	}
+	
     public function resetFirstPassPost(Request $request)
     {
       if(Auth::user()->firstVisit != 1){
