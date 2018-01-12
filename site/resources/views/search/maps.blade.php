@@ -15,48 +15,48 @@
                 <div id="panel">
                     <div class="form-group">
                         <h3>Filteren</h3>
-                        <input type="text" class="form-control zoekfunctiebar" id="InputTussenvoegsel" aria-describedby="emailHelp" placeholder="Tussenvoegsel">
-                        <input type="text" class="form-control zoekfunctiebar" id="InputAchternaam" aria-describedby="emailHelp" placeholder="Achternaam">
-                        <input type="text" class="form-control zoekfunctiebar" id="InputAdres" aria-describedby="emailHelp" placeholder="Adres">
-                        <input type="text" class="form-control zoekfunctiebar" id="InputPlaats" aria-describedby="emailHelp" placeholder="Plaats">
-                        <input type="text" class="form-control zoekfunctiebar" id="InputPostcode" aria-describedby="emailHelp" placeholder="Postcode">
+                        <input type="text" class="form-control zoekfunctiebar" id="InputTussenvoegsel" aria-describedby="emailHelp" placeholder="Tussenvoegsel" onkeypress="return runSearch(event)">
+                        <input type="text" class="form-control zoekfunctiebar" id="InputAchternaam" aria-describedby="emailHelp" placeholder="Achternaam" onkeypress="return runSearch(event)">
+                        <input type="text" class="form-control zoekfunctiebar" id="InputAdres" aria-describedby="emailHelp" placeholder="Adres" onkeypress="return runSearch(event)">
+                        <input type="text" class="form-control zoekfunctiebar" id="InputPlaats" aria-describedby="emailHelp" placeholder="Plaats" onkeypress="return runSearch(event)">
+                        <input type="text" class="form-control zoekfunctiebar" id="InputPostcode" aria-describedby="emailHelp" placeholder="Postcode" onkeypress="return runSearch(event)">
                         <h3>Sorteren</h3>
                     </div>
                     <div class="form-check radio-inline1">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked onkeypress="return runSearch(event)">
                         Voornaam
                         </label>
                     </div>
                     <div class="form-check radio-inline2">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onkeypress="return runSearch(event)">
                         Achternaam
                         </label>
                     </div>
                     <br>
                     <div class="form-check radio-inline1">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3" onkeypress="return runSearch(event)">
                         Adres
                         </label>
                     </div>
                     <div class="form-check radio-inline3">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option4">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option4" onkeypress="return runSearch(event)">
                         Plaats
                         </label>
                     </div>
                     <h3>Filtreren</h3>
                     <div class="form-check radio-inline1">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios1" value="option1" checked onkeypress="return runSearch(event)">
                         Oplopend
                         </label>
                     </div>
                     <div class="form-check radio-inline2">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios2" value="option2">
+                        <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios2" value="option2" onkeypress="return runSearch(event)">
                         Aflopend
                         </label>
                     </div>
