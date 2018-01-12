@@ -196,6 +196,8 @@ function placeAllMarkers(filter) {
 	requestUrl += returnOrUndefined(filter.huisnummer, "", "&huisnummer=");
 	requestUrl += returnOrUndefined(filter.plaats, "", "&plaats=");
 	requestUrl += returnOrUndefined(filter.postcode, "", "&postcode=");
+	requestUrl += returnOrUndefined(filter.filter, "", "&filter=");
+	requestUrl += returnOrUndefined(filter.sort, "", "&sort=");
 
 	xhttp.open("POST", requestUrl, true);
 	xhttp.send();

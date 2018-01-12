@@ -21,15 +21,33 @@
                 }
             }
 
+
+
             function searchContact() {
-				var filter = {
-					voornaam: $("#InputVoornaam").val(),
-					tussenvoegsel: $("#InputTussenvoegsel").val(),
-					achternaam: $("#InputAchternaam").val(),
-					adres: $("#InputAdres").val(),
-					plaats: $("#InputPlaats").val(),
-					postcode: $("#InputPostcode").val()
-				}
+                var filter = {
+                    voornaam: $("#InputVoornaam").val(),
+                    tussenvoegsel: $("#InputTussenvoegsel").val(),
+                    achternaam: $("#InputAchternaam").val(),
+                    adres: $("#InputAdres").val(),
+                    plaats: $("#InputPlaats").val(),
+                    postcode: $("#InputPostcode").val(),
+                }
+                if(document.getElementById('filtrerenradios1').checked) {
+                    filter['filter'] = 'asc';
+                }else if(document.getElementById('filtrerenradios2').checked) {
+                    filter['filter'] = 'desc';
+                }
+
+                if(document.getElementById('exampleRadios1').checked) {
+                    filter['sort'] = 'contacts.voornaam';
+                }else if(document.getElementById('exampleRadios2').checked){
+                    filter['sort'] = 'contacts.achternaam';
+                }else if(document.getElementById('exampleRadios3').checked){
+                    filter['sort'] = 'addresses.straatnaam';
+                }else if(document.getElementById('exampleRadios4').checked){
+                    filter['sort'] = 'addresses.plaats';
+                }
+                console.log(filter);
 				placeAllMarkers(filter);
             };
             function longLangCallback(e) {

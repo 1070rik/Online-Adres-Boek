@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use AdresBoek\contacts;
 use AdresBoek\addresses;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 include_once(app_path() . '/coordsHandler.php');
 use AdresBoek\CoordsHandler;
@@ -25,6 +27,19 @@ class contactsController extends Controller
         'error' => 'Contact with given email exists already!'
       ]);
     } else {
+      $image = $request->file('fotoPad')->getClientOriginalName();
+
+      $filename = $image;
+      if($request->hasFile('fotoPad')){
+         if(file_exists($filename)) {
+           echo 'uploaded <br/>';
+           echo '<img src="contactImages/' . $filename .'"/>';
+         }else{
+           echo 'uploaded <br/>';
+           $file = $request->file('fotoPad');
+           $file->move('imgs/contactImages', $filename);
+         }
+      }
 
       $contact = contacts::create([
         'voornaam'       => $request['voornaam'],
@@ -33,7 +48,7 @@ class contactsController extends Controller
         'geboortedatum'  => $request['geboortedatum'],
         'telefoonnummer' => $request['telefoonnummer'],
         'email'          => $request['email'],
-        'fotoPad'        => $request['fotoPad'],
+        'fotoPad'        => $filename,
         'adresID'        => $this->getOrCreateAddress($request),
         'beschrijving'   => $request['beschrijving']
       ]);
@@ -214,5 +229,21 @@ class contactsController extends Controller
           ->first();
 
     return view('contacts.viewContact', compact('contact'));
+  }
+
+  public function getImageFile($filename){
+    $file = Storage::disk('local')->get($filename);
+    return new Response($file, 200);
+  }
+
+  public function getImage($id) {
+    $contact = contacts::where('id', $id)->first();
+    $userImage = $contact->fotoPad;
+
+    if(!file_exists(public_path() . '/imgs/contactImages/' . $userImage)){
+      return response()->file(public_path() . '/imgs/user.png');
+    }else{
+      return response()->file(public_path() . '/imgs/contactImages/' . $userImage);
+    }
   }
 }

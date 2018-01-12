@@ -59,8 +59,12 @@ function getSelectedById(id) {
 }
 
 function getSelectedContactContent(contact, adres) {
+	var fotoPath =  '/getImage/' + contact.id;
+
+	console.log(fotoPath);
+
 	var content = '<img src="';
-	content += 'imgs/user.png';
+	content += fotoPath;
 	content += '" class="profile-pic"/><p class="name">'
 	content += returnOrUndefined(contact.voornaam);
 	content += returnOrUndefined(contact.tussenvoegsel, ""," ");

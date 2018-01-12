@@ -16,6 +16,13 @@ class SearchController extends Controller
     public function postIndex(Request $request)
     {
       $input = $request->all();
+
+      if(!$request->sort){
+        $sort = 'contacts.voornaam';
+      }else{
+        $sort = $request->sort;
+      }
+
       unset($input['_token']);
       $query = DB::table('addresses')
 			->select('*', 'contacts.id as contID')
@@ -27,46 +34,45 @@ class SearchController extends Controller
             ->where('addresses.huisnummer', 'like', '%' . $request->huisnummer . '%')
             ->where('addresses.plaats', 'like', '%' . $request->plaats . '%')
             ->where('addresses.postcode', 'like', '%' . $request->postcode . '%')
-			->groupBy('contacts.id')
+		    ->groupBy('contacts.id')
+            ->orderByRaw($sort . ' ' . $request->filter)
             ->get();
 
-      // foreach ($addresses as $address) {
-      //   echo $address->voornaam . ", " . $address->tussenvoegsel . " " . $address->achternaam;
-      // }
       if($request->api == 1){
-		$contacts = array();
-		$addresses = array();
+    		$contacts = array();
+    		$addresses = array();
 
-		foreach ($query as $row){
-			$contactRow = array("id" => $row->contID,
-				"voornaam" => $row->voornaam,
-				"tussenvoegsel" => $row->tussenvoegsel,
-				"achternaam" => $row->achternaam,
-				"telefoonnummer" => $row->telefoonnummer,
-				"email" => $row->email,
-				"beschrijving" => $row->beschrijving,
-				"adresID" => $row->adresID);
-			array_push($contacts, $contactRow);
+    		foreach ($query as $row){
+    			$contactRow = array("id" => $row->contID,
+    				"voornaam" => $row->voornaam,
+    				"tussenvoegsel" => $row->tussenvoegsel,
+    				"achternaam" => $row->achternaam,
+    				"telefoonnummer" => $row->telefoonnummer,
+                    "fotoPad" => $row->fotoPad,
+    				"email" => $row->email,
+    				"beschrijving" => $row->beschrijving,
+    				"adresID" => $row->adresID);
+    			 array_push($contacts, $contactRow);
 
 
-			if(!in_array($row->adresID, array_column($addresses, "id"), true)){
-				$addressRow = array("id" => $row->adresID,
-					"straatnaam" => $row->straatnaam,
-					"huisnummer" => $row->huisnummer,
-					"toevoeging" => $row->toevoeging,
-					"postcode" => $row->postcode,
-					"plaats" => $row->plaats,
-					"longitude" => $row->longitude,
-					"latitude" =>$row->latitude);
-				array_push($addresses, $addressRow);
-			}
-		}
+    			if(!in_array($row->adresID, array_column($addresses, "id"), true)){
+    				$addressRow = array("id" => $row->adresID,
+    					"straatnaam" => $row->straatnaam,
+    					"huisnummer" => $row->huisnummer,
+    					"toevoeging" => $row->toevoeging,
+    					"postcode" => $row->postcode,
+    					"plaats" => $row->plaats,
+    					"longitude" => $row->longitude,
+    					"latitude" =>$row->latitude);
+    				array_push($addresses, $addressRow);
+    			}
+    		}
 
-        $jsonArray = array("contacts" => $contacts, "addresses" => $addresses, "input" => $input);
-        $jsonCombined = json_encode($jsonArray);
-        return $jsonCombined;
-      }else{
-        return view('search.searchResults', compact('query'));
+          $jsonArray = array("contacts" => $contacts, "addresses" => $addresses, "input" => $input);
+          $jsonCombined = json_encode($jsonArray);
+          return $jsonCombined;
+        }else{
+          return view('search.searchResults', compact('query'));
       }
     }
 }

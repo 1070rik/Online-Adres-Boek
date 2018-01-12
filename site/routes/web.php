@@ -20,6 +20,11 @@ Route::post('/getAllContactsAjax', 'contactsController@getAllContactsAjax')->nam
 Route::get('/search', 'SearchController@index')->name('searchGet');
 Route::post('/bla', 'SearchController@postIndex')->name('searchPost');
 
+Route::get('/contactImage/{filename}', [
+  'uses' => 'contactsController@getImageFile',
+  'as' => 'contact.image'
+]);
+
 
 
 Route::middleware(['admin'])->group(function () {
@@ -52,4 +57,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/', function () {
     return view('search.maps');
   })->name('index');
+  Route::get('/getImage/{id}', 'contactsController@getImage')->name('getImage');
 });

@@ -32,7 +32,7 @@
     <strong>Error!</strong> { { session('error') }}
 </div>
 
-<form id="addContact" class="form-horizontal" name="addContact" action="{{ route('addContactPost') }}" method="post">
+<form id="addContact" class="form-horizontal" name="addContact" action="{{ route('addContactPost') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
   
   
@@ -65,7 +65,7 @@
 	</span>
 	<label for="fotoPad" class="col-md-4 control-label">Foto file</label>
 	<span class="col-md-6">
-		<input class="form-control" type="text" name="fotoPad" value="/uploads/image.png">
+		<input class="form-control" type="file" name="fotoPad">
 	</span>
 	<label for="beschrijving" class="col-md-4 control-label">Beschrijving</label>
 	<span class="col-md-6" style="padding-bottom: 16px;">
