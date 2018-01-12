@@ -24,7 +24,7 @@ class Contacts extends Migration
             $table->string('telefoonnummer')->nullable();
             $table->string('email')->nullable();
             $table->string('fotoPad')->nullable();
-            $table->string('beschrijving')->nullable();
+            $table->text('beschrijving')->nullable();
             $table->unsignedInteger('adresID')->nullable();
             $table->unsignedInteger('toegevoedDoor')->nullable();
             $table->timestamps();
