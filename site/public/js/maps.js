@@ -195,6 +195,7 @@ function placeAllMarkers(filter) {
 	requestUrl += returnOrUndefined(filter.straatnaam, "", "&straatnaam=");
 	requestUrl += returnOrUndefined(filter.huisnummer, "", "&huisnummer=");
 	requestUrl += returnOrUndefined(filter.plaats, "", "&plaats=");
+	requestUrl += returnOrUndefined(filter.adres, "", "&adres=");
 	requestUrl += returnOrUndefined(filter.postcode, "", "&postcode=");
 	requestUrl += returnOrUndefined(filter.filter, "", "&filter=");
 	requestUrl += returnOrUndefined(filter.sort, "", "&sort=");

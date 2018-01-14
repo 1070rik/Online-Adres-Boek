@@ -29,6 +29,13 @@ class SearchController extends Controller
         //Remove CSRF token field
         unset($input['_token']);
         //Create new query with filter from website
+		
+		if($request->adres == null) {
+			$requestAdres = $request->straatnaam . ' ' . $request->huisnummer;
+		} else {
+			$requestAdres = $request->adres;
+		}
+		
         $query = DB::table('addresses')
             ->select('*', 'contacts.id as contID')
         //Join contacts and addresses together
@@ -36,8 +43,9 @@ class SearchController extends Controller
             ->where('contacts.voornaam', 'like', '%' . $request->voornaam . '%')
         //->where('contacts.tussenvoegsel', 'like', '%' . $request->tussenvoegsel . '%') tussenvoegsel can be null
             ->where('contacts.achternaam', 'like', '%' . $request->achternaam . '%')
-            ->where('addresses.straatnaam', 'like', '%' . $request->straatnaam . '%')
-            ->where('addresses.huisnummer', 'like', '%' . $request->huisnummer . '%')
+            //->where('addresses.straatnaam', 'like', '%' . $request->straatnaam . '%')
+            //->where('addresses.huisnummer', 'like', '%' . $request->huisnummer . '%')
+			->where(DB::raw('CONCAT(addresses.straatnaam," ",addresses.huisnummer)'), 'like', '%'. $requestAdres . '%')
             ->where('addresses.plaats', 'like', '%' . $request->plaats . '%')
             ->where('addresses.postcode', 'like', '%' . $request->postcode . '%')
             ->groupBy('contacts.id')
