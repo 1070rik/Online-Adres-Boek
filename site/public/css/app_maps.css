@@ -100,7 +100,6 @@ div.col-12:nth-child(1),
 .laatmaarhiden > img:nth-child(1) {
     width: 40px;
     height: 40px;
-    margin-right: 20px;
     cursor: pointer;
 }
 #panel {
@@ -305,7 +304,7 @@ h5 {
     background-color: white;
 }
 .zoekfunctiebar {
-    width: 12vw !important;
+    width: calc(100% - 60px) !important;
     margin: 10px;
     border: 0px;
     border-bottom: 1px solid #d3d3d3 !important;
@@ -320,26 +319,26 @@ h5 {
     width: 100%;
 }
 .radio-inline1 {
-    width: 50% !important;
+    width: calc(50% - 10px) !important;
     display: inline-block !important;
     margin-left: 10px;
 }
 .radio-inline2 {
-    width: 50% !important;
+    width: calc(50% - 10%) !important;
     display: inline-block !important;
-    margin-left: 10%;
+    margin-left: calc(10% - 17px);
 }
 .form-check-label {
     width: 100px;
 	cursor: pointer;
 }
 .radio-inline3 {
-    width: 50% !important;
+    width: calc(50% - 10%) !important;
     display: inline-block !important;
-    margin-left: 10%;
+    margin-left: calc(10% - 17px);
 }
 .search-form {
-    width: calc(12vw + 18%);
+    width: 100%;
 }
 #settingsMore {
     display: none;
@@ -668,21 +667,7 @@ span.clear { clear: left; display: block; }
     }
 
     #search {
-        top: 1vh;
-        left: 1vw;
-        height: auto;
-        width: 100vw;
-        padding: 10px;
-        position: absolute;
         width: 98vw;
-    }
-
-    .search-form {
-        width: 100%;
-    }
-
-    .zoekfunctiebar {
-        width: 88% !important;
     }
 
     body {
