@@ -1,5 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
     <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/app_maps.css') }}">
         <!-- <link rel="stylesheet" href="{{ asset('css/app_map_phone.css') }}"> -->
@@ -48,18 +53,18 @@
                     filter['sort'] = 'addresses.plaats';
                 }
                 console.log(filter);
-				placeAllMarkers(filter);
+                placeAllMarkers(filter);
             };
             function longLangCallback(e) {
                 console.log(e);
             }
-			
-			//document.body.onload = function(){setSize()};
-			function setScreenSize() {
-				console.log("sz");
-				console.log(document.body.clientHeight);
-				document.body.clientHeight = window.innerHeight+"px";
-			}
+            
+            //document.body.onload = function(){setSize()};
+            function setScreenSize() {
+                console.log("sz");
+                console.log(document.body.clientHeight);
+                document.body.clientHeight = window.innerHeight+"px";
+            }
         </script>
         <!---->
     </head>
@@ -70,7 +75,7 @@
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap"></script>
         <!---->
-		
-		<script>setScreenSize()</script>
+        
+        <script>setScreenSize()</script>
     </body>
 </html>

@@ -564,7 +564,7 @@ h5 {
 span.clear { clear: left; display: block; }
 
 /*Responsive stuff*/
-@media only screen and (min-width: 769px) {
+@media (min-width: 769px) {
     #settings {
         top: 1vh;
         right: 1vw;
@@ -638,8 +638,6 @@ span.clear { clear: left; display: block; }
         width: 60vw !important;
     }
 
-
-
     .showContact {
         right: 0vw !important;
     }
@@ -650,7 +648,7 @@ span.clear { clear: left; display: block; }
 }
 
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     #settings {
         bottom: 1vh !important;
         left: 1vw !important;
