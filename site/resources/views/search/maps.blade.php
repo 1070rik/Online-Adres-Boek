@@ -47,7 +47,7 @@
                         Plaats
                         </label>
                     </div>
-                    <h3>Filtreren</h3>
+                    <h3>Volgorde</h3>
                     <div class="form-check radio-inline1">
                         <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="filtrerenradios" id="filtrerenradios1" value="option1" checked onkeypress="return runSearch(event)">

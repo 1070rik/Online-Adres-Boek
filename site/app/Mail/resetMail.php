@@ -34,7 +34,7 @@ class resetMail extends Mailable
      */
     public function build()
     {
-        return $this->from('adres@boek.com')
+        return $this->from('onlineadresboek@gmail.com')
             ->view('emails.reset')
             ->with([
                 'data' => $this->data,

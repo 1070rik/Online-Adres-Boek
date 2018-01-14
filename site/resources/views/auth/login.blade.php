@@ -8,7 +8,7 @@
           <div class="row">
             <div class="login-title col-xs-12">
               <!-- <h3>{{ config('app.name', 'Adres Boek') }}</h3> -->
-              <img src="https://memestatic3.fjcdn.com/comments/Join+list+_2b1fb48682de4241b304bdd0cb3ce4d8.jpg" class="login-image">
+              <img src="{{ asset('imgs/logo.jpeg') }}" class="login-image">
             </div>
             <div class="login-content col-xs-12">
               @if(session('message-negative'))
