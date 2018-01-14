@@ -359,7 +359,7 @@ h5 {
     font-family: Raleway !important;
 }
 #container {
-    height: 100vh;
+    height: 100%;
     white-space: nowrap;
 }
 #mapDiv {
@@ -556,7 +556,7 @@ h5 {
 
 #mapDiv {
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
     transition-property: width;
     transition-delay: 0s;
 	transition-timing-function: linear;
@@ -714,7 +714,7 @@ span.clear { clear: left; display: block; }
 
     .noPanel {
         transition-duration: 0.4s;
-        height: 100vh !important;
+        height: 100% !important;
     }
 
 
@@ -730,7 +730,7 @@ span.clear { clear: left; display: block; }
 
     .noFastPanel {
         transition-duration: 0.2s;
-        height: 100vh !important;
+        height: 100% !important;
     }
 
     .twoFastPanels {

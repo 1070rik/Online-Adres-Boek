@@ -53,6 +53,13 @@
             function longLangCallback(e) {
                 console.log(e);
             }
+			
+			//document.body.onload = function(){setSize()};
+			function setScreenSize() {
+				console.log("sz");
+				console.log(document.body.clientHeight);
+				document.body.clientHeight = window.innerHeight+"px";
+			}
         </script>
         <!---->
     </head>
@@ -63,5 +70,7 @@
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap"></script>
         <!---->
+		
+		<script>setScreenSize()</script>
     </body>
 </html>
