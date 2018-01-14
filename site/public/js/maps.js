@@ -231,6 +231,7 @@ function initMap() {
 		rotateControl: false,
 		fullscreenControl: false,
 		disableDefaultUI: false,
+		gestureHandling: 'greedy',
 		animation: google.maps.Animation.DROP,
 		styles: [{
 			"featureType": "poi.business",
