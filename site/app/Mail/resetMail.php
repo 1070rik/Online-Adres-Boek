@@ -2,12 +2,11 @@
 
 namespace AdresBoek\Mail;
 
-use AdresBoek\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class passwordMail extends Mailable
+class resetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,7 +26,7 @@ class passwordMail extends Mailable
     {
         $this->data = $data;
     }
-
+    
     /**
      * Build the message.
      *
@@ -36,7 +35,7 @@ class passwordMail extends Mailable
     public function build()
     {
         return $this->from('adres@boek.com')
-            ->view('emails.password')
+            ->view('emails.reset')
             ->with([
                 'data' => $this->data,
             ]);

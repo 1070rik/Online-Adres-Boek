@@ -2,9 +2,8 @@
 
 namespace AdresBoek\Console\Commands;
 
-use Illuminate\Console\Command;
-use AdresBoek\addresses;
 use AdresBoek\CoordsHandler;
+use Illuminate\Console\Command;
 
 class updateCoords extends Command
 {

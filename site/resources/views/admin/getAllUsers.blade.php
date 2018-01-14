@@ -1,5 +1,3 @@
-
-
 @extends('layouts.admin')
 @section('content')
 <div class="container">
@@ -55,9 +53,6 @@
             </span>
         </form>
         @endforeach
-        <form class="form-horizontal" method="GET" action="{{ route('createUser') }}">
-            <input class="btn btn-primary" type="submit" value="Nieuw" />
-        </form>
     </div>
 </div>
 @endsection

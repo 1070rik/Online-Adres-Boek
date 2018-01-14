@@ -11,6 +11,15 @@
               <img src="https://memestatic3.fjcdn.com/comments/Join+list+_2b1fb48682de4241b304bdd0cb3ce4d8.jpg" class="login-image">
             </div>
             <div class="login-content col-xs-12">
+              @if(session('message-negative'))
+              <div class="alert alert-danger">
+                  {{ session('message-negative') }}
+              </div>
+              @elseif(session('message-positive'))
+              <div class="alert alert-success">
+                  {{ session('message-positive')}}
+              </div>
+              @endif
               <form method="POST" action="{{ route('login') }}">
                   {{ csrf_field() }}
                 <div class="form-group">

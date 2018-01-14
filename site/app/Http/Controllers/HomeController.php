@@ -2,8 +2,6 @@
 
 namespace AdresBoek\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
@@ -13,7 +11,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	//Serve home view
+        //Serve home view
         return view('search.search');
     }
 }
