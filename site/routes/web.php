@@ -14,6 +14,7 @@ Auth::routes();
 
 
 Route::get('/requestUser', 'userController@requestUser')->name('requestUser');
+Route::post('requestUserPost', 'userController@requestUserPost')->name('requestUserPost');
 
 Route::post('/getAllContactsAjax', 'contactsController@getAllContactsAjax')->name('getAllContactsAjax');
 
@@ -32,6 +33,9 @@ Route::middleware(['admin'])->group(function () {
   Route::get('/admin', 'adminController@index')->name('adminIndex');
   Route::get('/admin/contacts', 'adminController@getAllContacts')->name('adminGetAllContacts');
   Route::get('/admin/users', 'adminController@getAllUsers')->name('adminGetAllUsers');
+
+  Route::get('getAllRequests', 'adminController@getAllRequests')->name('getAllRequests');
+  Route::post('editRequestPost', 'userController@editRequestPost')->name('editRequestPost');
 
   //User actions
   Route::post('/editUser', 'userController@edit')->name('editUserPost');
