@@ -1,3 +1,4 @@
+//Return the text if it isnt undefined and put something in front and/or behind it
 function returnOrUndefined(txt, extra, prefix) {
 	if (extra === undefined) {
 		extra = "";
@@ -12,6 +13,7 @@ function returnOrUndefined(txt, extra, prefix) {
 	}
 }
 
+//MarkerObj is the where the adres and contact is stored
 function MarkerObj(Adres, Contacts) {
 	this.adres = Adres;
 	//Makes sure contacts is an Array
@@ -65,6 +67,7 @@ function MarkerObj(Adres, Contacts) {
 }
 
 function getMarkerImg(color, dot) {
+	//Get the image for the marker
 	if (color === undefined) {
 		color = "#F00";
 	}
@@ -81,6 +84,7 @@ function getMarkerImg(color, dot) {
 }
 
 function createMarkerObjs(adrAndCon) {
+	//Create the markerObjs from allData
 	var markerObjs = [];
 	for (var i = 0; i < adrAndCon.addresses.length; i++) {
 		var address = adrAndCon.addresses[i];
@@ -93,6 +97,7 @@ function createMarkerObjs(adrAndCon) {
 }
 
 function placeMarkers() {
+	//Place all markers on the map
 	notPlacedMarkers = false;
 	markerObjs = createMarkerObjs(allData);
 	infowindow = new google.maps.InfoWindow({
@@ -101,6 +106,7 @@ function placeMarkers() {
 
 	var markersArr = [];
 
+	//Adding all the markers
 	var _loop = function _loop(i) {
 		var markerObj = markerObjs[i];
 		var adres = markerObj.adres;
@@ -109,6 +115,7 @@ function placeMarkers() {
 		var marker = markerObjs[i].marker;
 		marker.addListener('');
 
+		//Add events
 		marker.addListener('click', function () {
 			map.panTo(marker.getPosition());
 			if (infowindow.markerObj !== undefined && infowindow.markerObj.marker != marker) {
@@ -145,7 +152,7 @@ function placeMarkers() {
 		markersArr.push(marker);
 	};
 
-
+	//Loops trough the loop let isnt alowed in ECMASript 5
 	for (var i = 0; i < markerObjs.length; i++) {
 		_loop(i);
 	}
@@ -158,6 +165,7 @@ function placeMarkers() {
 }
 
 function removeMarkers() {
+	//Set map for all markers to null
 	for (var i = 0; i < markerObjs.length; i++) {
 		markerObjs[i].marker.setMap(null);
 	}
@@ -182,6 +190,7 @@ function placeAllMarkers(filter) {
 	}
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
+		//Checks if ready yet
 		if (this.readyState == 4 && this.status == 200) {
 			allData = JSON.parse(this.response);
 			if (notPlacedMarkers && !googleMapNotLoaded) {
@@ -189,6 +198,8 @@ function placeAllMarkers(filter) {
 			}
 		}
 	};
+	
+	//Create requestURL with all data
 	var requestUrl = "bla?api=1";
 	requestUrl += returnOrUndefined(filter.voornaam, "", "&voornaam=");
 	requestUrl += returnOrUndefined(filter.achternaam, "", "&achternaam=");

@@ -1,3 +1,4 @@
+//Poly filling find function for older browsers
 if (!Array.prototype.find) {
   Object.defineProperty(Array.prototype, 'find', {
     value: function(predicate) {
@@ -42,8 +43,7 @@ if (!Array.prototype.find) {
   });
 }
 
-
-
+//Return the text if it isnt undefined and put something in front and/or behind it
 function returnOrUndefined(txt, extra, prefix) {
 	if (extra === undefined) {
 		extra = "";
@@ -59,10 +59,14 @@ function returnOrUndefined(txt, extra, prefix) {
 }
 
 function setSelectedContactsContent(markerObjs, showAllBool) {
+	//Check if more contacts detected
 	if(markerObjs.length == 1 && markerObjs[0].contacts.length == 1) {
+		//Set content of userInfo
 		userInfo.innerHTML = "";
 		var content = getSelectedContactContent(markerObjs[0].contacts[0], markerObjs[0].adres);
 		userInfo.innerHTML = content;
+		
+		//Check if to open 2 or one panel
 		if(showAllBool===true && (viewType==1 || viewType == 3))
 		{
 			showAll();
@@ -70,12 +74,15 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 			showSelectedContact();
 		}
 	} else {
+		//checks if there are any users found
 		allContactsList.classList.remove("hidden");
 		if(markerObjs.length == 0) {
 			contactsList.innerHTML = '<p id="noneFound">We konden niemand vinden die aan deze zoek resultaten voldoet.</p>';
 		} else {
 			contactsList.innerHTML = "";
 		}
+		
+		//if users found loop trough all markerObjs if a cluster marker and add all contacts from it as content
 		for(var i = 0; i < markerObjs.length; i++) {
 			var markerObj = markerObjs[i];
 			for(var j = 0; j < markerObj.contacts.length; j++) {
@@ -83,6 +90,8 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 				contactsList.innerHTML += content;
 			}
 		}
+		
+		//If mobile phone or isnt showing all show both panels
 		if(viewType != 3 || document.documentElement.clientWidth < 768) {
 			showAllContacts();
 		}
@@ -90,6 +99,7 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 }
 
 function getSelectedById(id) {
+	//search for the contact in the markerObjs
 	var markerObj = markerObjs.find(function (obj) {
 		for(var i = 0; i < obj.contacts.length; i++) {
 			if(obj.contacts[i].id == id) {
@@ -97,6 +107,8 @@ function getSelectedById(id) {
 			}
 		}
 	});
+	
+	//Check if id == obj.id and show the user
 	var contact = markerObj.contacts.filter(function (obj) {
 		return obj.id == id;
 	});
@@ -105,15 +117,16 @@ function getSelectedById(id) {
 }
 
 function getSelectedContactContent(contact, adres) {
+	//Get fotoPath and set default tussenvoegsel
 	var fotoPath =  '/getImage/' + contact.id;
-
+	var tussenvoegsel = "-";
 	console.log(fotoPath);
 
-	if(contact.tussenvoegsel < 1) {
-		var tussenvoegsel = "-";
-	}else{
-		var tussenvoegsel = contact.tussenvoegsel;
+	//
+	if(contact.tussenvoegsel >= 1) {
+		tussenvoegsel = contact.tussenvoegsel;
 	}
+	//Add all html to content
 	var content = '<img src="';
 	content += fotoPath;
 	content += '" class="profile-pic"/><p class="name">'
@@ -135,6 +148,7 @@ function getSelectedContactContent(contact, adres) {
 }
 
 function createCard(contact, adres) {
+	//Add all html to content
 	var content = '<a onclick="getSelectedById(';
 	content += contact.id
 	content += ')"><div class="card"><div class="row"><div class="col-md-3"><div class="cardImage"><img src="';
@@ -153,6 +167,7 @@ function createCard(contact, adres) {
 }
 
 function showAll() {
+	//Opens both panels by setting the right classes for it
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 3;
 
@@ -183,6 +198,7 @@ function showAll() {
 }
 
 function hideAll() {
+	//Hides both panels by setting the right classes for it
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 0;
 	if(classAttr == "onePanel") {
@@ -197,6 +213,7 @@ function hideAll() {
 }
 
 function hideAllContacts() {
+	//Hide only one panel by setting the right classes for it
 	var classAttr = mapDiv.getAttribute("class");
 	if(viewType == 3) {
 		viewType = 2;
@@ -211,6 +228,7 @@ function hideAllContacts() {
 }
 
 function hideSelectedContact() {
+	//Hide only one panel by setting the right classes for it
 	var classAttr = mapDiv.getAttribute("class");
 	if(viewType == 3) {
 		viewType = 1;
@@ -229,6 +247,7 @@ function hideSelectedContact() {
 }
 
 function showAllContacts() {
+	//Shows only one panel by setting the right classes for it
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 1;
 	mapDiv.setAttribute("class", "onePanel");
@@ -241,6 +260,7 @@ function showAllContacts() {
 }
 
 function showSelectedContact() {
+	//Shows only one panel by setting the right classes for it
 	var classAttr = mapDiv.getAttribute("class");
 	viewType = 2;
 	if(document.documentElement.clientWidth < 768) {
@@ -259,6 +279,7 @@ function showSelectedContact() {
 }
 
 window.addEventListener("resize", function() {
+		//Re runs functions when view changed
 		allContactsList.classList.remove("hidden");
 		if(viewType == 0) {
 			hideAll();
@@ -272,12 +293,12 @@ window.addEventListener("resize", function() {
 });
 
 document.body.onload = function() {
+	//Set all element variables
 	mapDiv = document.getElementById("mapDiv");
 	selectedContact = document.getElementById("selectedContact");
 	contactsList = document.getElementById("contactsList");
 	allContactsList = document.getElementById("allContacts");
 	userInfo = document.getElementById("userInfo");
-
 }
 
 var mapDiv, selectedContact, contactsList, userInfo;
