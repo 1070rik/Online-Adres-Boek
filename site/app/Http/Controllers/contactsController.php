@@ -237,7 +237,7 @@ class contactsController extends Controller
   }
 
   public function getImage($id) {
-    $contact = contacts::where('id', $id)->first();
+    $contact = contacts::where('id', $id)->firstOrFail();
     $userImage = $contact->fotoPad;
 
     if(!file_exists(public_path() . '/imgs/contactImages/' . $userImage)){

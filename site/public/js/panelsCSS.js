@@ -63,6 +63,11 @@ function getSelectedContactContent(contact, adres) {
 
 	console.log(fotoPath);
 
+	if(contact.tussenvoegsel < 1) {
+		var tussenvoegsel = "-";
+	}else{
+		var tussenvoegsel = contact.tussenvoegsel;
+	}
 	var content = '<img src="';
 	content += fotoPath;
 	content += '" class="profile-pic"/><p class="name">'
@@ -71,10 +76,9 @@ function getSelectedContactContent(contact, adres) {
 	content += returnOrUndefined(contact.achternaam, ""," ");
 	content += '</p><div class="user-extra">';
 	content += returnOrUndefined(contact.voornaam, '</h6>','<h4>Voornaam<h4> <h6> ');
-	content += returnOrUndefined(contact.tussenvoegsel, '</h6>','<h4>TussenVoegsels</h4> <h6>');
+	content += returnOrUndefined(tussenvoegsel, '</h6>','<h4>Tussenvoegsels</h4> <h6>');
 	content += returnOrUndefined(contact.achternaam, '</h6>','<h4>Achternaam</h4> <h6>');
-	content += returnOrUndefined(adres.straatnaam, '</h6>', '<h4>Adres</h4> <h6>');
-	content += returnOrUndefined(adres.huisnummer,'</h6>', ' ');
+	content += returnOrUndefined(adres.straatnaam + ' ' + adres.huisnummer, '</h6>', '<h4>Adres</h4> <h6>');
 	content += returnOrUndefined(adres.plaats, '</h6>', '<h4>Plaats</h4> <h6>');
 	content += returnOrUndefined(adres.postcode, '</h6>', '<h4>Postcode</h4> <h6>');
 	content += returnOrUndefined(contact.telefoonnummer, '','<h4>Telefoonnummer</h4> <h6>');

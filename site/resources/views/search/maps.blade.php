@@ -37,13 +37,13 @@
                     <br>
                     <div class="form-check radio-inline1">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3" onkeypress="return runSearch(event)">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" onkeypress="return runSearch(event)">
                         Adres
                         </label>
                     </div>
                     <div class="form-check radio-inline3">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option4" onkeypress="return runSearch(event)">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4" onkeypress="return runSearch(event)">
                         Plaats
                         </label>
                     </div>
