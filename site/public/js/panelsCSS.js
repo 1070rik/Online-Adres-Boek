@@ -90,7 +90,7 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 		//checks if there are any users found
 		allContactsList.classList.remove("hidden");
 		if(markerObjs.length == 0) {
-			contactsList.innerHTML = '<p id="noneFound">We konden niemand vinden die aan deze zoek resultaten voldoet.</p>';
+			contactsList.innerHTML = '<p id="noneFound">Er zijn geen zoekresultaten gevonden.</p>';
 		} else {
 			contactsList.innerHTML = "";
 		}

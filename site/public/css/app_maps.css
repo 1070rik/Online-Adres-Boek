@@ -664,6 +664,7 @@ span.clear { clear: left; display: block; }
 	}
 	
     #settings {
+		margin-bottom: 20px;
         bottom: 1% !important;
         left: 1vw !important;
         width: auto;
