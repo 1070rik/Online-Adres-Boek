@@ -107,7 +107,7 @@ div.col-12:nth-child(1),
 #panel {
     display: none;
     background-color: white;
-	max-height: calc(90% - 122px);
+	max-height: calc(80vh - 122px);
     overflow-x: hidden;
     overflow-y: auto;
 }
