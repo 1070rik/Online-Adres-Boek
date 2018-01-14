@@ -105,7 +105,7 @@ div.col-12:nth-child(1),
 #panel {
     display: none;
     background-color: white;
-	max-height: calc(90vh - 122px);
+	max-height: calc(90% - 122px);
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -369,7 +369,7 @@ h5 {
     width: 100%;
 }
 #search {
-    top: 1vh;
+    top: 1%;
     left: 1vw;
     height: auto;
     width: auto;
@@ -495,7 +495,7 @@ h5 {
     height: 200px;
 	display: table;
     border-radius: 100%;
-    margin-top: 2vh;
+    margin-top: 2%;
     margin-left: auto !important;
     margin-right: auto !important;
 }
@@ -566,7 +566,7 @@ span.clear { clear: left; display: block; }
 /*Responsive stuff*/
 @media (min-width: 769px) {
     #settings {
-        top: 1vh;
+        top: 1%;
         right: 1vw;
         width: auto;
         position: absolute;
@@ -643,14 +643,14 @@ span.clear { clear: left; display: block; }
     }
 
     .hideContact {
-        bottom: -20vh !important;
+        bottom: -20% !important;
     }
 }
 
 
 @media (max-width: 768px) {
     #settings {
-        bottom: 1vh !important;
+        bottom: 1% !important;
         left: 1vw !important;
         width: auto;
         position: absolute;
@@ -703,12 +703,12 @@ span.clear { clear: left; display: block; }
 
     .onePanel {
         transition-duration: 0.2s;
-        height: 60vh !important;
+        height: 60% !important;
     }
 
     .twoPanels {
         transition-duration: 0.4s;
-        height: 40vh !important;
+        height: 40% !important;
     }
 
     .noFastPanel {
@@ -718,7 +718,7 @@ span.clear { clear: left; display: block; }
 
     .twoFastPanels {
         transition-duration: 0.2s;
-        height: 40vh !important;
+        height: 40% !important;
     }
 
 
@@ -733,7 +733,7 @@ span.clear { clear: left; display: block; }
 
     #contactsList {
         overflow-y: scroll;
-        height: 36vh;
+        height: 36%;
         padding: 10px;
     }
 
@@ -760,5 +760,5 @@ span.clear { clear: left; display: block; }
 }
 
 .vh60 {
-    height: 60vh !important;
+    height: 60% !important;
 }
