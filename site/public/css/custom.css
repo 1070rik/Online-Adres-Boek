@@ -1,5 +1,9 @@
 /* */
 
+body{
+	-ms-overflow-style: scrollbar !important;
+}
+
 .big-button {
 	margin-top: 3%;
 	width: 500px;
@@ -82,7 +86,6 @@
 
 .userData {
 	height: calc(100vh - 90px);
-	margin-top: -2% !important;
 	-webkit-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
 	-moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
 	box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
@@ -153,7 +156,8 @@
 }
 
 .content{
-	overflow: scroll;
+	overflow-x: auto;
+	overflow-y: scroll;
 	height: calc(100vh - 90px);
 }
 

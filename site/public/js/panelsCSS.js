@@ -66,6 +66,18 @@ function setSelectedContactsContent(markerObjs, showAllBool) {
 		var content = getSelectedContactContent(markerObjs[0].contacts[0], markerObjs[0].adres);
 		userInfo.innerHTML = content;
 		
+		map.panTo(markerObjs[0].marker.getPosition());
+		if (infowindow.markerObjs !== undefined && infowindow.markerObjs[0] !== undefined && infowindow.markerObjs[0].marker !== undefined && infowindow.markerObj.marker != marker) {
+			infowindow.markerObj.marker.setIcon(getMarkerImg("#F00", infowindow.markerObj.hasDot));
+		}
+		markerObjs[0].marker.setIcon(getMarkerImg("#0F0", markerObjs[0].hasDot));
+		infowindow.setContent(markerObjs[0].content);
+		infowindow.pixelOffset.height = 10;
+		infowindow.markerObj = markerObjs[0];
+		infowindow.markerObjs = [];
+		infowindow.markerObjs.push(markerObjs[0]);
+		setSelectedContactsContent(infowindow.markerObjs)
+		
 		//Check if to open 2 or one panel
 		if(showAllBool===true && (viewType==1 || viewType == 3))
 		{
