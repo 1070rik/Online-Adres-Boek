@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="mobile-web-app-capable" content="yes">
-	
+	    <meta name="mobile-web-app-capable" content="yes">
+
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/app_maps.css') }}">
         <!-- <link rel="stylesheet" href="{{ asset('css/app_map_phone.css') }}"> -->
@@ -61,7 +61,8 @@
             }
 			
             function setScreenSize() {
-                document.body.clientHeight = window.innerHeight+"px";
+			//setInterval(function() {document.body.clientHeight = window.innerHeight+"px";}, 500);
+			document.body.clientHeight = window.innerHeight+"px";
             }
         </script>
         <!---->

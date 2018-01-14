@@ -12,6 +12,8 @@ div.col-12:nth-child(1),
     margin: 0 !important;
     padding: 0 !important;
     font-family: Raleway !important;
+	overflow-y: hidden;
+	overflow-x: hidden;
 }
 #map {
     position: relative;
@@ -406,6 +408,7 @@ h5 {
 }
 
 #allContacts {
+	height: 100%;
     background-color: white;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -419,6 +422,11 @@ h5 {
 	display: table;
 	margin: 0 auto;
 	width: 75%;
+	height: calc(100% - 30px);
+}
+
+#contactsList {
+	height: calc(100% - 30px);
 }
 
 .card {
@@ -468,6 +476,7 @@ h5 {
     width: 70%;
 }
 .topbar {
+	height: 30px !important;
     width: 100%;
     background-color: white;
     height: auto;
@@ -476,18 +485,20 @@ h5 {
 }
 
 .darktopbar {
-  width: 100%;
-  background-color: #e8e6e7;;
-  height: auto;
-  text-align: left;
+	height: 30px !important;
+	width: 100%;
+	background-color: #e8e6e7;
+	height: auto;
+    text-align: left;
+	text-align: left;
 }
 .close-icon-parent {
     cursor: pointer;
 }
 .close-icon {
     margin-left: 10px;
-    line-height: 4vh !important;
-    font-size: 50px !important;
+    line-height: 100% !important;
+    font-size: 30px !important;
     color: #a09c9c;
 }
 .profile-pic {
@@ -507,7 +518,7 @@ h5 {
 	margin-bottom: 0.5rem;
 }
 .user-extra {
-  text-align: left;
+	text-align: left;
 	padding-left: 1%;
 	width: 100%;
 	white-space: normal;
@@ -649,6 +660,10 @@ span.clear { clear: left; display: block; }
 
 
 @media (max-width: 768px) {
+	#userInfo {
+		height: calc(60% - 30px);
+	}
+	
     #settings {
         bottom: 1% !important;
         left: 1vw !important;
@@ -732,14 +747,16 @@ span.clear { clear: left; display: block; }
     }
 
     #contactsList {
-        overflow-y: scroll;
-        height: 36%;
-        padding: 10px;
+        height: calc(40% - 30px);
     }
 
+	#allContacts {
+		height: 40%;
+	}
+	
     .card {
-        border-radius: 3% !important;
-        margin-bottom: 5px;
+        //border-radius: 3% !important;
+        //margin-bottom: 5px;
     }
 
     .card:hover {
