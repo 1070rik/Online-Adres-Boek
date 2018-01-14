@@ -440,7 +440,7 @@ h5 {
     background-color: #4c6ef3;
 }
 .card .row {
-	display: inline-block;
+	display: table;
 	text-align: left;
 }
 .card .col-md-3 {
@@ -473,7 +473,6 @@ h5 {
 .cardText {
     text-align: left;
     height: 100%;
-    width: 70%;
 }
 .topbar {
 	height: 30px !important;
