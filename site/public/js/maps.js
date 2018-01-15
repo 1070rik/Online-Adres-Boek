@@ -202,6 +202,7 @@ function placeAllMarkers(filter) {
 	//Create requestURL with all data
 	var requestUrl = "bla?api=1";
 	requestUrl += returnOrUndefined(filter.voornaam, "", "&voornaam=");
+	requestUrl += returnOrUndefined(filter.tussenvoegsel, "", "&tussenvoegsel=");
 	requestUrl += returnOrUndefined(filter.achternaam, "", "&achternaam=");
 	requestUrl += returnOrUndefined(filter.straatnaam, "", "&straatnaam=");
 	requestUrl += returnOrUndefined(filter.huisnummer, "", "&huisnummer=");

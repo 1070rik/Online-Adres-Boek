@@ -41,7 +41,7 @@ class SearchController extends Controller
         //Join contacts and addresses together
             ->join('contacts', 'addresses.id', '=', 'contacts.adresID')
             ->where('contacts.voornaam', 'like', '%' . $request->voornaam . '%')
-        //->where('contacts.tussenvoegsel', 'like', '%' . $request->tussenvoegsel . '%') tussenvoegsel can be null
+			->where('contacts.tussenvoegsel', 'like', '%' . $request->tussenvoegsel . '%') //tussenvoegsel can be null
             ->where('contacts.achternaam', 'like', '%' . $request->achternaam . '%')
             //->where('addresses.straatnaam', 'like', '%' . $request->straatnaam . '%')
             //->where('addresses.huisnummer', 'like', '%' . $request->huisnummer . '%')
