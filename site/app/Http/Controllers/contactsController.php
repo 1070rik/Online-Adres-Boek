@@ -189,14 +189,37 @@ class contactsController extends Controller
             }
         }
 
-        contacts::where('id', $request['id'])->update(['voornaam' => $request['voornaam'],
-            'tussenvoegsel'                                           => $request['tussenvoegsel'],
-            'achternaam'                                              => $request['achternaam'],
-            'geboortedatum'                                           => $request['geboortedatum'],
-            'telefoonnummer'                                          => $request['telefoonnummer'],
-            'email'                                                   => $request['email'],
-            'fotoPad'                                                 => $request['fotoPad'],
-            'beschrijving'                                            => $request['beschrijving']]);
+        if($request->file('fotoPad')) {
+            $image = $request->file('fotoPad')->getClientOriginalName();
+
+            $filename = $image;
+            if ($request->hasFile('fotoPad')) {
+                if (file_exists($filename)) {
+                    //File already exists.
+                } else {
+                    //File doesn't exist, upload new file.
+                    $file = $request->file('fotoPad');
+                    $file->move('imgs/contactImages', $filename);
+                }
+            }
+
+            contacts::where('id', $request['id'])->update(['voornaam' => $request['voornaam'],
+                'tussenvoegsel'                                           => $request['tussenvoegsel'],
+                'achternaam'                                              => $request['achternaam'],
+                'geboortedatum'                                           => $request['geboortedatum'],
+                'telefoonnummer'                                          => $request['telefoonnummer'],
+                'email'                                                   => $request['email'],
+                'fotoPad'                                                 => $filename,
+                'beschrijving'                                            => $request['beschrijving']]);
+        }else{
+            contacts::where('id', $request['id'])->update(['voornaam' => $request['voornaam'],
+                'tussenvoegsel'                                           => $request['tussenvoegsel'],
+                'achternaam'                                              => $request['achternaam'],
+                'geboortedatum'                                           => $request['geboortedatum'],
+                'telefoonnummer'                                          => $request['telefoonnummer'],
+                'email'                                                   => $request['email'],
+                'beschrijving'                                            => $request['beschrijving']]);
+        }
 
         $contact  = contacts::where('id', $request['id'])->get()[0];
         $contacts = contacts::where('adresID', $contact['adresID'])->get();
@@ -222,7 +245,7 @@ class contactsController extends Controller
             }
         }
 
-        return redirect('admin/contacts');
+        return redirect()->to('/admin/contacts'); 
     }
 
     public function getAllContactsAjax(Request $request)
@@ -255,12 +278,14 @@ class contactsController extends Controller
 
     public function getImage($id)
     {
-        $contact   = contacts::where('id', $id)->firstOrFail();
+        $contact   = contacts::where('id', $id)->first();
         $userImage = $contact->fotoPad;
 
         if (!file_exists(public_path() . '/imgs/contactImages/' . $userImage)) {
+            // return "nope";
             return response()->file(public_path() . '/imgs/user.png');
         } else {
+            // return "yee";
             return response()->file(public_path() . '/imgs/contactImages/' . $userImage);
         }
     }

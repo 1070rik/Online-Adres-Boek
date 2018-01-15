@@ -12,6 +12,6 @@ class HomeController extends Controller
     public function index()
     {
         //Serve home view
-        return view('search.search');
+        return view('search.maps');
     }
 }

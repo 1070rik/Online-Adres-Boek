@@ -8,7 +8,7 @@
     @endif
     <div class="pageHeader">
         <div class="headerLeft">
-            <h1 class="pageTitle">Contacten</h1>
+            <h1 class="pageTitle">Gebruikers</h1>
         </div>
         <div class="headerRight">
             <span><a href="{{ route('addContactGet') }}">New</a></span>

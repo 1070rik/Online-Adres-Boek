@@ -40,14 +40,18 @@
 
         </div>
         <div class="col-md-3 userData">
-          <img src="http://via.placeholder.com/200x200" alt="profileImage" class="profileImage">
+          <img src="{{ asset('imgs/user.png') }}" alt="profileImage" class="profileImage">
           <p class="naam profileTitle">....</p>
 
-          <form class="form-vertical" method="POST" action="{{ route('editContactPost') }}">
+          <form class="form-vertical" method="POST" action="{{ route('editContactPost') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="data">
               <table class="table">
                 <tbody>
+                <tr class="form-group">
+                  <td>Contact foto</td>
+                  <td><input class="form-control" type="file" name="fotoPad"></td>
+                </tr>
                 <tr class="form-group">
                   <td>Id</td>
                   <td class="tdid"></td>

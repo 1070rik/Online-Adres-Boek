@@ -70,6 +70,10 @@ function remove(){
 }
 
 function updatePanelData(contact, address){
+    var d = new Date();
+    var n = d.getTime();
+    var fotoPath =  '/getImage/' + contact.id + '?t=' + n;
+    $('.profileImage').attr("src",fotoPath);
     $('.profileTitle').html(contact['voornaam'] + ' ' + contact['tussenvoegsel'] + ' ' + contact['achternaam']);
 
     $('.tdid').html('<input type="hidden" class="id" type="text" name="id" readonly value="' + contact['id'] + '"/>' + contact['id']);
