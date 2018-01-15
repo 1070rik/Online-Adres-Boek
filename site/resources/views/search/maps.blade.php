@@ -15,7 +15,6 @@
                 <div id="panel">
                     <div class="form-group">
                         <h3>Filteren</h3>
-                        <input type="text" class="form-control zoekfunctiebar" id="InputTussenvoegsel" aria-describedby="emailHelp" placeholder="Tussenvoegsel" onkeypress="return runSearch(event)">
                         <input type="text" class="form-control zoekfunctiebar" id="InputAchternaam" aria-describedby="emailHelp" placeholder="Achternaam" onkeypress="return runSearch(event)">
                         <input type="text" class="form-control zoekfunctiebar" id="InputAdres" aria-describedby="emailHelp" placeholder="Adres" onkeypress="return runSearch(event)">
                         <input type="text" class="form-control zoekfunctiebar" id="InputPlaats" aria-describedby="emailHelp" placeholder="Plaats" onkeypress="return runSearch(event)">
