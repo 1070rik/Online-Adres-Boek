@@ -30,9 +30,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/admin') }}">
-                        <b>Admin paneel</b>
-                    </a>
+                    <b class="navbar-brand">Admin paneel</b>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
