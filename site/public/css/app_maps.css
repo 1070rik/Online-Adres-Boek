@@ -418,6 +418,7 @@ h5 {
     background-color: #e8e6e7;
     overflow-x: auto;
     overflow-y: auto;
+    z-index: 1;
 }
 #userInfo {
 	display: table;
