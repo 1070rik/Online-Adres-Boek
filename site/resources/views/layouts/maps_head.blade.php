@@ -15,7 +15,7 @@
         <style>
         </style>
         <!--IMPORTANT-->
-        <script src="js/maps.js"></script>
+        <script src="js/maps.js?v=<?=time()?>"></script>
         <!-- TESTING DINGIES -->
         <script>
             // placeAllMarkers() will place all markers without a
@@ -69,8 +69,8 @@
     </head>
     <body>
         @yield('content')
-        <script src="{{ asset('js/panelsCSS.js') }}"></script>
-        <script src="{{ asset('js/markerclusterer.js') }}"></script>
+        <script src="{{ asset('js/panelsCSS.js') }}?v=<?=time()?>"></script>
+        <script src="{{ asset('js/markerclusterer.js') }}?v=<?=time()?>"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZlYb-j15azWaz3lQxTcEzYE7P43S3kU&callback=initMap"></script>
         <!---->

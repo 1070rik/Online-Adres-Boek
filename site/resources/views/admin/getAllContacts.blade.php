@@ -115,9 +115,9 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/orderedTable.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('js/orderedTable.js') }}?v=<?=time()?>" charset="utf-8"></script>
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/admin.js') }}" charset="utf-8"></script>
+<script src="{{ asset('js/admin.js') }}?v=<?=time()?>" charset="utf-8"></script>
 @endsection
