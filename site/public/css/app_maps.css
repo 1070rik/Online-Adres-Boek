@@ -400,6 +400,7 @@ h5 {
 .settingsItem:hover {
     color: #A1A1A1;
 }
+
 #settingsUpDown {
     text-align: center;
     padding: 0;
@@ -414,6 +415,7 @@ h5 {
     overflow-x: hidden;
     overflow-y: scroll;
 }
+
 #selectedContact {
     background-color: #e8e6e7;
     overflow-x: auto;
@@ -429,7 +431,7 @@ h5 {
 
 #contactsList {
 	height: calc(100% - 30px);
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .card {
