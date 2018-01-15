@@ -472,6 +472,7 @@ h5 {
 }
 .cardImage img {
     height: 100px;
+    width: 100px;
     border-radius: 100%;
     padding: 10px;
 	border: 0.01px solid transparent;

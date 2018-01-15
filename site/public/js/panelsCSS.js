@@ -161,10 +161,11 @@ function getSelectedContactContent(contact, adres) {
 
 function createCard(contact, adres) {
 	//Add all html to content
+	var fotoPath =  '/getImage/' + contact.id;
 	var content = '<a onclick="getSelectedById(';
 	content += contact.id
 	content += ')"><div class="card"><div class="row"><div class="col-md-3"><div class="cardImage"><img src="';
-	content += 'imgs/user.png';
+	content += fotoPath;
 	content += '"></div></div><div class="col-md-9"><div class="cardText"><h4 class="card-naam">';
 	content += returnOrUndefined(contact.voornaam);
 	content += returnOrUndefined(contact.tussenvoegsel, ""," ");
