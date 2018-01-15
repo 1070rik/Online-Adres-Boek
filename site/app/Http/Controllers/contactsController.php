@@ -29,18 +29,22 @@ class contactsController extends Controller
                 'error' => 'Contact with given email exists already!',
             ]);
         } else {
-            $image = $request->file('fotoPad')->getClientOriginalName();
+            if($request->file('fotoPad')) {
+                $image = $request->file('fotoPad')->getClientOriginalName();
 
-            $filename = $image;
-            if ($request->hasFile('fotoPad')) {
-                if (file_exists($filename)) {
-                    echo 'uploaded <br/>';
-                    echo '<img src="contactImages/' . $filename . '"/>';
-                } else {
-                    echo 'uploaded <br/>';
-                    $file = $request->file('fotoPad');
-                    $file->move('imgs/contactImages', $filename);
+                $filename = $image;
+                if ($request->hasFile('fotoPad')) {
+                    if (file_exists($filename)) {
+                        echo 'uploaded <br/>';
+                        echo '<img src="contactImages/' . $filename . '"/>';
+                    } else {
+                        echo 'uploaded <br/>';
+                        $file = $request->file('fotoPad');
+                        $file->move('imgs/contactImages', $filename);
+                    }
                 }
+            }else{
+                $filename = "/uploads/image.png";
             }
 
             $contact = contacts::create([

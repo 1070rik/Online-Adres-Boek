@@ -93,7 +93,7 @@
                   <td><input class="plaats" type="text" name="plaats" /></td>
                 </tr>
                 <tr class="form-group">
-                  <td>Postcodde</td>
+                  <td>Postcode</td>
                   <td><input class="postcode" type="text" name="postcode" /></td>
                 </tr>
                 <tr class="form-group">
