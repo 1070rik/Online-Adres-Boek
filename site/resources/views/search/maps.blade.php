@@ -70,7 +70,7 @@
             </div>
             <div id="settingsMore">
                 @if(Auth::user()->admin == 1)
-                <a href="{{ route('adminGetAllContacts') }}" target="_blank">
+                <a href="{{ route('adminGetAllContacts') }}">
                     <p>Admin panel</p>
                 </a>
                 @endif
