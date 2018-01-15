@@ -386,6 +386,7 @@ h5 {
     -moz-box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     box-shadow: -4px 6px 22px -8px rgba(189, 189, 189, 1);
     padding: 10px;
+    z-index: 2;
 }
 
 .settingsItem {
@@ -427,6 +428,7 @@ h5 {
 
 #contactsList {
 	height: calc(100% - 30px);
+    margin-top: 30px;
 }
 
 .card {
@@ -475,21 +477,21 @@ h5 {
     height: 100%;
 }
 .topbar {
-	height: 30px !important;
     width: 100%;
     background-color: white;
     height: auto;
     text-align: left;
     border-bottom: 1px solid #bcbabb !important;
+    position: fixed;
+    z-index: 1;
 }
 
 .darktopbar {
-	height: 30px !important;
 	width: 100%;
 	background-color: #e8e6e7;
 	height: auto;
     text-align: left;
-	text-align: left;
+    position: fixed;
 }
 .close-icon-parent {
     cursor: pointer;
@@ -748,6 +750,7 @@ span.clear { clear: left; display: block; }
 
     #contactsList {
         height: calc(40% - 30px);
+        margin-top: 30px;
     }
 
 	#allContacts {
