@@ -99,7 +99,6 @@ function showContact(type, data) {
 			selectedContact.style.right = roundHalf(right-0.5)+"vw";
 		}
 	}, 1);
-	console.log(data);
 	if(type == "own"){
 		$("p.name").text(data['email']);
 		$(".user-extra").html("");

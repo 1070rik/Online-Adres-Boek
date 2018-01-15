@@ -133,7 +133,6 @@ function getSelectedContactContent(contact, adres) {
 	//Get fotoPath and set default tussenvoegsel
 	var fotoPath =  '/getImage/' + contact.id;
 	var tussenvoegsel = "-";
-	console.log(fotoPath);
 
 	//
 	if(contact.tussenvoegsel >= 1) {
@@ -268,8 +267,6 @@ function showAllContacts() {
 	setTimeout(function() {
 			google.maps.event.trigger(map, 'resize');
 	}, 500);
-	
-	console.log("test");
 }
 
 function showSelectedContact() {
