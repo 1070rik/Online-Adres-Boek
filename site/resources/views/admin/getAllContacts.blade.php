@@ -98,7 +98,7 @@
                 </tr>
                 <tr class="form-group">
                   <td>Beschrijving</td>
-                  <td><input class="opmerking" type="text" name="Beschrijving" /></td>
+                  <td><input class="opmerking" type="text" name="beschrijving" /></td>
                 </tr>
                 <tr class="form-group">
                   <td>Geboortedatum</td>
